@@ -89,7 +89,7 @@
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('braden',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('allProph',['vers' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -158,37 +158,7 @@
                                  
                           </div>
                       </div>
-                      <br>
-                        <div class="row">
-                          
-                            <div class=" container-fluid bs-border-color col" id="navbarSupportedContent">
-                                  
-                                    <div class="col" style="display: inline-block;" >  
-                                        <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='patienten-profile.php?versicherungsnummer'"";
-                                            id=" login-button" type="submit"
-                                            class="btn btn-primary"><b>Profile</b>
-                                        </button>
-                                    </div>
-                                 
-                                    <div class="col" style="display: inline-block;" >  
-                                        <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='check-dekubitus-form.php?versicherungsnummer'"";
-                                            id=" login-button" type="submit"
-                                            class="btn btn-primary"> <b>Dekubitusrisiko einschaetzen</b> 
-                                        </button>
-                                    </div>
-                                    <div class="col" style="display: inline-block;" >  
-                                        <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='check-thrombose-form.php?versicherungsnummer'"";
-                                            id=" login-button" type="submit"
-                                            class="btn btn-primary"> <b>Thromboserisiko einschaetzen</b> 
-                                        </button>
-                                    </div>
-                                   
-                                   
-                            </div>
-                        </div>
+                      
                         <br>
                         <div class="table-responsive fs-5">
                         

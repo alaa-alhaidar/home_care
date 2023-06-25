@@ -229,43 +229,56 @@
 
                      
                           <canvas id="myChart2" style="width:100%;max-width:100%"></canvas>
+                          @php
+                                $herrCount = 0;
+                                $frauCount = 0;
+                                $dritteCount = 0;
+                            @endphp
 
-                          <script>
-                            var man=0;
-                            var frau=0;
-                            var dritte=0;
-                            
-                            const dataXg = ;
-                            for(let i = 0 ; i < dataXg.length; i++) {
-                                if (dataXg[i]== "Herr") {
-                                    man++;
-                                }else if (dataXg[i]== "Frau") {
-                                    frau++;
-                                }else if (dataXg[i]== "Dritte") {
-                                    dritte++;
-                                }
-                            };
-                            const dataXgeschlecht2 = ['Man', 'Frau','Dritte']; 
-                            var barColor2 = ["blue","blue","blue"];
-                            var yValues2 = [man, frau, dritte];
-                            new Chart("myChart2", {
-                                type: "bar",
-                                data: {
-                                    labels: dataXgeschlecht2,
-                                    datasets: [{
-                                    backgroundColor: barColor2,
-                                    data: yValues2
-                                    }]
-                                },
-                                options: {
-                                    legend: {display: false},
-                                    title: {
-                                    display: true,
-                                    text: ""
+                            @foreach ($data as $item)
+                                @php
+                                    $dob = new DateTime($item->geburtstag);
+                                    $today = new DateTime('today');
+                                    $alter = $dob->diff($today)->y;
+                                @endphp
+                                @if ($item->geschlecht == 'Herr')
+                                    @php
+                                        $herrCount++;
+                                    @endphp
+                                @elseif ($item->geschlecht == 'Frau')
+                                    @php
+                                        $frauCount++;
+                                    @endphp
+                                @else
+                                    @php
+                                        $dritteCount++;
+                                    @endphp
+                                @endif
+                            @endforeach
+
+                            <script>
+                                const dataXgeschlecht2 = ['Man', 'Frau', 'Dritte'];
+                                var barColor2 = ["blue", "blue", "blue"];
+                                var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
+                                new Chart("myChart2", {
+                                    type: "bar",
+                                    data: {
+                                        labels: dataXgeschlecht2,
+                                        datasets: [{
+                                            backgroundColor: barColor2,
+                                            data: yValues2
+                                        }]
+                                    },
+                                    options: {
+                                        legend: { display: false },
+                                        title: {
+                                            display: true,
+                                            text: ""
+                                        }
                                     }
-                                }
                                 });
-                          </script>
+                            </script>
+
                  
 
               </div>

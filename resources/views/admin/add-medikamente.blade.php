@@ -58,6 +58,7 @@
                 <b>Patienten: {{$pat->geschlecht}} {{$pat->nachname}}, {{$pat->vorname}}. Geb. {{$pat->geburtstag}}, Vers. {{$pat->versicherungsnummer}}.</b>
               
                 </h2>
+
                 <div class="col" style="display: inline-block;">
                     <form class= 'd-inline ' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
@@ -68,24 +69,26 @@
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;"
-                        onclick="window.location.href='medikamente.php?versicherungsnummer'"";
-                                        
-                                        
-                                        id=" login-button" type="submit" class="btn btn-primary"> <b>Medikamente</b>
-                    </button>
+                    <form class= 'd-inline' action="{{ route('med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Medikamente
+                        </button>
+                    </form>
                 </div>
 
                 <div class="col" style="display: inline-block;">
-                    <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;"
-                        onclick="window.location.href='report.php?versicherungsnummer'"";
-                                            id=" login-button" type="submit" class="btn btn-primary"> <b>Berichte</b>
-                    </button>
+                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Bericht
+                        </button>
+                    </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('braden',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('allProph',['vers' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -94,21 +97,23 @@
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;"
-                        onclick="window.location.href='view-diagnosen.php?versicherungsnummer'"";
-                                            id=" login-button" type="submit" class="btn btn-primary"> <b>Diagnosen</b>
-                    </button>
+                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Diagnosen
+                        </button>
+                    </form>
                 </div>
-            
-
+             
                 <div class="col" style="display: inline-block;">
-                    <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;"
-                        onclick="window.location.href='view.php?versicherungsnummer'"";
-                                            id=" login-button" type="submit" class="btn btn-primary"> <b>Übersicht</b>
-                    </button>
-
+                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Übersicht
+                        </button>
+                    </form>
                 </div>
 
             </div>

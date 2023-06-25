@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Patienten Profile</title>
+    <title>Vitalzeichens</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -65,6 +65,7 @@
                 <b>Patienten: {{$pat->geschlecht}} {{$pat->nachname}}, {{$pat->vorname}}. Geb. {{$pat->geburtstag}}, Vers. {{$pat->versicherungsnummer}}.</b>
               
                 </h2>
+
                 <div class="col" style="display: inline-block;">
                     <form class= 'd-inline ' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
@@ -74,24 +75,27 @@
                         </button>
                     </form>
                 </div>
-                <form class= 'd-inline' action="{{ route('med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
-                    @csrf
-                    <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
-                    style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                    id='btn' >Med.
-                    </button>
-                </form>
-
-            
                 <div class="col" style="display: inline-block;">
-                    <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;"
-                        onclick="window.location.href='report.php?versicherungsnummer='"";
-                                            id=" login-button" type="submit" class="btn btn-primary"> <b>Berichte</b>
-                    </button>
+                    <form class= 'd-inline' action="{{ route('med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Medikamente
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col" style="display: inline-block;">
+                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Bericht
+                        </button>
+                    </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('braden',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('allProph',['vers' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -100,22 +104,24 @@
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;"
-                        onclick="window.location.href='view-diagnosen.php?versicherungsnummer='"";
-                                            id=" login-button" type="submit" class="btn btn-primary"> <b>Diagnosen</b>
-                    </button>
+                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Diagnosen
+                        </button>
+                    </form>
                 </div>
-          
+             
                 <div class="col" style="display: inline-block;">
-                    <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;"
-                        onclick="window.location.href='view.php?versicherungsnummer='"";
-                                            id=" login-button" type="submit" class="btn btn-primary"> <b>Übersicht</b>
-                    </button>
-
+                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Übersicht
+                        </button>
+                    </form>
                 </div>
-      
 
             </div>
 
@@ -174,7 +180,6 @@
                                                     <th scope="col" class="text-center">Temperatur</th>
                                                     <th scope="col" class="text-center">Gewicht</th>
                                                     <th scope="col" class="text-center">BMI</th>
-                                                    
                                                     <th scope="col" class="text-center">Checkdatum</th>
                                                     <th scope="col" class="text-center">Operations</th>
                                                 </tr>
@@ -197,20 +202,7 @@
                                                 <td>{{$item->bmi}}</td>
                                                 <td>{{$item->created_at}}</td>
                                                 <td> 
-                                                    <form class= 'd-inline' action="{{ route('med',['vers' => $item->versicherungsnummer,'patinfo' => $item->versicherungsnummer]) }}"  method='post'>
-                                                        @csrf
-                                                        <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
-                                                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                                        id='btn' >Med.
-                                                        </button>
-                                                    </form>
-                                                    <form class= 'd-inline' action='' method='post'>
-                
-                                                        <button  class='d-inline btn btn-light btn-sm' type='submit' value='med-requset'
-                                                            style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                                            id='btn' >Profile.
-                                                        </button>
-                                                    </form>
+                                                 
                                                     <form class= 'd-inline' action='' method='post'>
                 
                                                         <button  class='d-inline btn btn-success btn-sm' type='submit' value='med-requset'
@@ -228,15 +220,18 @@
                                                 </td>
                                             </tr>
                                                 @endforeach
-          <div class="print-content" >
-        <button class="btn fs-3" style="background-color: blue;color:white" onclick="printJSON()">Ausdrücken</button>
-      
-    </div>
+       
                                             </tbody>
                                         </table>
                                     </div>
 
                                 </div>
+                            </div>
+                            @foreach ($patinfo as $pat)
+                            @endforeach
+                            <div class="print-content" >
+                                <button class="btn fs-3" style="background-color: blue;color:white" onclick="printJSON()">Ausdrücken</button>
+                              
                             </div>
                         </div>
                     </div>
@@ -466,26 +461,30 @@
                                   }
                                 });
                             </script>
-                   
+
+                   <script>
+                function printJSON() {
+                var v = document.getElementById("patient-table").cloneNode(true);
+                var operationsColumn = v.querySelectorAll("td:nth-last-child(1), th:nth-last-child(1)");
+                    operationsColumn.forEach(function(column) {
+                        column.remove();
+                    });
+                var printWindow = window.open();
+
+                printWindow.document.write('<h4 style="font-size: 20px; color: rgb(235, 27, 27); font-family:\'Gill Sans\', \'Gill Sans MT\', Calibri, \'Trebuchet MS\', sans-serif; font-weight: 500;" class="tm-block-title mt-3"><b>Patienten: {{$pat->geschlecht}} {{$pat->nachname}}, {{$pat->vorname}}, Geb. {{$pat->geburtstag}}. Vers. {{$pat->versicherungsnummer}}</b></h4>');
+
+                printWindow.document.write('<html><head><title>Patientinfor.</title></head><body>');
+                printWindow.document.write(v.outerHTML);
+                printWindow.document.write('</body></html>');
+                printWindow.print();
+                printWindow.close();
+                }
+                   </script>
 
                 </div>
                 
             </div>
         </div>
-    <script>
- function printJSON() {
-    var v = document.getElementById("patient-table")
- 
-   var printWindow = window.open();
-  // printWindow.document.open();
-    printWindow.document.write('<html><head><br><title>Patientinfor.</title><br><br></head><body><br>');
-   
-    printWindow.document.write(v.outerHTML);
-    printWindow.document.write('<br></body><br></html>');
-    printWindow.print();
-    printWindow.close();
-}
-</script>
 </body>
 
 <footer>

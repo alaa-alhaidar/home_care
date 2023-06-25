@@ -26,7 +26,7 @@
                              
                             <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 500;"
                             class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 'Times New Roman',
-                             Times, serif; font-weight: 200;"> Für Ihre Gesundheit da.</b></h2>
+                             Times, serif; font-weight: 200;"> Für Ihre Gesundheit da.</b><br><b style="font-size: 20px;color: rgb(172, 171, 207);";>powerd by chatGPT 3.5 Turbo</b></h2>
                             </p>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                                 @csrf
                                 <div style="width: 100px;" class="input-group">
                                     <label for="username" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
-                                        <p style="font-size: larger;">Email</p>
+                                        <p style="font-size: larger;color: white;">Email</p>
                                     </label>
                                  
                                     <input style="height: 20px; width: 400px;" name="loginname" type="text"
@@ -46,7 +46,7 @@
                                 </div>
                                 <div style="width: 100px;" class="input-group mt-3">
                                     <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
-                                        <p style="font-size: larger;">Password</p>
+                                        <p style="font-size: larger;color: white;">Passwort</p>
                                     </label>
                                     <input style="height: 20px;width: 400px;" name="loginpassword" type="password"
                                         class="form-control validate fs-2" placeholder="Enter your password" id="password"
@@ -57,7 +57,7 @@
                                     <button style="color: rgb(13, 13, 13); background-color: darkgrey; border-block-end-width: thick; 
                                     writing-mode: horizontal-tb;" 
                                         id=" login-button" type="submit"
-                                        class="btn btn-primary d-inline-block mx-auto font-color ">Login
+                                        class="btn btn-primary d-inline-block mx-auto font-color ">Einloggen
                                     </button>
                                     
                                 </div>

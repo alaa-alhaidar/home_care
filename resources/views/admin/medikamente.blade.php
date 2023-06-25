@@ -93,7 +93,7 @@
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('view-prophylaxen',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('allProph',['vers' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -270,8 +270,8 @@
 var med = '<?php echo $med; ?>';
 const chatForm = document.getElementById('question');
 const chatForm2 = document.getElementById('question2');
-const userMessageInput = "Was sind die Wechselwirkungen der folgenden Medikamente: " + med + "Bitte detailierte Informationen liefern";
-const userMessageInput2 = "Was sind die Nebenwirkungen der folgenden Medikamente: " + med + "Bitte detailierte Informationen liefern";
+const userMessageInput = "Was sind die Wechselwirkungen der folgenden Medikamente: " + med + "Bitte detailierte Informationen liefern. Schreibe bitte geordnete Zeilen. jedes Medikament in eine neue Zeile.";
+const userMessageInput2 = "Was sind die Nebenwirkungen der folgenden Medikamente: " + med + "Bitte detailierte Informationen liefern. Schreibe bitte geordnete Zeilen. jedes Medikament in eine neue Zeile.";
 const chatLog = document.getElementById('chat-log');
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 const apikey = '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';
@@ -351,13 +351,13 @@ chatForm.addEventListener('click', async (e) => {
     @php
     $medplan="";
     $timeNow = intval(date("H"));
-    if ($timeNow >= 6 && $timeNow <= 12) {
+    if ($timeNow >= 6 && $timeNow <= 9) {
        
         $medplan .= DB::table('medikaments')
     ->where('morgen', '>', 0)
     ->get(['name','morgen']);
 
-    }else if ($timeNow > 12 && $timeNow <= 18) {
+    }else if ($timeNow > 9 && $timeNow <= 18) {
         $medplan .= DB::table('medikaments')
     ->where('nachmittag', '>', 0)
     ->get(['name','nachmittag']);

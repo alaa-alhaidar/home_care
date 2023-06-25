@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\MassnahmenController;
 use App\Http\Controllers\MedikamenteController;
 
 /*
@@ -44,7 +45,7 @@ Route::delete('/delete-post/{post}', [PatientController::class, 'deletePost']);
 Route::post('#', [PatientController::class, 'logout']);
 
 // Prophylaxen
-Route::post('allProph/{vers}', [ProphylaxenController::class, 'checkDekuRisiko'])->name('allProph');
+Route::post('allProph/{vers}', [MassnahmenController::class, 'showAllDekubitusProhpylaxen'])->name('allProph');
 
 
 
