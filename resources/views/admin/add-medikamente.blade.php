@@ -39,7 +39,7 @@
         
             <div class="col" style="display: inline-block;">
                 <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='patient-info.php'"";
+                                        writing-mode: horizontal-tb;" onclick="window.location.href='/'"";
                                             id=" login-button" type="submit" class="btn btn-primary">
                     <b>Patienteninfo</b>
                 </button>

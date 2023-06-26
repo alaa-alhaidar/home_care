@@ -41,9 +41,16 @@
                        id=" login-button" type="submit" class="btn btn-primary"><b>Ausloggen</b>
                     </button>
                 </div>
-             
+                <div class="col" style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
+                                            writing-mode: horizontal-tb;" onclick="window.location.href='/'";
+                                                id=" login-button" type="submit" class="btn btn-primary">
+                        <b>Patienteninfo</b>
+                    </button>
+                    <br>
+                </div>
             </div>
-
+           
 
         </div>
         <br>
@@ -92,7 +99,9 @@
 
                                 </tr>
                             </thead>
-                           
+                           @php
+                            $i=1;
+                           @endphp
 
                             <tbody class="fw-normal">
                                 @foreach ($data as $item)
@@ -100,9 +109,10 @@
                                 $dob = new DateTime($item->geburtstag);
 		                        $today   = new DateTime('today');
                                 $alter = $dob->diff($today)->y;
+                               
                                 @endphp
                                 <tr class='text-center text-white align-middle'>
-                                <td>{{$item->id}}</td>
+                                <td>{{$i++}}</td>
                                 <td>{{$item->vorname}}</td>
                                 <td>{{$item->nachname}}</td>
                                 <td>{{$item->geschlecht}}</td>
@@ -291,8 +301,6 @@
               <b>Alter</b>
               </center>
                       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-                     
                           <canvas id="myChart3" style="width:100%;max-width:100%"></canvas>
 
                           <script>
@@ -356,15 +364,10 @@
               </div>
           </div>
     </div>
-    <footer class="row tm-mt-small">
-       
-    </footer>
+   
     </div>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <!-- https://jquery.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- https://getbootstrap.com/ -->
+    
 
 </body>
 

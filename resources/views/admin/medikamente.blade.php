@@ -44,7 +44,7 @@
        
             <div class="col" style="display: inline-block;">
                 <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='/patientinfo'";
+                                        writing-mode: horizontal-tb;" onclick="window.location.href='/'";
                                             id=" login-button" type="submit" class="btn btn-primary">
                     <b>Patienteninfo</b>
                 </button>
@@ -141,30 +141,31 @@
                                     @csrf
                                     <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
                                     style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                    id='btn' >+Med.
+                                    id='btn' ><b class= 'fs-3'>+Med</b>
                                     </button>
                                 </form>
-                                    <div class="col" style="display: inline-block;" >  
-                                        <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href=''"";
-                                            id=" login-button" type="submit"
-                                            class="btn btn-primary"><b>Profile</b>
-                                        </button>
-                                    </div>
-                                    <div class="col" style="display: inline-block;" id="" >  
-                                        <button style="background-color: lightgrey; border-block-end-width: thick; 
+                                <form class= 'd-inline' action="{{ route('add-med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                                    @csrf
+                                    <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
+                                    style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                    id='btn' ><b class= 'fs-3'>Profile</b>
+                                    </button>
+                                </form>
+                                
+                                    <button style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
                                         writing-mode: horizontal-tb;"";
                                             id="question" type="submit" 
-                                            class="btn btn-primary"> <b style="color: blue">Künstliche intelligenz / Wechselwirkung prüfen</b> 
+                                            class="d-inline btn btn-warning btn-sm"> <b class= 'fs-3' style="color: blue">KI / Wechselwirkung prüfen</b> 
                                         </button>
-                                    </div>
-                                    <div class="col" style="display: inline-block;" id="" >  
-                                        <button style="background-color: lightgrey; border-block-end-width: thick; 
+                                
+                                
+                                    <button style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
                                         writing-mode: horizontal-tb;"";
                                             id="question2" type="submit" 
-                                            class="btn btn-primary"> <b style="color: green">Künstliche intelligenz / Nebenwirkung prüfen</b> 
+                                            class="d-inline btn btn-warning btn-sm"> <b class= 'fs-3' style="color: green">KI / Nebenwirkung prüfen</b> 
                                         </button>
-                                    </div>
+                               
+                                    
                                   
                             </div>
                         </div>
@@ -221,13 +222,7 @@
                                 <td>{{$item->personal}}</td>
                                 <td> 
                                     
-                                    <form class= 'd-inline' action='' method='post'>
-
-                                        <button  class='d-inline btn btn-light btn-sm' type='submit' value='med-requset'
-                                            style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                            id='btn' >Profile.
-                                        </button>
-                                    </form>
+                                  
                                     <form class= 'd-inline' action='' method='post'>
 
                                         <button  class='d-inline btn btn-success btn-sm' type='submit' value='med-requset'
@@ -270,8 +265,9 @@
 var med = '<?php echo $med; ?>';
 const chatForm = document.getElementById('question');
 const chatForm2 = document.getElementById('question2');
-const userMessageInput = "Was sind die Wechselwirkungen der folgenden Medikamente: " + med + "Bitte detailierte Informationen liefern. Schreibe bitte geordnete Zeilen. jedes Medikament in eine neue Zeile.";
-const userMessageInput2 = "Was sind die Nebenwirkungen der folgenden Medikamente: " + med + "Bitte detailierte Informationen liefern. Schreibe bitte geordnete Zeilen. jedes Medikament in eine neue Zeile.";
+const userMessageInput= "1+1";
+//const userMessageInput = "Was sind die Wechselwirkungen der folgenden Medikamente: " + med + "Bitte detailierte Informationen liefern. ";
+//const userMessageInput2 = "Was sind die Nebenwirkungen der folgenden Medikamente: " + med + "Bitte detailierte Informationen liefern. ";
 const chatLog = document.getElementById('chat-log');
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 const apikey = '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';
@@ -354,24 +350,29 @@ chatForm.addEventListener('click', async (e) => {
     if ($timeNow >= 6 && $timeNow <= 9) {
        
         $medplan .= DB::table('medikaments')
-    ->where('morgen', '>', 0)
+    ->where('versicherungsnummer', $pat->versicherungsnummer)
+    ->where('morgen', '>', 0)->where()
     ->get(['name','morgen']);
 
     }else if ($timeNow > 9 && $timeNow <= 18) {
         $medplan .= DB::table('medikaments')
+    ->where('versicherungsnummer', $pat->versicherungsnummer)
     ->where('nachmittag', '>', 0)
     ->get(['name','nachmittag']);
 
     }else if ($timeNow > 18 && $timeNow <= 21) {
         $medplan .= DB::table('medikaments')
+    ->where('versicherungsnummer', $pat->versicherungsnummer)
     ->where('abend', '>', 0)
     ->get(['name','abend']);
 
     }else if ($timeNow > 21 && $timeNow <= 24) {
         $medplan .= DB::table('medikaments')
+    ->where('versicherungsnummer', $pat->versicherungsnummer)
     ->where('nachts', '>', 0)
     ->get(['name','nachts']);
     }
+
     @endphp
    
     </div>
