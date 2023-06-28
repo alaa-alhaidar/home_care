@@ -30,7 +30,7 @@
             </p>
 
 
-        <div class="container-fluid bg-secondary" id="navbarSupportedContent">
+        <div class="container-fluid bg-secondary" id="">
 
             <div class="col" style="display: inline-block;">
                 
@@ -136,30 +136,28 @@
                         <div class="row">
                           
                             <div class=" container-fluid bs-border-color col" id="">
- 
                                 <form class= 'd-inline' action="{{ route('add-med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
                                     @csrf
                                     <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
-                                    style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                    id='btn' ><b class= 'fs-3'>+Med</b>
-                                    </button>
-                                </form>
-                                <form class= 'd-inline' action="{{ route('add-med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
-                                    @csrf
-                                    <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
-                                    style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                    style= '' 
                                     id='btn' ><b class= 'fs-3'>Profile</b>
                                     </button>
                                 </form>
-                                
-                                    <button style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                <form class= 'd-inline' action="{{ route('add-med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                                    @csrf
+                                    <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
+                                    style= '' 
+                                    id='btn' ><b class= 'fs-3'>+Med</b>
+                                    </button>
+                                </form>    
+                                    <button style= ''
                                         writing-mode: horizontal-tb;"";
                                             id="question" type="submit" 
                                             class="d-inline btn btn-warning btn-sm"> <b class= 'fs-3' style="color: blue">KI / Wechselwirkung prüfen</b> 
                                         </button>
                                 
                                 
-                                    <button style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                    <button style= '' 
                                         writing-mode: horizontal-tb;"";
                                             id="question2" type="submit" 
                                             class="d-inline btn btn-warning btn-sm"> <b class= 'fs-3' style="color: green">KI / Nebenwirkung prüfen</b> 
@@ -171,9 +169,11 @@
                         </div>
                         <br>
                         <div class="table-responsive fs-5">
-                        
+                          
                             <table id="medikamente-table" class="table table-hover bg-secondary table-bordered border-light-subtle">
-                                <caption> <b>Medikamente</b></caption>
+                             
+                                <caption> <b>Medikamente </b></caption>
+                             
                             <thead>
                             <tr class="tm-bg-gray bg-warning">
                                
@@ -244,11 +244,12 @@
                             </tbody>
                                 </table>
                         </div>
-
-                        
+                 
+                      
                     </div>
+                  
                 </div>
-
+                
                 </div>
 
             </div>
@@ -387,11 +388,21 @@ chatForm.addEventListener('click', async (e) => {
     <p style="text-align: center;">
         
     <b><br>Medikamente sollten rechtzeitig eingenommen werden.</b><br>
-    <b class="fs-1 text-center align-middle" style="color:red"><br><?php echo $medplan;?></b><br>
+  
+    <b class="fs-1 text-center align-middle" style="color:red"><br>{{$medplan}}</b><br>
     
         <b><br>Bei Fragen, wenden Sie sich an ihrem Arzt</b>
        
   </div>
+  
 </div>
+<footer>
+    <br>
+    <div class="bg-white fs-3">
+        <b style="text-align: center;color:red;">Alaa Al Haidar TU Berlin Abschlussarbeit Fakultaet IV</b>
+    </div>
+    
+</footer>
 </body>
+
 </html>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('geburtstag');
             $table->string('adresse');
             $table->string('pflegegrad');
-            $table->string('grosse');
+            $table->integer('grosse');
             $table->string('versicherungsnummer');
             $table->string('kontakt');
             $table->date('aufnahmedatum');

@@ -188,8 +188,13 @@
                                             <tbody class="">
                                                 @foreach ($vital as $item)
                                                 @php
-                                               
+                                                $systolischArray = $vital->pluck('rr_systolisch')->toArray();
+                                                $diastolischArray = $vital->pluck('rr_diastolisch')->toArray();
+                                                $createdTimeArray = $vital->pluck('createdTime')->toArray();
+                                                $gewichtArray = $vital->pluck('gewicht')->toArray();
+                                                $pulsArray = $vital->pluck('puls')->toArray();
                                                 @endphp
+                                            
                                                 <tr class='text-center text-white align-middle'>
                                                 <td>{{$item->id}}</td>
                                                 <td>{{$item->versicherungsnummer}}</td>
@@ -200,7 +205,7 @@
                                                 <td>{{$item->temp}}</td>
                                                 <td>{{$item->gewicht}}</td>
                                                 <td>{{$item->bmi}}</td>
-                                                <td>{{$item->created_at}}</td>
+                                                <td>{{$item->createdTime}}</td>
                                                 <td> 
                                                  
                                                     <form class= 'd-inline' action='' method='post'>
@@ -251,9 +256,8 @@
                            
                             <div class=" col-lg-11" style="height:715px">
                                 <br>
-                                <form id="form"
-                                    action="add-patientencheck-datenbank.php?versicherungsnummer="
-                                    method="post" class="tm-edit-product-form">
+                                <form  id="form" action="{{ route('insert-check',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}" method="post">
+                                    @csrf
 
                                     <br>
                                   
@@ -264,7 +268,7 @@
                                         </label>
 
                                         <input type="text" class="form-control" aria-label="Sizing example input"
-                                            name="rr" aria-describedby="inputGroup-sizing-sm" placeholder="Gebe rr systolisch ein"
+                                            name="rr_systolisch" aria-describedby="inputGroup-sizing-sm" placeholder="Gebe Blutdruck systolisch ein"
                                             required>
                                     </div>
                                     <div class="input-group mb-3">
@@ -333,43 +337,50 @@
 
                 <div class="bg-white tm-block">
                 <center>
-                <b>Puls</b>
+                <b>Plutdruck</b>
                 </center>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-                       
-                            <canvas id="myChart" style="width:100%;max-width:90%"></canvas>
-
-                            <script>
-                                
-                               
-                    
-                                new Chart("myChart", {
-                                    type: "line",
-                                    data: {
-                                        labels: dataY,// y achse
-                                        datasets: [{  // x achse
-                                            fill: false,
-                                            lineTension: 0,
-                                            backgroundColor: "rgba(0,0,255,1.0)",
-                                            borderColor: "rgba(0,0,255,0.1)",
-                                            data: dataX
-                                        }]
-                                    },
-                                    options: {
-                                      
-                                        scales: { 
-                                            yAxes: [{ ticks: { min: 50, max: 100 } }],
-                                        },
-                                        legend: { display: false,
-                                           
-                                         },
-                                       
-                                       
-                                    }
-                                });
-                            </script>
-                   
+                <canvas id="myChart1" style="width:100%;max-width:90%"></canvas>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                <script type="text/javascript">
+                  document.addEventListener("DOMContentLoaded", function() {
+                    var ctx = document.getElementById('myChart1').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                      type: 'line',
+                      data: {
+                        labels: @json($createdTimeArray),
+                        datasets: [{
+                          label: 'Systolisch',
+                          data: @json($systolischArray),
+                          backgroundColor: 'rgba(0, 123, 255, 0.3)',
+                          borderColor: 'rgba(0, 123, 255, 1)',
+                          pointStyle: 'circle',
+                          pointRadius: 10,
+                          pointHoverRadius: 15,
+                            borderWidth: 1
+                        }, {
+                          label: 'Diastolisch',
+                          data: @json($diastolischArray),
+                          backgroundColor: 'rgba(255, 99, 132, 0.3)',
+                          borderColor: 'rgba(255, 99, 132, 1)',
+                          pointStyle: 'circle',
+                                pointRadius: 10,
+                                pointHoverRadius: 15,
+                          borderWidth: 1
+                        }]
+                      },
+                      options: {
+                      
+                        scales: {
+                          yAxes: [{
+                            ticks: {
+                              beginAtZero: true
+                            }
+                          }]
+                        }
+                      }
+                    });
+                  });
+                </script>
 
                 </div>
             </div>
@@ -377,49 +388,45 @@
             
             
             <div class="col">
-
                 <div class="bg-white tm-block">
-                <center>
-                <b>Blutdruck</b>
-                </center>
-              
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-                       
-                            <canvas id="myChart4" style="width:100%;max-width:90%"></canvas>
-
-                            <script>
-                                
-                              
-                    
-                                new Chart("myChart4", {
-                                    type: "line",
-                                    data: {
-                                        labels: dataY4,// y achse
-                                        datasets: [{  // x achse
-                                            fill: false,
-                                            lineTension: 0,
-                                            backgroundColor: "rgba(0,0,255,1.0)",
-                                            borderColor: "rgba(0,0,255,0.1)",
-                                            data: dataX4
-                                        }]
-                                    },
-                                    options: {
-                                      
-                                      scales: { 
-                                          yAxes: [{ ticks: { min: 50, max: 200 } }],
-                                      },
-                                      legend: { display: false,
-                                         
-                                       },
-                                     
-                                     
-                                  }
-                                });
-                            </script>
-                   
-
-                </div>
+                    <center>
+                      <b>Puls</b>
+                    </center>
+                    <canvas id="myChart2" style="width:100%;max-width:90%"></canvas>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                    <script type="text/javascript">
+                      document.addEventListener("DOMContentLoaded", function() {
+                        var ctx = document.getElementById('myChart2').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                          type: 'line',
+                          data: {
+                            labels: @json($createdTimeArray),
+                            datasets: [{
+                              label: 'Puls',
+                              data: @json($pulsArray),
+                              backgroundColor: 'rgba(0, 123, 255, 0.3)',
+                              borderColor: 'rgba(0, 123, 255, 1)',
+                              pointStyle: 'circle',
+                              pointRadius: 10,
+                              pointHoverRadius: 15,
+                              borderWidth: 1
+                            }]
+                          },
+                          options: {
+                           
+                            scales: {
+                              yAxes: [{
+                                ticks: {
+                                  beginAtZero: true
+                                }
+                              }]
+                            }
+                          }
+                        });
+                      });
+                    </script>
+                  </div>
+                  
                 
             </div>
             <div class="col">
@@ -428,39 +435,42 @@
                 <center>
                 <b>Gewicht</b>
                 </center>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                <canvas id="myChart3" style="width:100%;max-width:90%"></canvas>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                <script type="text/javascript">
+                    const data = {
+                        labels: @json($createdTimeArray),
+                        datasets: [
+                            {
+                                label: 'Gewicht',
+                                data: @json($gewichtArray),
+                                borderColor: '',
+                                backgroundColor: 'rgba(0, 123, 255, 0.3)',
+                                pointStyle: 'circle',
+                                pointRadius: 10,
+                                pointHoverRadius: 15
+                            }
+                        ]
+                    };
 
-                            <canvas id="myChart2" style="width:100%;max-width:90%"></canvas>
+                    const config = {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: (ctx) => 'Point Style: ' + ctx.chart.data.datasets[0].pointStyle
+                                }
+                            }
+                        }
+                    };
 
-                            <script>
-                                
-                               
-                    
-                                new Chart("myChart2", {
-                                    type: "line",
-                                    data: {
-                                        labels: dataY2,// y achse
-                                        datasets: [{  // x achse
-                                            fill: false,
-                                            lineTension: 0,
-                                            backgroundColor: "rgba(0,0,255,1.0)",
-                                            borderColor: "rgba(0,0,255,0.1)",
-                                            data: dataX2
-                                        }]
-                                    },
-                                    options: {
-                                      
-                                      scales: { 
-                                          yAxes: [{ ticks: { min: 50, max: 100 } }],
-                                      },
-                                      legend: { display: false,
-                                         
-                                       },
-                                     
-                                     
-                                  }
-                                });
-                            </script>
+                    // Initialize the chart
+                    new Chart('myChart3', config);
+                </script>
+
 
                    <script>
                 function printJSON() {
@@ -485,10 +495,15 @@
                 
             </div>
         </div>
+        <footer>
+            <br>
+            <div class="bg-white fs-3">
+                <b style="text-align: center;color:red;">Alaa Al Haidar TU Berlin Abschlussarbeit Fakultaet IV</b>
+            </div>
+            
+        </footer>
 </body>
 
-<footer>
 
-</footer>
 
 </html>

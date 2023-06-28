@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('temp');
             $table->integer('gewicht');
             $table->float('bmi');
-      
+          
             $table->timestamps();
         });
     }

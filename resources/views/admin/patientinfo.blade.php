@@ -175,58 +175,65 @@
               <center>
               <b>Pflegegrad</b>
               </center>
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-                     
-                          <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
+              <canvas id="pflegegrad" style="width:100%;max-width:100%"></canvas>
+              @php
+                    $g1 = 0;
+                    $g2 = 0;
+                    $g3 = 0;
+                    $g4 = 0;
+                    $g5 = 0;
+                @endphp
 
-                          <script>
-                            var g1=0;
-                            var g2=0;
-                            var g3=0;
-                            var g4=0;
-                            var g5=0;
-                            
-                           // const dataX = ;
-                            for(let i = 0 ; i < dataX.length; i++) {
-                                if (dataX[i]== 1) {
-                                    g1++;
-                                }else if (dataX[i]== 2) {
-                                    g2++;
-                                }else if (dataX[i]== 3) {
-                                    g3++;
-                                }
-                                else if (dataX[i]== 4) {
-                                    g4++;
-                                }
-                                else if (dataX[i]== 5) {
-                                    g5++;
-                                }
-
-                            };
-                            var barColors = ["green", "blue","orange","brown","grey"];
-                            const dataXpflegegrad = [1,2,3,4, 5]; // 
-                            var yValues = [g1, g2,g3,g4,g5];
-                            new Chart("myChart", {
-                                type: "bar",
-                                data: {
-                                    labels: dataXpflegegrad,
-                                    datasets: [{
-                                        backgroundColor: barColors,
-                                    data: yValues
-                                    }]
-                                },
-                                options: {
-                                    legend: {display: false},
-                                    title: {
-                                    display: true,
-                                    text: ""
-                                    }
-                                }
-                                });
-                          </script>
+                @foreach ($data as $item)
                  
+                    @if ($item->pflegegrad == '1')
+                        @php
+                            $g1++;
+                        @endphp
+                    @elseif ($item->pflegegrad == '2')
+                        @php
+                            $g2++;
+                        @endphp
+                    @elseif ($item->pflegegrad == '3')
+                        @php
+                            $g3++;
+                        @endphp
+                        @elseif ($item->pflegegrad == '4')
+                        @php
+                            $g4++;
+                        @endphp
+                        @elseif ($item->pflegegrad == '5')
+                        @php
+                            $g5++;
+                        @endphp
+                      
+                @endif
+                @endforeach
 
+                <script>
+                    const data1 = ['G1', 'G2', 'G3', 'G4', 'G5'];
+                    var barColor2 = ["blue", "blue", "blue", "blue", "blue"];
+                    var yValues2 = [{{ $g1 }}, {{ $g2 }}, {{ $g3 }}, {{ $g4 }}, {{ $g5 }}];
+                    new Chart("pflegegrad", {
+                        type: "bar",
+                        data: {
+                            labels: data1,
+                            datasets: [{
+                                backgroundColor: barColor2,
+                                data: yValues2
+                            }]
+                        },
+                        options: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: ""
+                            }
+                        }
+                    });
+                </script>
               </div>
           </div>
           <div class="col">
@@ -237,8 +244,7 @@
               </center>
                       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-                     
-                          <canvas id="myChart2" style="width:100%;max-width:100%"></canvas>
+                          <canvas id="gender" style="width:100%;max-width:100%"></canvas>
                           @php
                                 $herrCount = 0;
                                 $frauCount = 0;
@@ -246,11 +252,7 @@
                             @endphp
 
                             @foreach ($data as $item)
-                                @php
-                                    $dob = new DateTime($item->geburtstag);
-                                    $today = new DateTime('today');
-                                    $alter = $dob->diff($today)->y;
-                                @endphp
+                            
                                 @if ($item->geschlecht == 'Herr')
                                     @php
                                         $herrCount++;
@@ -267,13 +269,13 @@
                             @endforeach
 
                             <script>
-                                const dataXgeschlecht2 = ['Man', 'Frau', 'Dritte'];
+                                const data2 = ['Man', 'Frau', 'Dritte'];
                                 var barColor2 = ["blue", "blue", "blue"];
                                 var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
-                                new Chart("myChart2", {
+                                new Chart("gender", {
                                     type: "bar",
                                     data: {
-                                        labels: dataXgeschlecht2,
+                                        labels: data2,
                                         datasets: [{
                                             backgroundColor: barColor2,
                                             data: yValues2
@@ -289,8 +291,6 @@
                                 });
                             </script>
 
-                 
-
               </div>
               
           </div>
@@ -300,67 +300,58 @@
               <center>
               <b>Alter</b>
               </center>
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-                          <canvas id="myChart3" style="width:100%;max-width:100%"></canvas>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-                          <script>
-                            var a =0;
-                            var b =0;
-                            var c =0;
+              <canvas id="alter" style="width:100%;max-width:100%"></canvas>
+              @php
+                    $grosser80 = 0;
+                    $grosser60 = 0;
+                    $grosser20 = 0;
+                @endphp
 
-                            const dataXAlter;
-                            
-                            const age_arr=[];
-                           
-                            function calculate_age(dob) { 
-                                    var diff_ms = Date.now() - dob.getTime();
-                                    var age_dt = new Date(diff_ms); 
-                                
-                                    return Math.abs(age_dt.getUTCFullYear() - 1970);
-                                };
-                            
-                            for(let i = 0 ; i < dataXAlter.length; i++) {
-                                age_arr[i]=  calculate_age(new Date(dataXAlter[i]));
-                            };
+                @foreach ($data as $item)
+                    @php
+                        $dob = new DateTime($item->geburtstag);
+                        $today = new DateTime('today');
+                        $alter = $dob->diff($today)->y;
+                    @endphp
+                    @if ($alter >=80)
+                        @php
+                             $grosser80++;
+                        @endphp
+                    @elseif ($alter >=60 && $alter <80)
+                        @php
+                            $grosser60++;
+                        @endphp
+                    @elseif($alter >=20 && $alter <60)
+                        @php
+                            $grosser20++;
+                        @endphp
+                    @endif
+                @endforeach
 
-                            for (let k = 0; k < age_arr.sort().length; k++) {
-                            if (age_arr[k]<50) {
-                                    a++;
-                                }else if (age_arr[k]>=50 && age_arr[k]<=75) {
-                                    b++;
-                                }else if (age_arr[k]>75) {
-                                   c++;
-                                }
-                            
-                           }
-
-                           const dataX_alter_gruppen = ['<50', '50 bis 75','> 75']; 
-                            var barColor3 = ["green","orange","grey"];
-                            var yValuesAlters = [a, b , c];
-                            new Chart("myChart3", {
-                                type: "bar",
-                                data: {
-                                    labels: dataX_alter_gruppen,
-                                    datasets: [{
-                                    backgroundColor: barColor3,
-                                    data: yValuesAlters
-                                    }]
-                                },
-                                options: {
-                                      
-                                      scales: { 
-                                          yAxes: [{ ticks: { min: 1, max: 10 } }],
-                                      },
-                                      legend: { display: false,
-                                         
-                                       },
-                                     
-                                     
-                                  }
-                                });
-                          </script>
-                 
-
+                <script>
+                    const data3 = ['20 : 59', '60 : 79', '>79'];
+                    var barColor2 = ["blue", "blue", "blue"];
+                    var yValues2 = [{{ $grosser20 }}, {{ $grosser60 }}, {{ $grosser80 }}];
+                    new Chart("alter", {
+                        type: "bar",
+                        data: {
+                            labels: data3,
+                            datasets: [{
+                                backgroundColor: barColor2,
+                                data: yValues2
+                            }]
+                        },
+                        options: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: ""
+                            }
+                        }
+                    });
+                </script>
               </div>
           </div>
     </div>
@@ -368,7 +359,13 @@
     </div>
 
     
-
+    <footer>
+        <br>
+        <div class="bg-white fs-3">
+            <b style="text-align: center;color:red;">Alaa Al Haidar TU Berlin Abschlussarbeit Fakultaet IV</b>
+        </div>
+        
+    </footer>
 </body>
 
 </html>

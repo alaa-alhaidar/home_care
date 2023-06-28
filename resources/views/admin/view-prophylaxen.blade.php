@@ -60,6 +60,7 @@
                 <b>Patienten: {{$pat->geschlecht}} {{$pat->nachname}}, {{$pat->vorname}}. Geb. {{$pat->geburtstag}}, Vers. {{$pat->versicherungsnummer}}.</b>
               
                 </h2>
+
                 <div class="col" style="display: inline-block;">
                     <form class= 'd-inline ' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
@@ -116,10 +117,6 @@
                         </button>
                     </form>
                 </div>
-                
-                
-            
-        
 
             </div>
 
@@ -139,20 +136,24 @@
                                 
                                   
                                
-                                  <div class="col" style="display: inline-block;" >  
-                                      <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                      writing-mode: horizontal-tb;" onclick="window.location.href='dekubitus.php?versicherungsnummer'"";
-                                          id=" login-button" type="submit"
-                                          class="btn btn-primary"> <b>Dekubitus Übersicht</b> 
-                                      </button>
-                                  </div>
-                                  <div class="col" style="display: inline-block;" >  
-                                      <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                      writing-mode: horizontal-tb;" onclick="window.location.href='thrombose.php?versicherungsnummer'"";
-                                          id=" login-button" type="submit"
-                                          class="btn btn-primary"> <b>Thromboserisiko Übersicht</b> 
-                                      </button>
-                                  </div>
+                            <div class="col" style="display: inline-block;">
+                                <form class= 'd-inline' action="{{ route('deku',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                                    @csrf
+                                    <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                                    style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                    id='btn' >Dekubitus
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col" style="display: inline-block;">
+                                <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                                    @csrf
+                                    <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                                    style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                    id='btn' >Thrombose
+                                    </button>
+                                </form>
+                            </div>
                                   
                                  
                                  
@@ -193,9 +194,13 @@
             </div>
       
     </div>
-    
-  
-    
+    <footer>
+        <br>
+        <div class="bg-white fs-3">
+            <b style="text-align: center;color:red;">Alaa Al Haidar TU Berlin Abschlussarbeit Fakultaet IV</b>
+        </div>
+        
+    </footer>
 </body>
 
 </html>

@@ -4,6 +4,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VitalController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MassnahmenController;
 use App\Http\Controllers\MedikamenteController;
@@ -19,10 +20,10 @@ use App\Http\Controllers\MedikamenteController;
 |
 */
 //by login go to patient info
-Route::get('/-', function () {
+Route::get('/', function () {
   
     if (auth()->check()) {
-        return view('patientinfo');
+        return view('home');
     }
     
 });
@@ -44,9 +45,13 @@ Route::put('/edit-post/{post}', [PatientController::class, 'actuallyUpdatePost']
 Route::delete('/delete-post/{post}', [PatientController::class, 'deletePost']);
 Route::post('#', [PatientController::class, 'logout']);
 
-// Prophylaxen
+// MassnahmenController
 Route::post('allProph/{vers}', [MassnahmenController::class, 'showAllDekubitusProhpylaxen'])->name('allProph');
-
+Route::post('deku/{vers}', [MassnahmenController::class, 'showDeku'])->name('deku');
+Route::post('dekuRisiko/{vers}', [MassnahmenController::class, 'dekuRisiko'])->name('dekuRisiko');
+//VitalController
+Route::post('insert-check/{vers}/{patinfo}', [VitalController::class, 'insertCheck'])->name('insert-check');
+// 
 
 
 //home is the name of url. can be used by any bage to execute the function and return to home

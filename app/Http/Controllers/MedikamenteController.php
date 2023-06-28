@@ -50,49 +50,5 @@ public function insertMed($vers,$patinfo, Request $request){
     return view ('admin/patientinfo',compact('data'));
 } 
     
-    public function deletePost(Post $post) {
-        if (auth()->user()->id === $post['user_id']) {
-            $post->delete();
-        }
-        return redirect('/');
-    }
-
-    public function actuallyUpdatePost(Post $post, Request $request) {
-        if (auth()->user()->id !== $post['user_id']) {
-            return redirect('/');
-        }
-
-        $incomingFields = $request->validate([
-            'title' => 'required',
-            'body' => 'required'
-        ]);
-
-        $incomingFields['title'] = strip_tags($incomingFields['title']);
-        $incomingFields['body'] = strip_tags($incomingFields['body']);
-
-        $post->update($incomingFields);
-        return redirect('/');
-    }
-
-    public function showEditScreen(Post $post) {
-        // redirect home if not done
-        if (auth()->user()->id !== $post['user_id']) {
-            return redirect('/');
-        }
-        //redirect to view if success
-        return view('edit-post', ['post' => $post]);
-    }
-
-    public function createMedikamente(Request $request) {
-        $incomingFields = $request->validate([
-            'title' => 'required',
-            'body' => 'required'
-        ]);
-
-        $incomingFields['title'] = strip_tags($incomingFields['title']);
-        $incomingFields['body'] = strip_tags($incomingFields['body']);
-        $incomingFields['user_id'] = auth()->id();
-        Medikamente::create($incomingFields);
-        return redirect('/');
-    }
+   
 }

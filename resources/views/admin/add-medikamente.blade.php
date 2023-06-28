@@ -232,7 +232,13 @@
             </div>
         </div>
     </div>
-   
+    <footer>
+        <br>
+        <div class="bg-white fs-3">
+            <b style="text-align: center;color:red;">Alaa Al Haidar TU Berlin Abschlussarbeit Fakultaet IV</b>
+        </div>
+        
+    </footer>
 </body>
 
 </html>

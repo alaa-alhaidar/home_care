@@ -25,7 +25,7 @@
             <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-weight: 500;"
             class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 
             'Times New Roman', Times, serif; font-weight: 200;"> Für Ihre Gesundheit da. <b style="font-size: 30px; color: rgb(230,230,250); font-family:Georgia, 
-            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: <b style= "color: red ; font-size: 40px;"><?=$username;?></b></b> </b></h2>
+            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: <b style= "color: red ; font-size: 40px;"></b></b> </b></h2>
             </p>
 
 
@@ -69,24 +69,27 @@
                         </button>
                     </form>
                 </div>
-                <form class= 'd-inline' action="{{ route('med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
-                    @csrf
-                    <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
-                    style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                    id='btn' >Med.
-                    </button>
-                </form>
-
-             
                 <div class="col" style="display: inline-block;">
-                    <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;"
-                        onclick="window.location.href='report.php?versicherungsnummer=<?=$patient['versicherungsnummer'];?>'"";
-                                            id=" login-button" type="submit" class="btn btn-primary"> <b>Berichte</b>
-                    </button>
+                    <form class= 'd-inline' action="{{ route('med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Medikamente
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col" style="display: inline-block;">
+                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Bericht
+                        </button>
+                    </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('braden',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('allProph',['vers' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -94,16 +97,24 @@
                         </button>
                     </form>
                 </div>
-           
-              
+                <div class="col" style="display: inline-block;">
+                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Diagnosen
+                        </button>
+                    </form>
+                </div>
              
                 <div class="col" style="display: inline-block;">
-                    <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;"
-                        onclick="window.location.href='view.php?versicherungsnummer=<?=$patient['versicherungsnummer'];?>'"";
-                                            id=" login-button" type="submit" class="btn btn-primary"> <b>Übersicht</b>
-                    </button>
-
+                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                        @csrf
+                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                        id='btn' >Übersicht
+                        </button>
+                    </form>
                 </div>
 
             </div>
@@ -122,30 +133,28 @@
                           
                             <div class=" container-fluid bs-border-color col" id="navbarSupportedContent">
                                   
-                                    <div class="col" style="display: inline-block;" >  
-                                        <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='patienten-profile.php?versicherungsnummer=<?=$versicherungsnummer;?>'"";
-                                            id=" login-button" type="submit"
-                                            class="btn btn-primary"><b>Profile</b>
+                                <div class="col" style="display: inline-block;">
+                                    <form class= 'd-inline' action="{{ route('dekuRisiko',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                                        @csrf
+                                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                        id='btn' >Profile
                                         </button>
+                                    </form>
+                                </div>
+                                    <div class="col" style="display: inline-block;">
+                                        <form class= 'd-inline' action="{{ route('dekuRisiko',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                                            @csrf
+                                            <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                                            style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                            id='btn' >Dekubitus einschaetzen
+                                            </button>
+                                        </form>
                                     </div>
-                                 
-                                    <div class="col" style="display: inline-block;" >  
-                                        <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='check-dekubitus-form.php?versicherungsnummer=<?=$versicherungsnummer;?>'"";
-                                            id=" login-button" type="submit"
-                                            class="btn btn-primary"> <b>Dekubitusrisiko einschaetzen</b> 
-                                        </button>
-                                    </div>
-                                    <div class="col" style="display: inline-block;" >  
-                                        <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='add-prophylaxe-form.php?versicherungsnummer=<?=$versicherungsnummer;?>'"";
-                                            id=" login-button" type="submit"
-                                            class="btn btn-primary"> <b>Thromboserisiko einschaetzen</b> 
-                                        </button>
-                                    </div>
+                                   
+                                  
                                     
-                                    <?php include('alert.php'); ?>
+                                
                                    
                             </div>
                         </div>
@@ -165,7 +174,7 @@
                             <th scope="col" class="text-center">Id</th>
                                         <th scope="col" class="text-center">Punkte</th>
                                         <th scope="col" class="text-center">Risiko</th>
-                                        
+                                
                                         <th scope="col" class="text-center">Datum</th>
                                         <th scope="col" class="text-center">Operationen</th>
                               
@@ -193,16 +202,13 @@
                                   
                                     <div class="col" style="display: inline-block;" >  
                                         <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='add-dekubitus-prophylaxe-form.php?versicherungsnummer=<?=$versicherungsnummer;?>'"";
+                                        writing-mode: horizontal-tb;" onclick="window.location.href='add-dekubitus-prophylaxe-form.php?versicherungsnummer'"";
                                           id=" login-button" type="submit"
                                             class="btn btn-primary"><b>Massnahme hinzufügen</b>
                                         </button>
                                       
                                     </div>
                                  
-                                    
-                                    <?php include('alert.php'); ?>
-                                   
                             </div>
                         </div>
                         <br>
@@ -246,7 +252,7 @@
     
     <p style="text-align: center;">
     <b>Bitte prüfen Sie alle nicht durchgeführte Massnahmen.</b><br><br>
-    <b class="fs-1" style="color:red"><?php echo $str;?></b><br><br>
+    <b class="fs-1" style="color:red"></b><br><br>
     <b>Bei Fragen, wenden Sie sich an unsere Pflegepersonal</b>
         
       

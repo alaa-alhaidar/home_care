@@ -177,13 +177,13 @@
         </div>
     </div>
     </div>
-    <footer class="row tm-mt-big">
-        <div class="col-12 font-weight-light">
-
+    <footer>
+        <br>
+        <div class="bg-white fs-3">
+            <b style="text-align: center;color:red;">Alaa Al Haidar TU Berlin Abschlussarbeit Fakultaet IV</b>
         </div>
+        
     </footer>
-
-
 </body>
 
 </html>
