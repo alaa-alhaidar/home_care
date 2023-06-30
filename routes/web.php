@@ -39,7 +39,8 @@ Route::post('vz/{vers}/{patinfo}', [MedikamenteController::class, 'govital'])->n
 Route::post('add-med/{vers}/{patinfo}', [MedikamenteController::class, 'addMed'])->name('add-med');
 Route::post('insert-med/{vers}/{patinfo}', [MedikamenteController::class, 'insertMed'])->name('insert-med');
 // 
-Route::get('/', [PatientController::class, 'showAllPatient']);
+Route::get('/', [UserController::class, 'goHome']);
+Route::get('/patinfo', [PatientController::class, 'showAllPatient']);
 Route::get('/edit-post/{post}', [PatientController::class, 'showEditScreen']);
 Route::put('/edit-post/{post}', [PatientController::class, 'actuallyUpdatePost']);
 Route::delete('/delete-post/{post}', [PatientController::class, 'deletePost']);

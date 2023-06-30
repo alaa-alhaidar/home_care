@@ -1,4 +1,10 @@
-
+<script>
+    setTimeout(function() {
+    location.reload();
+  }, 60000);
+</script>
+@foreach ($patinfo as $pat)
+@endforeach
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +47,7 @@
        
             <div class="col" style="display: inline-block;">
                 <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='/'"";
+                                        writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'";
                                             id=" login-button" type="submit" class="btn btn-primary">
                     <b>Patienteninfo</b>
                 </button>
@@ -53,8 +59,7 @@
         <div class="bg-white" id="navbarSupportedContent">
             <br>
             <div class="container-fluid" id=" home"">
-                @foreach ($patinfo as $pat)
-                @endforeach
+               
                 <h2 style=" font-size: 50px; color: rgb(235, 27, 27); font-family:'Gill Sans', 'Gill Sans MT' ,
                 Calibri, 'Trebuchet MS' , sans-serif; font-weight: 500;" class="tm-block-title mt-3">
                 <b>Patienten: {{$pat->geschlecht}} {{$pat->nachname}}, {{$pat->vorname}}. Geb. {{$pat->geburtstag}}, Vers. {{$pat->versicherungsnummer}}.</b>
@@ -92,7 +97,7 @@
                 <div class="col" style="display: inline-block;">
                     <form class= 'd-inline' action="{{ route('allProph',['vers' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
-                        <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                        <button  class='btn btn-warning btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
                         id='btn' >Massnahmen
                         </button>

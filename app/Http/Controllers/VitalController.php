@@ -25,6 +25,7 @@ class VitalController extends Controller
         ]);
         $data=  DB::table('patients')->get();
         $patinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
+        
         $vital = DB::table('vitalzeichens')->where('versicherungsnummer', $vers)->get();
        
         return view ('admin/patientinfo',compact('data'));

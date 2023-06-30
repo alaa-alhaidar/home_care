@@ -40,7 +40,7 @@
         
             <div class="col" style="display: inline-block;">
                 <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='patient-info.php'"";
+                                        writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'"";
                                             id=" login-button" type="submit" class="btn btn-primary">
                     <b>Patienteninfo</b>
                 </button>
@@ -91,7 +91,7 @@
                 <div class="col" style="display: inline-block;">
                     <form class= 'd-inline' action="{{ route('allProph',['vers' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
-                        <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                        <button  class='btn btn-warning btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
                         id='btn' >Massnahmen
                         </button>
@@ -180,7 +180,16 @@
                               
                             </tr>
                             </thead>
-                                
+                            @php
+                            $i=1;
+                         
+                       
+                            @endphp
+                          
+                            <tbody class="fw-normal">
+                           
+                               
+                            </tbody>
                                 </table>
                         </div>
 
@@ -221,15 +230,51 @@
                             <thead>
                             <tr class="tm-bg-gray bg-warning">
                             <th scope="col" class="text-center">Id</th>
+                                        <th scope="col" class="text-center">versicherungsnummer</th>
                                         <th scope="col" class="text-center">Massnahmen</th>
                                         <th scope="col" class="text-center">Status</th>
-                                        <th scope="col" class="text-center">Datum</th>
                                         <th scope="col" class="text-center">Hinweis</th>
                                         <th scope="col" class="text-center">Operationen</th>
                               
                             </tr>
                             </thead>
+                            <tbody class="fw-normal">
+                                @foreach ($dekuProph as $item)
+                                @php
+                               
+            
+                                @endphp
                                 
+                                <tr class='text-center text-white align-middle'>
+                              
+                                <td>{{$i++}}</td>
+                                <td>{{$item->versicherungsnummer}}</td>
+                                <td>{{$item->massnahmen}}</td>
+                                <td>{{$item->status}}</td>
+                                <td>{{$item->hinweis}}</td>
+                              
+                                <td> 
+                                    
+                                  
+                                    <form class= 'd-inline' action='' method='post'>
+
+                                        <button  class='d-inline btn btn-success btn-sm' type='submit' value='med-requset'
+                                                style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                                id='btn' >Ändern.
+                                        </button>
+                                    </form>
+                                    <form class= 'd-inline' action='' method='post'>
+
+                                        <button  class='d-inline btn btn-dark btn-sm' type='submit' value='med-requset'
+                                                    style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                                    id='btn' >Löschen.
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                                @endforeach
+                               
+                            </tbody>
                             
                                 </table>
                         </div>

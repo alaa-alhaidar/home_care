@@ -46,7 +46,7 @@
          
             <div class="col" style="display: inline-block;">
                 <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='/'"";
+                                        writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'"";
                                             id=" login-button" type="submit" class="btn btn-primary">
                     <b>Patienteninfo</b>
                 </button>
@@ -69,7 +69,7 @@
                 <div class="col" style="display: inline-block;">
                     <form class= 'd-inline ' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
-                        <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                        <button  class='btn btn-warning btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
                         id='btn' >Vitalzeichen
                         </button>
@@ -188,11 +188,15 @@
                                             <tbody class="">
                                                 @foreach ($vital as $item)
                                                 @php
+                                               
                                                 $systolischArray = $vital->pluck('rr_systolisch')->toArray();
                                                 $diastolischArray = $vital->pluck('rr_diastolisch')->toArray();
                                                 $createdTimeArray = $vital->pluck('createdTime')->toArray();
                                                 $gewichtArray = $vital->pluck('gewicht')->toArray();
                                                 $pulsArray = $vital->pluck('puls')->toArray();
+                                                if(empty($createdTimeArray)){
+                                                    $createdTimeArray=[0];
+                                                }
                                                 @endphp
                                             
                                                 <tr class='text-center text-white align-middle'>
@@ -344,6 +348,7 @@
                 <script type="text/javascript">
                   document.addEventListener("DOMContentLoaded", function() {
                     var ctx = document.getElementById('myChart1').getContext('2d');
+                    
                     var myChart = new Chart(ctx, {
                       type: 'line',
                       data: {

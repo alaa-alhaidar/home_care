@@ -10,15 +10,16 @@ class MassnahmenController extends Controller
 {
     function showAllDekubitusProhpylaxen($vers){
         $currentTime = now();
-        $sixAM = now()->setTime(6, 0, 0); // Set the time to 6:00 AM
+        $sechs = now()->setTime(6, 0, 0); // Set the time to 6:00 AM
 
-        if ($currentTime < $sixAM) {
+        if ($currentTime < $sechs) {
         DB::table('dekubitus')->update(['status' => 0]);
     }
         $patinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
         $dekuProph = DB::table('dekubitus')->where('versicherungsnummer', $vers)->get();
        return view ('admin/view-prophylaxen',compact('dekuProph','patinfo'));
     }
+    
     function showDeku($vers){
        
         $patinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();

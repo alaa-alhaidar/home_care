@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="{{ asset('alaacss.css') }}">
     <script src="{{ asset('mainFile.js') }}"></script>
 
@@ -30,28 +30,49 @@
             </p>
 
 
-        <div class="container-fluid bg-secondary" id="">
-
-            <div class="col" style="display: inline-block;">
-                
+            <div class="container-fluid bg-secondary" id="">
+                <div class="col" style="display: inline-block;">
+                    <button class="btn btn-primary" style="background-color: red; border-block-end-width: thick; 
+                   writing-mode: horizontal-tb;" onclick="window.location.href='/home'";
+                       id=" login-button" type="submit" class="btn btn-primary">
+                       <span class="material-symbols-outlined align-middle fs-1">
+                        logout
+                        </span><b>Ausloggen</b>
+                    </button>
+                    
+                </div>
+                <div class="col " style="display: inline-block;">
                     <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='/home'";
-                                            id=" login-button" type="submit" class="btn btn-primary"><b>Ausloggen</b>
-                </button>
-               
-               
+                                            writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'";
+                                                id=" login-button" type="submit" class="btn btn-primary">
+                                                <span class="material-symbols-outlined align-middle fs-1">
+                                                    import_contacts
+                                                    </span><b>Patienteninfo</b>
+                    </button>
+                    <br>
+                </div>
+                <div class="col" style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
+                                            writing-mode: horizontal-tb;" onclick="back()";
+                                                id=" login-button" type="submit" class="btn btn-primary">
+                                                <span class="material-symbols-outlined align-middle fs-1">
+                                                    arrow_back
+                                                    </span>
+                        
+                    </button>
+                    <br>
+                </div>
+                <div class="col" style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
+                                            writing-mode: horizontal-tb;" onclick="forward()";
+                                                id=" login-button" type="submit" class="btn btn-primary">
+                                                <span class="material-symbols-outlined align-middle fs-1">
+                                                    arrow_forward
+                                                    </span>
+                    </button>
+                    <br>
+                </div>
             </div>
-       
-            <div class="col" style="display: inline-block;">
-                <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='/'";
-                                            id=" login-button" type="submit" class="btn btn-primary">
-                    <b>Patienteninfo</b>
-                </button>
-                <br>
-            </div>
-            <br>
-        </div>
         <br>
         <div class="bg-white" id="navbarSupportedContent">
             <br>
@@ -69,16 +90,20 @@
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                        id='btn' >Vitalzeichen
+                        id='btn' > <span class="material-symbols-outlined align-middle fs-3">
+                            vital_signs
+                            </span>Vitalzeichen
                         </button>
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
                     <form class= 'd-inline' action="{{ route('med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
-                        <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                        <button  class='btn btn-warning btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                        id='btn' >Medikamente
+                        id='btn' ><span class="material-symbols-outlined align-middle fs-3">
+                            pill
+                            </span>Medikamente
                         </button>
                     </form>
                 </div>
@@ -88,7 +113,10 @@
                         @csrf
                         <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                        id='btn' >Bericht
+                        id='btn' >
+                        <span class="material-symbols-outlined align-middle fs-3">
+                            topic
+                            </span>Bericht
                         </button>
                     </form>
                 </div>
@@ -97,29 +125,16 @@
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                        id='btn' >Massnahmen
+                        id='btn' > 
+                        <span class="material-symbols-outlined align-middle fs-3">
+                            medical_information
+                            </span>Massnahmen
                         </button>
                     </form>
                 </div>
-                <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
-                        @csrf
-                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
-                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                        id='btn' >Diagnosen
-                        </button>
-                    </form>
-                </div>
+               
              
-                <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
-                        @csrf
-                        <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
-                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                        id='btn' >Übersicht
-                        </button>
-                    </form>
-                </div>
+                
 
             </div>
 
@@ -140,7 +155,10 @@
                                     @csrf
                                     <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
                                     style= '' 
-                                    id='btn' ><b class= 'fs-3'>Profile</b>
+                                    id='btn' >
+                                    <span class="material-symbols-outlined align-middle fs-1">
+                                        person
+                                        </span><b class= 'align-middle fs-3'>Profile</b>
                                     </button>
                                 </form>
                                 <form class= 'd-inline' action="{{ route('add-med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
@@ -347,7 +365,10 @@ chatForm.addEventListener('click', async (e) => {
 </script>
     @php
     $medplan="";
-    $timeNow = intval(date("H"));
+    $timezone = new DateTimeZone('Europe/Berlin');
+    $date = new DateTime('now', $timezone);
+    $timeNow = intval($date->format('H'));
+
     if ($timeNow >= 6 && $timeNow <= 9) {
        
         $medplan .= DB::table('medikaments')

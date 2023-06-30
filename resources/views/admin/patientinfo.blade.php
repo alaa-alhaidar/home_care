@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     
     <link rel="stylesheet" href="{{ asset('alaacss.css') }}">
     <script src="{{ asset('mainFile.js') }}"></script>
@@ -38,17 +38,49 @@
                 <div class="col" style="display: inline-block;">
                     <button class="btn btn-primary" style="background-color: red; border-block-end-width: thick; 
                    writing-mode: horizontal-tb;" onclick="window.location.href='/home'";
-                       id=" login-button" type="submit" class="btn btn-primary"><b>Ausloggen</b>
+                       id=" login-button" type="submit" class="btn btn-primary">
+                       <span class="material-symbols-outlined align-middle fs-1">
+                        logout
+                        </span><b>Ausloggen</b>
                     </button>
+                    
                 </div>
-                <div class="col" style="display: inline-block;">
+                <div class="col " style="display: inline-block;">
                     <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                            writing-mode: horizontal-tb;" onclick="window.location.href='/'";
+                                            writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'";
                                                 id=" login-button" type="submit" class="btn btn-primary">
-                        <b>Patienteninfo</b>
+                                                <span class="material-symbols-outlined align-middle fs-1">
+                                                    import_contacts
+                                                    </span><b>Patienteninfo</b>
                     </button>
                     <br>
                 </div>
+                <div class="col" style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
+                                            writing-mode: horizontal-tb;" onclick="back()";
+                                                id=" login-button" type="submit" class="btn btn-primary">
+                                                <span class="material-symbols-outlined align-middle fs-1">
+                                                    arrow_back
+                                                    </span>
+                        
+                    </button>
+                    <br>
+                </div>
+                <div class="col" style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
+                                            writing-mode: horizontal-tb;" onclick="forward()";
+                                                id=" login-button" type="submit" class="btn btn-primary">
+                                                <span class="material-symbols-outlined align-middle fs-1">
+                                                    arrow_forward
+                                                    </span>
+                    </button>
+                    <br>
+                    
+                </div>
+                <div class=" col" style="display: inline-block;color:white;">
+                    <p class="align-middle fs-1" id="time" ></p>
+                </div>
+               
             </div>
            
 
@@ -64,7 +96,10 @@
                             <div class="col" style="display: inline-block;">
                                 <button style="background-color: lightgrey; border-block-end-width: thick; 
                                         writing-mode: horizontal-tb;" onclick="window.location.href='add-patient-info-form.php'"";
-                                            id=" login-button" type="submit" class="btn btn-primary"><b>Patient hinzufügen</b>
+                                            id=" login-button" type="submit" class="btn btn-primary">
+                                            <span class="material-symbols-outlined align-middle fs-1">
+                                                person_add
+                                                </span><b>Patient hinzufügen</b>
                                 </button>
                             </div>
                        
@@ -129,7 +164,9 @@
                                         @csrf
                                         <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
                                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                        id='btn' >Med.
+                                        id='btn' > <span class="material-symbols-outlined align-middle fs-3">
+                                            pill
+                                            </span>Med.
                                         </button>
                                     </form>
                                     <form class= 'd-inline' action='' method='post'>

@@ -38,7 +38,7 @@
           
             <div class="col" style="display: inline-block;">
                 <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                        writing-mode: horizontal-tb;" onclick="window.location.href='/'"";
+                                        writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'"";
                                             id=" login-button" type="submit" class="btn btn-primary">
                     <b>Patienteninfo</b>
                 </button>
@@ -86,7 +86,7 @@
                 <div class="col" style="display: inline-block;">
                     <form class= 'd-inline' action="{{ route('braden',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
                         @csrf
-                        <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                        <button  class='btn btn-warning btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
                         id='btn' >Massnahmen
                         </button>

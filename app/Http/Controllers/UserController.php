@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -18,25 +19,17 @@ class UserController extends Controller
             $request->session()->regenerate();
        
         }
-        
-        return redirect('/');
+        $data=  DB::table('patients')->get();
+        return view ('admin/patientinfo',compact('data'));
     }
 
     public function logout() {
         auth()->logout();
-        return redirect('/');
+        return redirect('/home');
     }
-
-    public function register(Request $request) {
-        $incomingFields = $request->validate([
-            'name' => ['required', 'min:3', 'max:10', Rule::unique('users', 'name')],
-            'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', 'min:8', 'max:200']
-        ]);
-
-        $incomingFields['password'] = bcrypt($incomingFields['password']);
-        $user = User::create($incomingFields);
-        auth()->login($user);
-        return redirect('/');
+    public function goHome() {
+      
+        return redirect('/home');
     }
+ 
 }
