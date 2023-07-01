@@ -373,7 +373,7 @@ chatForm.addEventListener('click', async (e) => {
        
         $medplan .= DB::table('medikaments')
     ->where('versicherungsnummer', $pat->versicherungsnummer)
-    ->where('morgen', '>', 0)->where()
+    ->where('morgen', '>', 0)
     ->get(['name','morgen']);
 
     }else if ($timeNow > 9 && $timeNow <= 18) {
