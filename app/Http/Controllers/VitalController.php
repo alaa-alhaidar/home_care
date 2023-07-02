@@ -30,4 +30,23 @@ class VitalController extends Controller
        
         return view ('admin/patientinfo',compact('data'));
     }
+    use Illuminate\Support\Facades\Response;
+
+public function saveJson($vers)
+{
+   
+    $vital = DB::table('vitalzeichens')->where('versicherungsnummer', $vers)->get();
+    $jsonData = json_encode(vital);
+
+    $fileName = 'yourVitalzeichen.json';
+
+    $headers = [
+        'Content-type' => 'application/json',
+        'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+    ];
+
+
+    return Response::make($jsonData, 200, $headers);
+}
+
 }

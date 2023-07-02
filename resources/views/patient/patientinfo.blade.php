@@ -78,7 +78,7 @@
                     
                 </div>
                 <div class=" col align-middle text-center text-wrap" style="display: inline-block;color:white;">
-                    <span class="material-symbols-outlined align-middle text-center text-wra fs-1" style=" padding-left:1200px ;display: inline-block">
+                    <span class="material-symbols-outlined align-middle text-center text-wra fs-1" style=" padding-left:1150px ;display: inline-block">
                         calendar_month
                         </span>
                         <p class="align-middle text-center text-wrap fs-1 " style=" padding-left:10px ;display: inline-block" id="date" ></p>

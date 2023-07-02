@@ -35,6 +35,7 @@ Route::post('/login', [UserController::class, 'login']);
 // 
 
 Route::post('medikamente/{vers}/{patinfo}', [MedikamenteController::class, 'showAllMed'])->name('med');
+Route::post('medikamentePat/{vers}/{patinfo}', [MedikamenteController::class, 'showAllMedPat'])->name('medPat');
 Route::post('vz/{vers}/{patinfo}', [MedikamenteController::class, 'govital'])->name('vz');
 Route::post('add-med/{vers}/{patinfo}', [MedikamenteController::class, 'addMed'])->name('add-med');
 Route::post('insert-med/{vers}/{patinfo}', [MedikamenteController::class, 'insertMed'])->name('insert-med');
@@ -52,6 +53,7 @@ Route::post('deku/{vers}', [MassnahmenController::class, 'showDeku'])->name('dek
 Route::post('dekuRisiko/{vers}', [MassnahmenController::class, 'dekuRisiko'])->name('dekuRisiko');
 //VitalController
 Route::post('insert-check/{vers}/{patinfo}', [VitalController::class, 'insertCheck'])->name('insert-check');
+Route::post('saveData/{vers}', [VitalController::class, 'saveJson'])->name('saveData');
 // 
 
 

@@ -14,6 +14,12 @@ class MedikamenteController extends Controller{
         $userinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
        return view ('admin/medikamente',compact('medi','patinfo'));
     }
+    function showAllMedPat($vers){
+        $medi = DB::table('medikaments')->where('versicherungsnummer', $vers)->get();
+        $patinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
+        $userinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
+       return view ('patient/medikamente',compact('medi','patinfo'));
+    }
 
     public function logout(Request $request){
     // Logout logic here

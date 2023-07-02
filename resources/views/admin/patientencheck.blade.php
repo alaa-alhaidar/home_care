@@ -186,6 +186,7 @@
                                             </thead>
 
                                             <tbody class="">
+                                               
                                                 @foreach ($vital as $item)
                                                 @php
                                                
@@ -238,10 +239,18 @@
                             </div>
                             @foreach ($patinfo as $pat)
                             @endforeach
-                            <div class="print-content" >
-                                <button class="btn fs-3" style="background-color: blue;color:white" onclick="printJSON()">Ausdrücken</button>
+                            <div class="row"></div>
+                            <div class="col print-content" style="display: inline-block;">
+                                <button class="btn fs-3" style="display: inline-block; background-color: blue;
+                                color:white" onclick="printJSON()">Ausdrücken</button>
                               
                             </div>
+                            <div class="col" style="display: inline-block;">
+                                <button class="btn fs-3" style="display: inline-block;background-color: green;
+                                color:white" onclick="saveJSON()">Speichern</button>
+                              </div>
+                              
+                           
                         </div>
                     </div>
                 </div>
@@ -430,9 +439,28 @@
                         });
                       });
                     </script>
+                    <script>
+                    function saveJSON() {
+                        var data = {!! json_encode($vital) !!};
+                        var jsonData = JSON.stringify(data, null, 2);
+                        var filename = "yourVitalzeichens.json";
+                        var blob = new Blob([jsonData], { type: "application/json" });
+                        if (window.navigator.msSaveOrOpenBlob) {
+                            // For IE and Edge browsers
+                            window.navigator.msSaveOrOpenBlob(blob, filename);
+                        } else {
+                            // For other modern browsers
+                            var link = document.createElement("a");
+                            link.href = URL.createObjectURL(blob);
+                            link.download = filename;
+                            link.click();
+                            URL.revokeObjectURL(link.href);
+                        }
+                    }
+                    </script>
+
                   </div>
                   
-                
             </div>
             <div class="col">
 
