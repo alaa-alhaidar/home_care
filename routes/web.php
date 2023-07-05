@@ -19,7 +19,7 @@ use App\Http\Controllers\MedikamenteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//by login go to patient info
+
 Route::get('/', function () {
   
     if (auth()->check()) {
@@ -30,8 +30,10 @@ Route::get('/', function () {
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/code', [UserController::class, 'goCode']);
+Route::post('/tologin', [UserController::class, 'gologin']);
 Route::post('/login', [UserController::class, 'login']);
-
+Route::post('/kontoSetup', [UserController::class, 'kontoErstellen']);
 // 
 
 Route::post('medikamente/{vers}/{patinfo}', [MedikamenteController::class, 'showAllMed'])->name('med');
@@ -69,3 +71,4 @@ Route::get('patientinfo', function(){
 Route::post('patientinfo', function(Request $request){
     return view('patientinfo');
 });
+

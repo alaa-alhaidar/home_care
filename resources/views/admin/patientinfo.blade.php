@@ -132,16 +132,15 @@
                                 <tr class="bg-warning fw-normal">
 
                                     <th scope="col" class="text-center text-wrap">id</th>
-                                    <th scope="col" class="text-center text-wrap">Vorname</th>
-                                    <th scope="col" class="text-center text-wrap">Nachname</th>
+                                
                                     <th scope="col" class="text-center text-wrap">Geschlecht</th>
                                     <th scope="col" class="text-center text-wrap">Geburtstag</th>
                                     <th scope="col" class="text-center text-wrap">Alter</th>
-                                    <th scope="col" class="text-center text-wrap">Adresse</th>
+                 
                                     <th scope="col" class="text-center text-wrap">Pflegegrad</th>
                                     <th scope="col" class="text-center text-wrap">Grosse</th>
-                                    <th scope="col" class="text-center text-wrap">Ver. Nr.</th>
-                                    <th scope="col" class="text-center text-wrap">Kontakt</th>
+                                    <th scope="col" class="text-center text-wrap">Freischalter Code</th>
+                                    
                                     <th scope="col" class="text-center text-wrap">Auf.Datum</th>
                                     <th scope="col" class="text-center text-wrap">Operationen</th>
 
@@ -161,16 +160,15 @@
                                 @endphp
                                 <tr class='text-center text-white align-middle'>
                                 <td>{{$i++}}</td>
-                                <td>{{$item->vorname}}</td>
-                                <td>{{$item->nachname}}</td>
+                            
                                 <td>{{$item->geschlecht}}</td>
                                 <td>{{$item->geburtstag}}</td>
                                 <td>{{$alter}}</td>
-                                <td>{{$item->adresse}}</td>
+                              
                                 <td>{{$item->pflegegrad}}</td>
                                 <td>{{$item->grosse}}</td>
                                 <td>{{$item->versicherungsnummer}}</td>
-                                <td>{{$item->kontakt}}</td>
+                              
                                 <td>{{$item->aufnahmedatum}}</td>
                                 <td> 
                                     <form class= 'd-inline' action="{{ route('med',['vers' => $item->versicherungsnummer,'patinfo' => $item->versicherungsnummer]) }}"  method='post'>

@@ -30,10 +30,27 @@ class UserController extends Controller
             }
             
         }else{
+            
             return redirect('/home');
         }
 
         
+    }
+    public function insertMed($vers,$patinfo, Request $request){
+   
+        DB::table('medikaments')->insert([
+            'versicherungsnummer' => $vers,
+            'name' => $request->input('name'),
+            'applikationsform' => $request->input('applikationsform'),
+            'morgen' => $request->input('morgen'),
+            'nachmittag' => $request->input('nachmittag')
+           
+        ]);
+        $data=  DB::table('patients')->get();
+        return view ('admin/patientinfo',compact('data'));
+    } 
+        
+       
     }
 
     public function logout() {
@@ -43,6 +60,14 @@ class UserController extends Controller
     public function goHome() {
       
         return redirect('/home');
+    }
+    public function gologin(Request $request) {
+      
+        return view('login');
+    }
+    public function goCode(Request $request) {
+      
+        return view('f_code');
     }
  
 }

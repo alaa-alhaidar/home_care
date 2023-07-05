@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\VitalController;
+
 
 class VitalController extends Controller
 {
@@ -30,7 +34,7 @@ class VitalController extends Controller
        
         return view ('admin/patientinfo',compact('data'));
     }
-    use Illuminate\Support\Facades\Response;
+    
 
 public function saveJson($vers)
 {

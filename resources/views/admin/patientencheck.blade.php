@@ -62,7 +62,7 @@
                 @endforeach
                 <h2 style=" font-size: 50px; color: rgb(235, 27, 27); font-family:'Gill Sans', 'Gill Sans MT' ,
                 Calibri, 'Trebuchet MS' , sans-serif; font-weight: 500;" class="tm-block-title mt-3">
-                <b>Patienten: {{$pat->geschlecht}} {{$pat->nachname}}, {{$pat->vorname}}. Geb. {{$pat->geburtstag}}, Vers. {{$pat->versicherungsnummer}}.</b>
+                <b>Pflegebedürftig: Geb. {{$pat->geburtstag}}, Freisch. Code. {{$pat->versicherungsnummer}}.</b>
               
                 </h2>
 
@@ -173,7 +173,7 @@
                                                 <tr class="container-fluid tm-bg-gray bg-warning">
 
                                                     <th scope="col" class="text-center">id</th>
-                                                    <th scope="col" class="text-center">Vers.</th>
+                                                    <th scope="col" class="text-center">F. Code</th>
                                                     <th scope="col" class="text-center">RR-Systolisch</th>
                                                     <th scope="col" class="text-center">RR-Diastolisch</th>
                                                     <th scope="col" class="text-center">Puls</th>
@@ -291,7 +291,7 @@
                                         </label>
 
                                         <input type="text" class="form-control" aria-label="Sizing example input"
-                                            name="rr_diastolisch" aria-describedby="inputGroup-sizing-sm" placeholder="Gebe rr_diastolisch ein"
+                                            name="rr_diastolisch" aria-describedby="inputGroup-sizing-sm" placeholder="Gebe Blutdruck diastolisch ein"
                                             required>
                                     </div>
 
