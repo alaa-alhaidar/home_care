@@ -8,16 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class MedikamenteController extends Controller{
 
-    function showAllMed($vers){
-        $medi = DB::table('medikaments')->where('versicherungsnummer', $vers)->get();
-        $patinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
-        $userinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
+    function showAllMed($f_code){
+        $medi = DB::table('medikaments')->where('f_code', $f_code)->get();
+        $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
+        $userinfo = DB::table('patients')->where('f_code', $f_code)->get();
        return view ('admin/medikamente',compact('medi','patinfo'));
     }
-    function showAllMedPat($vers){
-        $medi = DB::table('medikaments')->where('versicherungsnummer', $vers)->get();
-        $patinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
-        $userinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
+    function showAllMedPat($f_code){
+        $medi = DB::table('medikaments')->where('f_code', $f_code)->get();
+        $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
+        $userinfo = DB::table('patients')->where('f_code', $f_code)->get();
        return view ('patient/medikamente',compact('medi','patinfo'));
     }
 
@@ -27,23 +27,24 @@ class MedikamenteController extends Controller{
     return redirect('/'); // Redirect to the home page
 }
 
-public function govital($vers){
-    $vital = DB::table('vitalzeichens')->where('versicherungsnummer', $vers)->get();
-    $patinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
-    $userinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
+public function govital($f_code){
+    $vital = DB::table('vitalzeichens')->where('f_code', $f_code)->get();
+    $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
+    $userinfo = DB::table('patients')->where('f_code', $f_code)->get();
     
     return view ('admin/patientencheck',compact('vital','patinfo'));
 }   
-    public function addMed($vers){
+    public function addMed($f_code){
    
-    $patinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
+    $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
     return view ('admin/add-medikamente',compact('patinfo'));
 }  
-public function insertMed($vers,$patinfo, Request $request){
+public function insertMed($f_code,$patinfo, Request $request){
    
     DB::table('medikaments')->insert([
-        'versicherungsnummer' => $vers,
+        'f_code' => $f_code,
         'name' => $request->input('name'),
+        'wirkstoff' => $request->input('wirkstoff'),
         'applikationsform' => $request->input('applikationsform'),
         'morgen' => $request->input('morgen'),
         'nachmittag' => $request->input('nachmittag'),
@@ -54,6 +55,14 @@ public function insertMed($vers,$patinfo, Request $request){
     ]);
     $data=  DB::table('patients')->get();
     return view ('admin/patientinfo',compact('data'));
+} 
+public function deleteMed($f_code,$patinfo,$id){
+
+    $toDelete = DB::table('medikaments')->where('id', $id)->delete();
+    $medi = DB::table('medikaments')->where('f_code', $f_code)->get();
+    $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
+    
+    return view ('admin/medikamente',compact('medi','patinfo'));
 } 
     
    

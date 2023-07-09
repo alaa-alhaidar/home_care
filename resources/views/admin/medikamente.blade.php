@@ -1,11 +1,12 @@
-
+@foreach ($patinfo as $pat)
+@endforeach
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Patienten Profile</title>
+    <title>Medikamente</title>
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
 
@@ -23,10 +24,10 @@
     <div class="container-fluid " id="home"">
         <div class="col" id=" home"">
         <p class="navbar-brand" href="../login.html">      
-            <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 500;"
-            class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 
-            'Times New Roman', Times, serif; font-weight: 200;"> Für Ihre Gesundheit da. <b style="font-size: 30px; color: rgb(230,230,250); font-family:Georgia, 
-            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: <b style= "color: red ; font-size: 40px;"></b></b> </b></h2>
+            <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:arial ; font-weight: 500;"
+            class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:arial  
+            ; font-weight: 200;"> Ihre digitale Helfer. <b style="font-size: 30px; color: rgb(230,230,250); font-family: arial 
+            ; font-weight: 200;">Sie sind angemeldet als Administrator: <b style= "color: red ; font-size: 40px;">{{$pat->f_code}}</b></b> </b></h2>
             </p>
 
 
@@ -37,7 +38,7 @@
                        id=" login-button" type="submit" class="btn btn-primary">
                        <span class="material-symbols-outlined align-middle fs-1">
                         logout
-                        </span><b>Ausloggen</b>
+                        </span><b class="align-middle fs-3">Ausloggen</b>
                     </button>
                     
                 </div>
@@ -46,8 +47,8 @@
                                             writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'";
                                                 id=" login-button" type="submit" class="btn btn-primary">
                                                 <span class="material-symbols-outlined align-middle fs-1">
-                                                    import_contacts
-                                                    </span><b>Patienteninfo</b>
+                                                   home
+                                                    </span><b class="align-middle fs-3"> Patienteninfo</b>
                     </button>
                     <br>
                 </div>
@@ -72,21 +73,35 @@
                     </button>
                     <br>
                 </div>
+                <div class=" col align-middle text-center " style="display: inline-block;color:white;">
+                    <span class=" align-middle material-symbols-outlined align-middle  fs-1" style=" padding-left:1250px ;display: inline-block">
+                        calendar_month
+                        </span>
+                        <p class="align-middle text-center  fs-1 " style=" padding-left:10px ;display: inline-block" id="date" ></p>
+                    
+                    <b>
+                        <span class=" align-middle material-symbols-outlined align-middle fs-1">
+                        schedule  
+    
+                        </span>
+                        <p class="align-middle text-center  fs-1 " style="padding-left:10px ;display: inline-block" id="time" ></p>
+                    </b>
+                    
+                  
+                </div>
             </div>
-        <br>
+    
         <div class="bg-white" id="navbarSupportedContent">
             <br>
             <div class="container-fluid" id=" home"">
-                @foreach ($patinfo as $pat)
-                @endforeach
-                <h2 style=" font-size: 50px; color: rgb(235, 27, 27); font-family:'Gill Sans', 'Gill Sans MT' ,
-                Calibri, 'Trebuchet MS' , sans-serif; font-weight: 500;" class="tm-block-title mt-3">
-                <b>Patienten: {{$pat->geschlecht}} {{$pat->nachname}}, {{$pat->vorname}}. Geb. {{$pat->geburtstag}}, Vers. {{$pat->versicherungsnummer}}.</b>
+               
+                <h2 style=" font-size: 50px; color: rgb(235, 27, 27); font-family:sans-serif; font-weight: 500;" class="tm-block-title mt-3">
+                <b>Patienten: Geb. {{$pat->geburtstag}}, f. Code. {{$pat->f_code}}.</b>
               
                 </h2>
 
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline ' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline ' action="{{ route('vz',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -97,11 +112,11 @@
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-warning btn-lg' type='submit' value='med-requset'
-                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                        id='btn' ><span class="material-symbols-outlined align-middle fs-3">
+                        style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 30px;' 
+                        id='btn' ><span class="material-symbols-outlined align-middle fs-1">
                             pill
                             </span>Medikamente
                         </button>
@@ -109,7 +124,7 @@
                 </div>
 
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('report',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"  method='post'>
                         @csrf
                         <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -121,7 +136,7 @@
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('allProph',['vers' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('allProph',['f_code' => $pat->f_code]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -151,7 +166,7 @@
                         <div class="row">
                           
                             <div class=" container-fluid bs-border-color col" id="">
-                                <form class= 'd-inline' action="{{ route('add-med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                                <form class= 'd-inline' action="{{ route('add-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"  method='post'>
                                     @csrf
                                     <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
                                     style= '' 
@@ -161,11 +176,14 @@
                                         </span><b class= 'align-middle fs-3'>Profile</b>
                                     </button>
                                 </form>
-                                <form class= 'd-inline' action="{{ route('add-med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                                <form class= 'd-inline' action="{{ route('add-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"  method='post'>
                                     @csrf
                                     <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
                                     style= '' 
-                                    id='btn' ><b class= 'fs-3'>+Med</b>
+                                    id='btn' ><b class= 'fs-3'>
+                                        <span class="material-symbols-outlined  align-middle fs-1" style="color: black;">
+                                            add
+                                            </span></b>
                                     </button>
                                 </form>    
                                     <button style= ''
@@ -188,7 +206,7 @@
                         <br>
                         <div class="table-responsive fs-5">
                           
-                            <table id="medikamente-table" class="table table-hover bg-secondary table-bordered border-light-subtle">
+                            <table id="medikamente-table" class="table table-hover bg-secondary table-bordered border-light-subtle " style="--bs-bg-opacity: .8;">
                              
                                 <caption> <b>Medikamente </b></caption>
                              
@@ -196,8 +214,9 @@
                             <tr class="tm-bg-gray bg-warning">
                                
                                                     <th scope="col" class="text-center">Id</th>
-                                                    <th scope="col" class="text-center">Vers.</th>
+                                                    
                                                     <th scope="col" class="text-center">Name</th>
+                                                    <th scope="col" class="text-center">Wirkstoff</th>
                                                     <th scope="col" class="text-center">Applikationsform</th>
                                                     <th scope="col" class="text-center">morgen</th>
                                                     <th scope="col" class="text-center">nachmittag</th>
@@ -227,8 +246,9 @@
                                 <tr class='text-center text-white align-middle'>
                               
                                 <td>{{$i++}}</td>
-                                <td>{{$item->versicherungsnummer}}</td>
+                              
                                 <td>{{$item->name}}</td>
+                                <td>{{$item->wirkstoff}}</td>
                                 <td>{{$item->applikationsform}}</td>
                                 <td>{{$item->morgen}}</td>
                               
@@ -241,20 +261,27 @@
                                 <td> 
                                     
                                   
-                                    <form class= 'd-inline' action='' method='post'>
-
+                                    <form class= 'd-inline' action="{{ route('delete-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code ,'id' => $item->id]) }}" method='post'>
+                                        @csrf
+                                        <button  class='d-inline btn btn-danger btn-sm' type='submit' value='med-requset'
+                                                style= 'background-color:red;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                                id='' >
+                                                <span class="material-symbols-outlined" style="color: white">
+                                                    delete
+                                                    </span>
+                                        </button>
+                                    </form>
+                                    <form class= 'd-inline' action="{{ route('add-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}" method='post'>
+                                        @csrf
                                         <button  class='d-inline btn btn-success btn-sm' type='submit' value='med-requset'
                                                 style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                                id='btn' >Ändern.
+                                                id='btn' >
+                                                <span class="material-symbols-outlined" style="color: white">
+                                                    edit
+                                                    </span>
                                         </button>
                                     </form>
-                                    <form class= 'd-inline' action='' method='post'>
-
-                                        <button  class='d-inline btn btn-dark btn-sm' type='submit' value='med-requset'
-                                                    style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                                    id='btn' >Löschen.
-                                        </button>
-                                    </form>
+                                   
                                 </td>
                             </tr>
                                 @endforeach
@@ -280,6 +307,7 @@
        <h2 class="fs-1 text-center align-middle" style="color: blue" >Bitte fragen Sie Ihrem Arzt oder Apotheke.</h1>
        <div class="fs-2" id="chat-log" style="background-color:white;overflow-y:scroll; height:400px;"></div>
    </div>
+
    <script>
 var med = '<?php echo $med; ?>';
 const chatForm = document.getElementById('question');
@@ -372,25 +400,25 @@ chatForm.addEventListener('click', async (e) => {
     if ($timeNow >= 6 && $timeNow <= 9) {
        
         $medplan .= DB::table('medikaments')
-    ->where('versicherungsnummer', $pat->versicherungsnummer)
+    ->where('f_code', $pat->f_code)
     ->where('morgen', '>', 0)
     ->get(['name','morgen']);
 
     }else if ($timeNow > 9 && $timeNow <= 18) {
         $medplan .= DB::table('medikaments')
-    ->where('versicherungsnummer', $pat->versicherungsnummer)
+    ->where('f_code', $pat->f_code)
     ->where('nachmittag', '>', 0)
     ->get(['name','nachmittag']);
 
     }else if ($timeNow > 18 && $timeNow <= 21) {
         $medplan .= DB::table('medikaments')
-    ->where('versicherungsnummer', $pat->versicherungsnummer)
+    ->where('f_code', $pat->f_code)
     ->where('abend', '>', 0)
     ->get(['name','abend']);
 
     }else if ($timeNow > 21 && $timeNow <= 24) {
         $medplan .= DB::table('medikaments')
-    ->where('versicherungsnummer', $pat->versicherungsnummer)
+    ->where('f_code', $pat->f_code)
     ->where('nachts', '>', 0)
     ->get(['name','nachts']);
     }

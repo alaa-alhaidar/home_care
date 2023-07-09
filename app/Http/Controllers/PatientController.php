@@ -15,9 +15,17 @@ class PatientController extends Controller
         //pass data to view page name variable data
         return view ('admin/patientinfo',compact('data'));
    }
-   function checkDekuRisiko($vers,$patinfo){
-      $patinfo = DB::table('patients')->where('versicherungsnummer', $vers)->get();
-      return view ('admin/braden-skala',compact('vers','patinfo'));
+
+   function checkDekuRisiko($f_code,$patinfo){
+      $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
+      return view ('admin/braden-skala',compact('f_code','patinfo'));
+     }
+     function showReport($f_code, $patinfo){
+      //fetch data from database
+          $reports=  DB::table('reports')->where('f_code', $f_code)->get();
+          $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
+          //pass data to view page name variable data
+          return view ('admin/report',compact('f_code','patinfo','reports'));
      }
   
 }

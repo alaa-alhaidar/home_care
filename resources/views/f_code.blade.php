@@ -16,7 +16,7 @@
 
 <body class="">
     @csrf
-    <div class="container">
+    <div class="container" >
         <div class="row">
             <div style="background-color:transparent" class="d-flex justify-content-center align-items-center vh-100">
                 <div class="bg-white tm-block ">
@@ -33,32 +33,32 @@
                         </div>
                     </div>
 
-                    <div class="row fs-2 bg-secondary">
-                        <div class="col-12">
+                    <div class="row fs-2 bg-secondary" >
+                        <div class="col-12" >
                             <form action="/kontoSetup" method="POST" class="tm-login-form">
                                 @csrf
                                 <div style="width: 550px;" class="input-group">
                                     <label for="username" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
-                                        <p style="font-size: larger;color: white;">Freischalter code</p>
+                                        <p style="font-size: larger;color: white;">Freischalter code </p>
                                     </label>
                                  
-                                    <input style="height: 20px; width: 400px;" name="loginname" type="text"
+                                    <input style="height: 20px; width: 400px;" name="f_code" type="text"
                                         class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7 fs-2"
-                                        placeholder="Freischalter code eingeben" id="email" value="" required>
+                                        placeholder="Freischalter Code (8 Zeichens) eingeben" id="f_code" value="" required>
                                 </div>
                                 <div style="width: 550px;" class="input-group mt-3">
                                     <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
                                         <p style="font-size: larger;color: white;">Nutzername</p>
                                     </label>
-                                    <input style="height: 20px;width: 400px;" name="loginpassword" type="text"
-                                        class="form-control validate fs-2" placeholder="Nutzername eingeben" id="password"
+                                    <input style="height: 20px;width: 400px;" name="name" type="text"
+                                        class="form-control validate fs-2" placeholder="Nutzername eingeben" id="name"
                                         value="" required>
                                 </div>
                                 <div style="width: 550px;" class="input-group mt-3">
                                     <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
                                         <p style="font-size: larger;color: white;">Passwort</p>
                                     </label>
-                                    <input style="height: 20px;width: 400px;" name="loginpassword" type="password"
+                                    <input style="height: 20px;width: 400px;" name="password" type="password"
                                         class="form-control validate fs-2" placeholder="Passwort eingeben" id="password"
                                         value="" required>
                                 </div>
@@ -66,25 +66,40 @@
                                     <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
                                         <p style="font-size: larger;color: white;">Geburtsdatum</p>
                                     </label>
-                                    <input style="height: 20px;width: 400px;" name="loginpassword" type="date"
-                                        class="form-control validate fs-2" placeholder="Geburtsdatum eingeben" id="password"
+                                    <input style="height: 20px;width: 400px;" name="geburtstag" type="date"
+                                        class="form-control validate fs-2" placeholder="Geburtsdatum eingeben" id="geburtstag"
                                         value="" required>
+                                </div>
+                                <div style="width: 550px;" class="input-group mt-3">
+                                    <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
+                                        <p style="font-size: larger;color: white;">Grosse/CM</p>
+                                    </label>
+                                    <input style="height: 20px;width: 400px;" name="grosse" type="number"
+                                        class="form-control validate fs-2" placeholder="Grosse eingeben" id="grosse"
+                                        value="150" required>
                                 </div>
                                 <div style="width: 550px;" class="input-group mt-3">
                                     <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
                                         <p style="font-size: larger;color: white;">Pflegegrad</p>
                                     </label>
-                                    <input style="height: 20px;width: 400px;" name="Pflegegrad" type="text"
-                                        class="form-control validate fs-2" placeholder="Pflegegrad eingeben" id="Pflegegrad"
-                                        value="" required>
+                                    <select name="pflegegrad" id="pflegegrad" class="" value="1">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                      </select >
                                 </div>
                                 <div style="width: 550px;" class="input-group mt-3">
                                     <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
                                         <p style="font-size: larger;color: white;">Geschlecht</p>
                                     </label>
-                                    <input style="height: 20px;width: 400px;" name="Geschlecht" type="text"
-                                        class="form-control validate fs-2" placeholder="Geschlecht eingeben" id="Geschlecht"
-                                        value="" required>
+                                    <select name="geschlecht" id="geschlecht" class="">
+                                        <option value="Herr">Herr</option>
+                                        <option value="Frau">Frau</option>
+                                        <option value="Dritte">Dritte</option>
+                                      </select >
+                                    
                                 </div>
                                 <div class="input-group mt-3 ">
 

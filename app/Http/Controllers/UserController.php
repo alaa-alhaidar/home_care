@@ -6,52 +6,63 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function login(Request $request) {
         
         $incomingFields = $request->validate([
-            'loginname' => 'required',
-            'loginpassword' => 'required'
+            'name' => 'required',
+            'password' => 'required'
         ]);
 
-        if (auth()->attempt(['email' => $incomingFields['loginname'], 'password' => $incomingFields['loginpassword']])) {
+        if (auth()->attempt(['name' => $incomingFields['name'], 'password' => $incomingFields['password']])) {
             $request->session()->regenerate();
             
-            $user=  DB::table('users')->where('email',$incomingFields['loginname'])->first();
+            $user=  DB::table('users')->where('name',$incomingFields['name'])->first();
             
-            if($user->email==$incomingFields['loginname']&&$user->role=='admin'){
+            if($user->name==$incomingFields['name']&&$user->role=='admin'){
                 $data=  DB::table('patients')->get();
                 return view ('admin/patientinfo',compact('data'));
-            }else if($user->email==$incomingFields['loginname']&&$user->role=='patient'){
-                $data=  DB::table('patients')->where('versicherungsnummer',$user->versicherungsnummer)->get();
+
+            }else if($user->name==$incomingFields['name']&&$user->role=='patient'){
+                $data=  DB::table('patients')->where('f_code',$user->f_code)->get();
                 return view ('patient/patientinfo',compact('data'));
             }
             
         }else{
             
-            return redirect('/home');
+            return view('login');
         }
 
         
     }
-    public function insertMed($vers,$patinfo, Request $request){
-   
-        DB::table('medikaments')->insert([
-            'versicherungsnummer' => $vers,
+    public function kontoErstellen(Request $request){
+        $hashedPassword = Hash::make($request->input('password'));
+        DB::table('users')->insert([
+            'f_code' => $request->input('f_code'),
             'name' => $request->input('name'),
-            'applikationsform' => $request->input('applikationsform'),
-            'morgen' => $request->input('morgen'),
-            'nachmittag' => $request->input('nachmittag')
-           
+            'password' => $hashedPassword,
+            'f_code' => $request->input('f_code'),
+            'role' => "patient"
+            
+            
         ]);
-        $data=  DB::table('patients')->get();
-        return view ('admin/patientinfo',compact('data'));
-    } 
+        DB::table('patients')->insert([
+            'f_code' => $request->input('f_code'),
+            'grosse' => $request->input('grosse'),
+            'geburtstag' => $request->input('geburtstag'),
+            'geschlecht' => $request->input('geschlecht'),
+            'pflegegrad' => $request->input('pflegegrad')
+            
+        ]);
         
-       
+        return view('login');
     }
+
+
+    
 
     public function logout() {
         auth()->logout();

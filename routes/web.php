@@ -27,35 +27,38 @@ Route::get('/', function () {
     }
     
 });
-
+Route::get('/', [UserController::class, 'goHome']);
 Route::post('/register', [UserController::class, 'register']);
-Route::post('/logout', [UserController::class, 'logout']);
+Route::get('/logout', [UserController::class, 'logout']);
 Route::post('/code', [UserController::class, 'goCode']);
 Route::post('/tologin', [UserController::class, 'gologin']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/kontoSetup', [UserController::class, 'kontoErstellen']);
 // 
 
-Route::post('medikamente/{vers}/{patinfo}', [MedikamenteController::class, 'showAllMed'])->name('med');
-Route::post('medikamentePat/{vers}/{patinfo}', [MedikamenteController::class, 'showAllMedPat'])->name('medPat');
-Route::post('vz/{vers}/{patinfo}', [MedikamenteController::class, 'govital'])->name('vz');
-Route::post('add-med/{vers}/{patinfo}', [MedikamenteController::class, 'addMed'])->name('add-med');
-Route::post('insert-med/{vers}/{patinfo}', [MedikamenteController::class, 'insertMed'])->name('insert-med');
+Route::post('medikamente/{f_code}/{patinfo}', [MedikamenteController::class, 'showAllMed'])->name('med');
+Route::post('medikamentePat/{f_code}/{patinfo}', [MedikamenteController::class, 'showAllMedPat'])->name('medPat');
+Route::post('vz/{f_code}/{patinfo}', [MedikamenteController::class, 'govital'])->name('vz');
+Route::post('add-med/{f_code}/{patinfo}', [MedikamenteController::class, 'addMed'])->name('add-med');
+Route::post('insert-med/{f_code}/{patinfo}', [MedikamenteController::class, 'insertMed'])->name('insert-med');
+Route::post('delete-med/{f_code}/{patinfo}/{id}', [MedikamenteController::class, 'deleteMed'])->name('delete-med');
 // 
-Route::get('/', [UserController::class, 'goHome']);
+
 Route::get('/patinfo', [PatientController::class, 'showAllPatient']);
 Route::get('/edit-post/{post}', [PatientController::class, 'showEditScreen']);
 Route::put('/edit-post/{post}', [PatientController::class, 'actuallyUpdatePost']);
 Route::delete('/delete-post/{post}', [PatientController::class, 'deletePost']);
 Route::post('#', [PatientController::class, 'logout']);
+Route::post('report/{f_code}/{patinfo}', [PatientController::class, 'showReport'])->name('report');
+Route::post('edit-report/{f_code}/{patinfo}/{id}', [MedikamenteController::class, 'editReport'])->name('edit-report');
 
 // MassnahmenController
-Route::post('allProph/{vers}', [MassnahmenController::class, 'showAllDekubitusProhpylaxen'])->name('allProph');
-Route::post('deku/{vers}', [MassnahmenController::class, 'showDeku'])->name('deku');
-Route::post('dekuRisiko/{vers}', [MassnahmenController::class, 'dekuRisiko'])->name('dekuRisiko');
+Route::post('allProph/{f_code}', [MassnahmenController::class, 'showAllDekubitusProhpylaxen'])->name('allProph');
+Route::post('deku/{f_code}', [MassnahmenController::class, 'showDeku'])->name('deku');
+Route::post('dekuRisiko/{f_code}', [MassnahmenController::class, 'dekuRisiko'])->name('dekuRisiko');
 //VitalController
-Route::post('insert-check/{vers}/{patinfo}', [VitalController::class, 'insertCheck'])->name('insert-check');
-Route::post('saveData/{vers}', [VitalController::class, 'saveJson'])->name('saveData');
+Route::post('insert-check/{f_code}/{patinfo}', [VitalController::class, 'insertCheck'])->name('insert-check');
+Route::post('saveData/{f_code}', [VitalController::class, 'saveJson'])->name('saveData');
 // 
 
 

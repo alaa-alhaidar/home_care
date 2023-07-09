@@ -1,4 +1,5 @@
-
+@foreach ($patinfo as $pat)
+@endforeach
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +25,11 @@
         <div class="col" id=" home"">
         <p class="navbar-brand" href="../login.html">      
             <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 500;"
-            class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 
+            class="tm-block-title mt-3">Home Care,
+            <b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 
             'Times New Roman', Times, serif; font-weight: 200;"> Für Ihre Gesundheit da. <b style="font-size: 30px; color: rgb(230,230,250); font-family:Georgia, 
-            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: <b style= "color: red ; font-size: 40px;"></b></b> </b></h2>
+            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: {{$pat->f_code}}
+            <b style= "color: red ; font-size: 40px;"></b></b> </b></h2>
             </p>
 
 
@@ -77,16 +80,15 @@
         <div class="bg-white" id="navbarSupportedContent">
             <br>
             <div class="container-fluid" id=" home"">
-                @foreach ($patinfo as $pat)
-                @endforeach
+               
                 <h2 style=" font-size: 50px; color: rgb(235, 27, 27); font-family:'Gill Sans', 'Gill Sans MT' ,
                 Calibri, 'Trebuchet MS' , sans-serif; font-weight: 500;" class="tm-block-title mt-3">
-                <b>Patienten: {{$pat->geschlecht}} {{$pat->nachname}}, {{$pat->vorname}}. Geb. {{$pat->geburtstag}}, Vers. {{$pat->versicherungsnummer}}.</b>
+                <b>Patienten: {{$pat->geschlecht}}. Geb. {{$pat->geburtstag}}, Vers. {{$pat->f_code}}.</b>
               
                 </h2>
 
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline ' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline ' action="{{ route('vz',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -97,7 +99,7 @@
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('medPat',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('medPat',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-warning btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -109,7 +111,7 @@
                 </div>
 
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('vz',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('vz',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"  method='post'>
                         @csrf
                         <button  class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -121,7 +123,7 @@
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('allProph',['vers' => $pat->versicherungsnummer]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('allProph',['f_code' => $pat->f_code]) }}"  method='post'>
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -151,7 +153,7 @@
                         <div class="row">
                           
                             <div class=" container-fluid bs-border-color col" id="">
-                                <form class= 'd-inline' action="{{ route('add-med',['vers' => $pat->versicherungsnummer,'patinfo' => $pat->versicherungsnummer]) }}"  method='post'>
+                                <form class= 'd-inline' action="{{ route('add-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"  method='post'>
                                     @csrf
                                     <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
                                     style= '' 
@@ -221,7 +223,7 @@
                                 <tr class='text-center text-white align-middle'>
                               
                                 <td>{{$i++}}</td>
-                                <td>{{$item->versicherungsnummer}}</td>
+                                <td>{{$item->f_code}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->applikationsform}}</td>
                                 <td>{{$item->morgen}}</td>
@@ -366,25 +368,25 @@ chatForm.addEventListener('click', async (e) => {
     if ($timeNow >= 6 && $timeNow <= 9) {
        
         $medplan .= DB::table('medikaments')
-    ->where('versicherungsnummer', $pat->versicherungsnummer)
+    ->where('f_code', $pat->f_code)
     ->where('morgen', '>', 0)
     ->get(['name','morgen']);
 
     }else if ($timeNow > 9 && $timeNow <= 18) {
         $medplan .= DB::table('medikaments')
-    ->where('versicherungsnummer', $pat->versicherungsnummer)
+    ->where('f_code', $pat->f_code)
     ->where('nachmittag', '>', 0)
     ->get(['name','nachmittag']);
 
     }else if ($timeNow > 18 && $timeNow <= 21) {
         $medplan .= DB::table('medikaments')
-    ->where('versicherungsnummer', $pat->versicherungsnummer)
+    ->where('f_code', $pat->f_code)
     ->where('abend', '>', 0)
     ->get(['name','abend']);
 
     }else if ($timeNow > 21 && $timeNow <= 24) {
         $medplan .= DB::table('medikaments')
-    ->where('versicherungsnummer', $pat->versicherungsnummer)
+    ->where('f_code', $pat->f_code)
     ->where('nachts', '>', 0)
     ->get(['name','nachts']);
     }

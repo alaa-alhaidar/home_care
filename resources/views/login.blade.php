@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('alaacss.css') }}">
     <script src="{{ asset('mainFile.js') }}"></script>
 
-  <title>loggen</title>
+  <title>login</title>
 </head>
 
 
@@ -42,15 +42,15 @@
                                         <p style="font-size: larger;color: white;">Nutzername</p>
                                     </label>
                                  
-                                    <input style="height: 20px; width: 400px;" name="loginname" type="text"
+                                    <input style="height: 20px; width: 400px;" name="name" type="text"
                                         class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7 fs-2"
-                                        placeholder="Nutzername eingeben" id="email" value="" required>
+                                        placeholder="Nutzername eingeben" id="name" value="" required>
                                 </div>
                                 <div style="width: 550px;" class="input-group mt-3">
                                     <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
                                         <p style="font-size: larger;color: white;">Passwort</p>
                                     </label>
-                                    <input style="height: 20px;width: 400px;" name="loginpassword" type="password"
+                                    <input style="height: 20px;width: 400px;" name="password" type="password"
                                         class="form-control validate fs-2" placeholder="Passwort eingeben" id="password"
                                         value="" required>
                                 </div>

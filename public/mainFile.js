@@ -34,3 +34,32 @@ function displayTime() {
 
 setInterval(displayTime, 1000);
 
+let logoutTimeout;
+
+function startLogoutTimer() {
+  logoutTimeout = setTimeout(logout, 1 * 60 * 1000); // 5 minutes in milliseconds
+}
+
+function resetLogoutTimer() {
+  clearTimeout(logoutTimeout);
+  startLogoutTimer();
+}
+
+function logout() {
+  // Perform the logout operation (e.g., clear session, redirect to login page)
+  console.log('User has been logged out.');
+  // Example: window.location.href = '/login';
+}
+
+// Attach event listeners to reset the timer on user activity
+['mousemove', 'mousedown', 'keydown', 'touchstart'].forEach(event => {
+  document.addEventListener(event, resetLogoutTimer);
+});
+
+// Start the logout timer when the user logs in or when the application initializes
+startLogoutTimer();
+
+//logout after 10 min automatic 
+setTimeout(function() {
+  window.location.href = '/logout';
+}, 10 * 60 * 1000); 

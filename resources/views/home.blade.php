@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('alaacss.css') }}">
     <script src="{{ asset('mainFile.js') }}"></script>
 
-  <title>loggen</title>
+  <title>home</title>
 </head>
 
 

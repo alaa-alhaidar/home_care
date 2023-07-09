@@ -78,7 +78,7 @@
                     
                 </div>
                 <div class=" col align-middle text-center text-wrap" style="display: inline-block;color:white;">
-                    <span class="material-symbols-outlined align-middle text-center text-wra fs-1" style=" padding-left:1200px ;display: inline-block">
+                    <span class="material-symbols-outlined align-middle text-center text-wra fs-1" style=" padding-left:1250px ;display: inline-block">
                         calendar_month
                         </span>
                         <p class="align-middle text-center text-wrap fs-1 " style=" padding-left:10px ;display: inline-block" id="date" ></p>
@@ -98,6 +98,7 @@
            
 
         </div>
+    
         <br>
         <!-- row -->
         <div class="col">
@@ -132,15 +133,15 @@
                                 <tr class="bg-warning fw-normal">
 
                                     <th scope="col" class="text-center text-wrap">id</th>
-                                
+                                  
                                     <th scope="col" class="text-center text-wrap">Geschlecht</th>
                                     <th scope="col" class="text-center text-wrap">Geburtstag</th>
                                     <th scope="col" class="text-center text-wrap">Alter</th>
-                 
+                                 
                                     <th scope="col" class="text-center text-wrap">Pflegegrad</th>
                                     <th scope="col" class="text-center text-wrap">Grosse</th>
-                                    <th scope="col" class="text-center text-wrap">Freischalter Code</th>
-                                    
+                                    <th scope="col" class="text-center text-wrap">F. Code.</th>
+                                   
                                     <th scope="col" class="text-center text-wrap">Auf.Datum</th>
                                     <th scope="col" class="text-center text-wrap">Operationen</th>
 
@@ -160,18 +161,16 @@
                                 @endphp
                                 <tr class='text-center text-white align-middle'>
                                 <td>{{$i++}}</td>
-                            
+                                
                                 <td>{{$item->geschlecht}}</td>
                                 <td>{{$item->geburtstag}}</td>
                                 <td>{{$alter}}</td>
-                              
                                 <td>{{$item->pflegegrad}}</td>
                                 <td>{{$item->grosse}}</td>
-                                <td>{{$item->versicherungsnummer}}</td>
-                              
+                                <td>{{$item->f_code}}</td>
                                 <td>{{$item->aufnahmedatum}}</td>
                                 <td> 
-                                    <form class= 'd-inline' action="{{ route('med',['vers' => $item->versicherungsnummer,'patinfo' => $item->versicherungsnummer]) }}"  method='post'>
+                                    <form class= 'd-inline' action="{{ route('med',['f_code' => $item->f_code,'patinfo' => $item->f_code]) }}"  method='post'>
                                         @csrf
                                         <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
                                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -403,17 +402,17 @@
               </div>
           </div>
     </div>
-   
-    </div>
-
-    
-    <footer>
+   <footer>
         <br>
         <div class="bg-white fs-3">
             <b style="text-align: center;color:red;">Alaa Al Haidar TU Berlin Abschlussarbeit Fakultaet IV</b>
         </div>
         
     </footer>
+    </div>
+
+    
+    
 </body>
 
 </html>
