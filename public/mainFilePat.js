@@ -37,4 +37,4 @@ setInterval(displayTime, 1000);
 //logout after 10 min automatic 
 setTimeout(function() {
   window.location.href = '/logout';
-}, 10 * 60 * 1000); 
+}, 1 * 60 * 1000); 

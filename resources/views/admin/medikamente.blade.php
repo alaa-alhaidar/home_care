@@ -186,17 +186,17 @@
                                             </span></b>
                                     </button>
                                 </form>    
-                                    <button style= ''
-                                        writing-mode: horizontal-tb;"";
+                                    <button 
                                             id="question" type="submit" 
-                                            class="d-inline btn btn-warning btn-sm"> <b class= 'fs-3' style="color: blue">KI / Wechselwirkung prüfen</b> 
+                                            class="d-inline btn btn-warning btn-sm"> <b class= 'fs-3' 
+                                            style="color: blue">KI / Wechselwirkung prüfen</b> 
                                         </button>
                                 
-                                
-                                    <button style= '' 
-                                        writing-mode: horizontal-tb;"";
+                                    <button 
+                                        
                                             id="question2" type="submit" 
-                                            class="d-inline btn btn-warning btn-sm"> <b class= 'fs-3' style="color: green">KI / Nebenwirkung prüfen</b> 
+                                            class="d-inline btn btn-warning btn-sm"> <b class= 'fs-3' 
+                                            style="color: green">KI / Nebenwirkung prüfen</b> 
                                         </button>
                                
                                     
@@ -204,7 +204,7 @@
                             </div>
                         </div>
                         <br>
-                        <div class="table-responsive fs-5">
+                        <div class="table-responsive fs-3">
                           
                             <table id="medikamente-table" class="table table-hover bg-secondary table-bordered border-light-subtle " style="--bs-bg-opacity: .8;">
                              

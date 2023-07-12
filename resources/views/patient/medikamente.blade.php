@@ -25,11 +25,9 @@
         <div class="col" id=" home"">
         <p class="navbar-brand" href="../login.html">      
             <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 500;"
-            class="tm-block-title mt-3">Home Care,
-            <b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 
+            class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 
             'Times New Roman', Times, serif; font-weight: 200;"> Für Ihre Gesundheit da. <b style="font-size: 30px; color: rgb(230,230,250); font-family:Georgia, 
-            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: {{$pat->f_code}}
-            <b style= "color: red ; font-size: 40px;"></b></b> </b></h2>
+            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: <b style= "color: red ; font-size: 40px;"></b>{{$pat->f_code}}</b> </b></h2>
             </p>
 
 

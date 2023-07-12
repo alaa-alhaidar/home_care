@@ -25,21 +25,21 @@
                             <i class="fas fa-3x fa-tachometer-alt tm-site-icon text-center"></i>
                             <p class="navbar-brand" href="../login.html">
                              
-                            <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 500;"
-                            class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 'Times New Roman',
-                             Times, serif; font-weight: 200;"> Für Ihre Gesundheit da.</b><br>
-                             <b style="font-size: 30px;color: rgb(48, 43, 192);";>powerd by chatGPT 3.5 Turbo</b></h2>
-                            </p>
+                                <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia; font-weight: 500;"
+                                class="tm-block-title mt-3">HomeCare,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia
+                                 ; font-weight: 200;"> Ihre intelligente Pflegehelfer.</b><br>
+                                 <b style="font-size: 30px;color: rgb(48, 43, 192);";>powerd by chatGPT 3.5 Turbo</b></h2>
+                                </p>
                         </div>
                     </div>
 
-                    <div class="row fs-2 bg-secondary">
+                    <div class="row fs-2 bg-secondary" style="--bs-bg-opacity: .4;>
                         <div class="col-12">
                             <form action="/login" method="POST" class="tm-login-form">
                                 @csrf
                                 <div style="width: 550px;" class="input-group">
                                     <label for="username" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
-                                        <p style="font-size: larger;color: white;">Nutzername</p>
+                                        <p style="font-size: larger;color: black;">Nutzername</p>
                                     </label>
                                  
                                     <input style="height: 20px; width: 400px;" name="name" type="text"
@@ -48,7 +48,7 @@
                                 </div>
                                 <div style="width: 550px;" class="input-group mt-3">
                                     <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
-                                        <p style="font-size: larger;color: white;">Passwort</p>
+                                        <p style="font-size: larger;color: black;">Passwort</p>
                                     </label>
                                     <input style="height: 20px;width: 400px;" name="password" type="password"
                                         class="form-control validate fs-2" placeholder="Passwort eingeben" id="password"
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="input-group mt-3 ">
 
-                                    <button style="color: rgb(13, 13, 13); background-color: darkgrey; border-block-end-width: thick; 
+                                    <button style="color: white; background-color: rgba(90, 84, 147, 0.809); border-block-end-width: thick; 
                                     writing-mode: horizontal-tb;" 
                                         id=" login-button" type="submit"
                                         class="btn btn-primary d-inline-block mx-auto font-color fs-2">Einloggen

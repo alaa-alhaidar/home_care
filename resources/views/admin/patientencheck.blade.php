@@ -187,7 +187,7 @@
                          
                         </div>
                         <div style="background-color:white;overflow-y:scroll; height:675px;">
-                            <div class="row fs-5">
+                            <div class="row fs-3">
                                 <br>
                                 <div class=" col-lg-12" >
                                     <br>
@@ -202,7 +202,7 @@
                                                 <tr class="container-fluid tm-bg-gray bg-warning">
 
                                                     <th scope="col" class="text-center">id</th>
-                                                    <th scope="col" class="text-center">F. Code</th>
+                                                    
                                                     <th scope="col" class="text-center">RR-Systolisch</th>
                                                     <th scope="col" class="text-center">RR-Diastolisch</th>
                                                     <th scope="col" class="text-center">Puls</th>
@@ -213,7 +213,9 @@
                                                     <th scope="col" class="text-center">Operations</th>
                                                 </tr>
                                             </thead>
-
+                                                @php
+                                                $i=1;
+                                                @endphp
                                             <tbody class="">
                                                
                                                 @foreach ($vital as $item)
@@ -230,8 +232,8 @@
                                                 @endphp
                                             
                                                 <tr class='text-center text-white align-middle'>
-                                                <td>{{$item->id}}</td>
-                                                <td>{{$item->f_code}}</td>
+                                                <td>{{$i++}}</td>
+                                           
                                                 <td>{{$item->rr_systolisch}}</td>
                                                 <td>{{$item->rr_diastolisch}}</td>
                                                 <td>{{$item->puls}}</td>
@@ -364,7 +366,7 @@
                                         <button
                                             style="margin-left: 30px; margin-bottom: 20px;background-color: dodgerblue;"
                                             type="submit" class="btn btn-primary">
-                                            <span class="material-symbols-outlined  align-middle fs-1" style="color: black;">
+                                            <span class="material-symbols-outlined  align-middle" style="color: black; font-size: 60px;">
                                                 add
                                                 </span></b>
                                         </button>

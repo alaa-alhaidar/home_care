@@ -34,6 +34,7 @@ Route::post('/code', [UserController::class, 'goCode']);
 Route::post('/tologin', [UserController::class, 'gologin']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/kontoSetup', [UserController::class, 'kontoErstellen']);
+
 // 
 
 Route::post('medikamente/{f_code}/{patinfo}', [MedikamenteController::class, 'showAllMed'])->name('med');

@@ -77,7 +77,7 @@ class UserController extends Controller
         return view('login');
     }
     public function goCode(Request $request) {
-      
+
         return view('f_code');
     }
  

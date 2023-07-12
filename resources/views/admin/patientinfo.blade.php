@@ -98,7 +98,13 @@
            
 
         </div>
-    
+        <div class="bg-white" id="navbarSupportedContent">
+          
+
+            <br>
+
+
+        </div>
         <br>
         <!-- row -->
         <div class="col">

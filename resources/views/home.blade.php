@@ -25,15 +25,15 @@
                             <i class="fas fa-3x fa-tachometer-alt tm-site-icon text-center"></i>
                             <p class="navbar-brand" href="../login.html">
                              
-                            <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 500;"
-                            class="tm-block-title mt-3">HomeCare,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 'Times New Roman',
-                             Times, serif; font-weight: 200;"> Für Ihre Gesundheit da.</b><br>
+                            <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia; font-weight: 500;"
+                            class="tm-block-title mt-3">HomeCare,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia
+                             ; font-weight: 200;"> Ihre intelligente Pflegehelfer.</b><br>
                              <b style="font-size: 30px;color: rgb(48, 43, 192);";>powerd by chatGPT 3.5 Turbo</b></h2>
                             </p>
                         </div>
                     </div>
 
-                    <div class="row fs-2 bg-secondary">
+                    <div class="row fs-2 bg-secondary" style="--bs-bg-opacity: .4;">
                         <div class="col-12">
                             <form action="/tologin" method="POST" class="tm-login-form">
                                 @csrf
@@ -41,10 +41,9 @@
                                
                                 <div class="input-group mt-3 ">
 
-                                    <button style="color: rgb(13, 13, 13); background-color: white; border-block-end-width: thick; 
-                                    writing-mode: horizontal-tb;" 
+                                    <button style="color: white; background-color: rgba(90, 84, 147, 0.809); border-block-end-width: thick" 
                                         id=" code-button" type="submit"
-                                        class="btn btn-primary d-inline-block mx-auto font-color fs-2">Einloggen
+                                        class="btn btn-primary d-inline-block mx-auto f fs-2">Einloggen
                                     </button>
                                     
                                 </div>
@@ -59,10 +58,10 @@
                                 
                                 <div class="input-group mt-3 ">
 
-                                    <button style="color: rgb(13, 13, 13); background-color: white; border-block-end-width: thick; 
+                                    <button style="color: white; background-color: rgba(90, 84, 147, 0.809); border-block-end-width: thick; 
                                     writing-mode: horizontal-tb;" 
                                         id=" login-button" type="submit"
-                                        class="btn btn-primary d-inline-block mx-auto font-color fs-2">Freischalter Code 
+                                        class="btn btn-primary d-inline-block mx-auto font-color fs-2">Freischalter Code eingeben 
                                     </button>
                                     
                                 </div>
