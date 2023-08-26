@@ -39,11 +39,9 @@
                     </button>
                 </div>
                 <div class="col fs-1" style="display: inline-block;">
-                    <button class="btn btn-warning btn-lg" onclick="window.location.href='add-rmv'";
-                       id="add_attr" type="submit" class="btn btn-primary"> add attr to node
-                       
+                    <button  
+                    id="load-button" class='btn btn-warning btn-lg'> add attribute to node
                     </button>
-                    
                 </div>
               
             </div>
@@ -90,23 +88,23 @@
             </div>
             <div class="col col-lg-3">
                 <div class="bg-white tm-block">
+                    
                     <div style="background-color:gainsboro;">
-                    <div class="col-lg-12 fs-1" style="background-color:darkgrey">
+                        <div class="col-lg-12 fs-1" style="background-color:darkgrey">
 
-                        <p class="text-center"
-                            style="display: flex;justify-content: center;  color:darkred; font-family: 'Times New Roman', Times, serif;padding-top: 10px;">
-                            add nodes</p>
-
-                        </div>
-                        
+                            <p class="text-center"
+                                style="display: flex;justify-content: center;  color:darkred; font-family: 'Times New Roman', Times, serif;padding-top: 10px;">
+                                add attributes to node</p>
+    
+                            </div>
                         <div class="row fs-5" ">
                            
-                            <div class=" col-lg-10" style="height:510px">
-                               
-                                <form  id="user_input" action="" method="post">
+                                <br>
+                            <div class=" col-lg-10" style="height:400px">
+                               <br>
+                                <form  id="add_attr" action="{{ route('save-json') }}" method="post">
                                     @csrf
 
-                                   
                                     <div class="input-group mb-2">
                                         <label style="padding-left: 20px;" for="operation"
                                             class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Node name
@@ -114,48 +112,34 @@
                                         </label>
 
                                         <input type="text" class="form-control" aria-label="Sizing example input"
-                                            name="node" aria-describedby="inputGroup-sizing-sm" placeholder="node"
+                                            name="n_name" aria-describedby="inputGroup-sizing-sm" placeholder="node"
                                             required>
                                     </div>
                                     <div class="input-group mb-3">
                                         <label style="padding-left: 20px;" for="operation"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Operation
+                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">attribute
 
                                         </label>
 
                                         <input type="text" class="form-control" aria-label="Sizing example input"
-                                            name="operation" aria-describedby="inputGroup-sizing-sm" placeholder="operation"
+                                            name="attribute" aria-describedby="inputGroup-sizing-sm" placeholder="attribute"
                                             required>
                                     </div>
                                     <div class="input-group mb-3">
                                         <label style="padding-left: 20px;" for="input"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Input
+                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Value
 
                                         </label>
 
                                         <input type="text" class="form-control" aria-label="Sizing example input"
-                                            name="input" aria-describedby="inputGroup-sizing-sm" placeholder="input"
+                                            name="attr_value" aria-describedby="inputGroup-sizing-sm" placeholder="attr_value"
                                             required>
                                     </div>
 
-                                    <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="description"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 mb-2">Output
-                                        </label>
-
-                                        <input type="text" placeholder="output"  name="output" type="text"
-                                            class="form-control" required>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="description"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 mb-2">Description
-                                        </label>
-
-                                        <input type="text" placeholder="description"  name="description" type="text"
-                                            class="form-control" required>
-                                    </div>
+                       
+                                    
                                     <div class="d-grid gap-2 ">
-                                        <button id="save-button"
+                                        <button id="add-button" 
                                             style="margin-left: 30px; margin-bottom: 20px;background-color: dodgerblue;"
                                             type="submit" class="btn btn-primary">
                                             <span class="material-symbols-outlined  align-middle" 
@@ -168,20 +152,21 @@
                                 </form>
                                 
                             </div>
+                            
                             <br>
-                           
-                        </div>
-                       
-                    
-                   
-                        <div class="row fs-5" ">
-                           
+                            <div class="col-lg-12 fs-1" style="background-color:darkgrey">
+
+                                <p class="text-center"
+                                    style="display: flex;justify-content: center;  color:darkred; font-family: 'Times New Roman', Times, serif;padding-top: 10px;">
+                                    remove attributes of node</p>
+        
+                                </div>
                             <div class=" col-lg-10" style="height:250px">
-                              
-                                <form  id="node_info" action="" method="post">
+                               <br>
+                                <form  id="rmv_attr" action="{{ route('save-json') }}" method="post">
                                     @csrf
 
-                                 <br>
+                                   
                                     <div class="input-group mb-2">
                                         <label style="padding-left: 20px;" for="operation"
                                             class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Node name
@@ -189,17 +174,28 @@
                                         </label>
 
                                         <input type="text" class="form-control" aria-label="Sizing example input"
-                                            name="node_name" aria-describedby="inputGroup-sizing-sm" placeholder="node_name"
+                                            name="n_name_rmv" aria-describedby="inputGroup-sizing-sm" placeholder="node"
                                             required>
                                     </div>
+                                    <div class="input-group mb-3">
+                                        <label style="padding-left: 20px;" for="operation"
+                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">attribute
+
+                                        </label>
+
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            name="attribute_rmv" aria-describedby="inputGroup-sizing-sm" placeholder="attribute"
+                                            required>
+                                    </div>
+                      
                                     
                                     <div class="d-grid gap-2 ">
-                                        <button id="info"
+                                        <button id="rmv-button" 
                                             style="margin-left: 30px; margin-bottom: 20px;background-color: dodgerblue;"
                                             type="submit" class="btn btn-primary">
                                             <span class="material-symbols-outlined  align-middle" 
                                             style="color: black; font-size: 30px;">
-                                                send
+                                                remove
                                                 </span></b>
                                         </button>
                                     </div>
@@ -207,13 +203,13 @@
                                 </form>
                                 
                             </div>
-                           
-                            
                         </div>
-                           
-                        </div>
+                       
+                    
+                   
+                        
                         <div id="info_div" class=" col-lg-10 fs-3" 
-                        style="height:300px;background-color:;overflow-y: scroll; height: 300px;background:">
+                        style="height:300px;background-color:;">
                        
         
                         </div>
@@ -235,5 +231,7 @@
         </footer>
         
 </body>
+
+
 
 </html>
