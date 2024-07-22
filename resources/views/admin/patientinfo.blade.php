@@ -1,4 +1,6 @@
+@foreach ($data as $pat)
 
+@endforeach
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +22,7 @@
 
 </head>
 
-<body id="reportsPage" class="bg02"">
+<body id="reportsPage" class="bg02">
 
    
     <div class="container-fluid" id="home">
@@ -30,7 +32,8 @@
             <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 500;"
             class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 
             'Times New Roman', Times, serif; font-weight: 200;"> Für Ihre Gesundheit da. <b style="font-size: 30px; color: rgb(230,230,250); font-family:Georgia, 
-            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: <b style= "color: red ; font-size: 40px;"></b></b> </b></h2>
+            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: 
+            <b style= "color: red ; font-size: 40px;"></b></b> </b></h2>
             </p>
          
           
@@ -141,12 +144,14 @@
                                     <th scope="col" class="text-center text-wrap">id</th>
                                   
                                     <th scope="col" class="text-center text-wrap">Geschlecht</th>
+                                    <th scope="col" class="text-center text-wrap">Name</th>
+                                    <th scope="col" class="text-center text-wrap">Vorname</th>
                                     <th scope="col" class="text-center text-wrap">Geburtstag</th>
                                     <th scope="col" class="text-center text-wrap">Alter</th>
                                  
                                     <th scope="col" class="text-center text-wrap">Pflegegrad</th>
                                     <th scope="col" class="text-center text-wrap">Grosse</th>
-                                    <th scope="col" class="text-center text-wrap">F. Code.</th>
+                                    
                                    
                                     <th scope="col" class="text-center text-wrap">Auf.Datum</th>
                                     <th scope="col" class="text-center text-wrap">Operationen</th>
@@ -167,25 +172,27 @@
                                 @endphp
                                 <tr class='text-center text-white align-middle'>
                                 <td>{{$i++}}</td>
-                                
                                 <td>{{$item->geschlecht}}</td>
+                                <td>{{$item->nachname}}</td>
+                                <td>{{$item->vorname}}</td>
                                 <td>{{$item->geburtstag}}</td>
                                 <td>{{$alter}}</td>
                                 <td>{{$item->pflegegrad}}</td>
                                 <td>{{$item->grosse}}</td>
-                                <td>{{$item->f_code}}</td>
+                                
                                 <td>{{$item->aufnahmedatum}}</td>
                                 <td> 
                                     <form class= 'd-inline' action="{{ route('med',['f_code' => $item->f_code,'patinfo' => $item->f_code]) }}"  method='post'>
                                         @csrf
                                         <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
                                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                            
                                         id='btn' > <span class="material-symbols-outlined align-middle fs-3">
                                             pill
                                             </span>Med.
                                         </button>
                                     </form>
-                                    <form class= 'd-inline' action='' method='post'>
+                                    <form class= 'd-inline' action="{{ route('pat_info',['f_code' => $item->f_code,'patinfo' => $item->f_code]) }}" method='get'>
                                         @csrf
                                         <button  class='d-inline btn btn-light btn-sm' type='submit' value='med-requset'
                                             style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
@@ -267,7 +274,7 @@
 
                 <script>
                     const data1 = ['G1', 'G2', 'G3', 'G4', 'G5'];
-                    var barColor2 = ["blue", "blue", "blue", "blue", "blue"];
+                    var barColor2 = ["green", "blue", "grey", "black", "red"];
                     var yValues2 = [{{ $g1 }}, {{ $g2 }}, {{ $g3 }}, {{ $g4 }}, {{ $g5 }}];
                     new Chart("pflegegrad", {
                         type: "bar",
@@ -279,12 +286,24 @@
                             }]
                         },
                         options: {
-                            legend: { display: false },
-                            title: {
-                                display: true,
-                                text: ""
-                            }
-                        }
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 30 // Adjust the font size as needed
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 30 // Adjust the font size as needed
+                    }
+                }]
+            },
+            legend: { display: false },
+            title: {
+                display: true,
+                text: ""
+            }
+        }
                     });
                 </script>
               </div>
@@ -306,7 +325,7 @@
 
                             @foreach ($data as $item)
                             
-                                @if ($item->geschlecht == 'Herr')
+                                @if ($item->geschlecht == 'Mann')
                                     @php
                                         $herrCount++;
                                     @endphp
@@ -321,28 +340,42 @@
                                 @endif
                             @endforeach
 
-                            <script>
-                                const data2 = ['Man', 'Frau', 'Dritte'];
-                                var barColor2 = ["blue", "blue", "blue"];
-                                var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
-                                new Chart("gender", {
-                                    type: "bar",
-                                    data: {
-                                        labels: data2,
-                                        datasets: [{
-                                            backgroundColor: barColor2,
-                                            data: yValues2
-                                        }]
-                                    },
-                                    options: {
-                                        legend: { display: false },
-                                        title: {
-                                            display: true,
-                                            text: ""
-                                        }
-                                    }
-                                });
-                            </script>
+                        <script>
+    const data2 = ['Man', 'Frau'];
+    var barColor2 = ["blue", "pink", "blue"];
+    var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
+
+    new Chart("gender", {
+        type: "bar",
+        data: {
+            labels: data2,
+            datasets: [{
+                backgroundColor: barColor2,
+                data: yValues2
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 30 // Adjust the font size as needed
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 30 // Adjust the font size as needed
+                    }
+                }]
+            },
+            legend: { display: false },
+            title: {
+                display: true,
+                text: ""
+            }
+        }
+    });
+</script>
+
 
               </div>
               
@@ -384,8 +417,8 @@
                 @endforeach
 
                 <script>
-                    const data3 = ['20 : 59', '60 : 79', '>79'];
-                    var barColor2 = ["blue", "blue", "blue"];
+                    const data3 = ['20 bis 59 J', '60 bis 79 J', 'alter als 79 J'];
+                    var barColor2 = ["green", "blue", "red"];
                     var yValues2 = [{{ $grosser20 }}, {{ $grosser60 }}, {{ $grosser80 }}];
                     new Chart("alter", {
                         type: "bar",
@@ -397,12 +430,24 @@
                             }]
                         },
                         options: {
-                            legend: { display: false },
-                            title: {
-                                display: true,
-                                text: ""
-                            }
-                        }
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 30 // Adjust the font size as needed
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 30 // Adjust the font size as needed
+                    }
+                }]
+            },
+            legend: { display: false },
+            title: {
+                display: true,
+                text: ""
+            }
+        }
                     });
                 </script>
               </div>
