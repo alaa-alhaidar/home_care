@@ -20,7 +20,11 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="{{ asset('alaacss.css') }}">
     <script src="{{ asset('mainFile.js') }}"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 
 
@@ -125,7 +129,7 @@
                                 style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 30px;'
                                 id='btn'> <span class="material-symbols-outlined align-middle fs-1">
                                     vital_signs
-                                </span>Vitalzeichen
+                                </span> Vitalzeichen
                             </button>
                         </form>
                     </div>
@@ -138,7 +142,7 @@
                                 style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
                                 id='btn'><span class="material-symbols-outlined align-middle fs-3">
                                     pill
-                                </span>Medikamente
+                                </span> Medikamente
                             </button>
                         </form>
                     </div>
@@ -153,7 +157,7 @@
                                 id='btn'>
                                 <span class="material-symbols-outlined align-middle fs-3">
                                     topic
-                                </span>Bericht
+                                </span> Bericht
                             </button>
                         </form>
                     </div>
@@ -166,7 +170,7 @@
                                 id='btn'>
                                 <span class="material-symbols-outlined align-middle fs-3">
                                     medical_information
-                                </span>Massnahmen
+                                </span> Massnahmen
                             </button>
                         </form>
                     </div>
@@ -214,6 +218,13 @@
                             color:white" onclick="saveJSON()"> <span
                                             class="material-symbols-outlined align-middle fs-1">
                                             download
+                                        </span>
+
+                                    </button>
+                                    <button class="btn fs-3" style="display: inline-block;background-color: blue;
+                            color:white" onclick="generateAndSendPDF()"> <span
+                                            class="material-symbols-outlined align-middle fs-1">
+                                            send
                                         </span>
 
                                     </button>
@@ -743,6 +754,57 @@
                     printWindow.document.write('</body></html>');
                     printWindow.print();
                     printWindow.close();
+                }
+                </script>
+                <script type="text/javascript">
+                emailjs.init('ALAA'); // Replace 'YOUR_USER_ID' with your actual EmailJS user ID
+
+                async function generateAndSendPDF() {
+                    const {
+                        jsPDF
+                    } = window.jspdf;
+
+                    var data = @json($vital); // Blade syntax to pass PHP variable to JavaScript
+                    var jsonData = JSON.stringify(data, null, 2);
+
+                    const doc = new jsPDF();
+
+                    doc.setFontSize(12);
+                    doc.text("Vital Data", 10, 10);
+
+                    var margin = 10;
+                    var pageHeight = doc.internal.pageSize.height;
+                    var yPosition = 20;
+                    var lineHeight = 10;
+
+                    // Split text into lines that fit the page width
+                    var lines = doc.splitTextToSize(jsonData, 190); // 190 is the width considering margins
+
+                    lines.forEach((line, index) => {
+                        if (yPosition + lineHeight > pageHeight - margin) {
+                            doc.addPage(); // Add a new page if the content exceeds the page height
+                            yPosition = margin;
+                        }
+                        doc.text(line, margin, yPosition);
+                        yPosition += lineHeight;
+                    });
+
+                    var pdfBlob = doc.output('blob');
+
+                    var formData = new FormData();
+                    formData.append('file', pdfBlob, 'yourVitalzeichens.pdf');
+
+                    emailjs.send('ALAA', 'ALAA', {
+                            to_email: 'alaa.alhaidar@hotmail.com', // Replace with the recipient's email address
+                            message: 'Please find attached your vital data PDF.'
+                        }, 'ALAA')
+                        .then(function(response) {
+                            console.log('SUCCESS!', response.status, response.text);
+                            alert('PDF sent successfully!');
+                        }, function(error) {
+                            console.log('FAILED...', error);
+                            alert('Failed to send the PDF: ' + error);
+                        });
                 }
                 </script>
 

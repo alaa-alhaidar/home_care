@@ -79,5 +79,24 @@ public function saveVitalData(Request $request)
 
         return response()->json(['success' => true, 'path' => $path]);
     }
+    public function sendVitalPDF(Request $request)
+    {
+        try {
+            if ($request->hasFile('pdf')) {
+                $pdf = $request->file('pdf');
+                $path = $pdf->storeAs('vital_data', 'yourVitalzeichens.pdf');
+
+                // Send the email with the PDF attachment
+                Mail::to('alaa.alhaidar@hotmail.com')->send(new VitalPDFMail($path));
+
+                return response()->json(['success' => true, 'message' => 'PDF sent successfully']);
+            } else {
+                throw new \Exception('No PDF file found in the request.');
+            }
+        } catch (\Exception $e) {
+            \Log::error('Error sending PDF: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
+    }
 
 }
