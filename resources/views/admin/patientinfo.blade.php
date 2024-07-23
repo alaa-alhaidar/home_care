@@ -186,32 +186,48 @@
                                         <button  class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
                                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
                             
-                                        id='btn' > <span class="material-symbols-outlined align-middle fs-3">
+                                        id='btn' > 
+                                        <span class="material-symbols-outlined align-middle fs-3">
                                             pill
-                                            </span>Med.
+                                        </span>
                                         </button>
                                     </form>
                                     <form class= 'd-inline' action="{{ route('pat_info',['f_code' => $item->f_code,'patinfo' => $item->f_code]) }}" method='get'>
                                         @csrf
-                                        <button  class='d-inline btn btn-light btn-sm' type='submit' value='med-requset'
-                                            style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                            id='btn' >Profile.
+                                        <button  class='d-inline btn btn-white btn-sm' type='submit' value='med-requset'
+                                            style= 'background-color:white;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                            id='btn' >
+                                            <span class="material-symbols-outlined">
+person
+</span>
                                         </button>
                                     </form>
-                                    <form class= 'd-inline' action='' method='post'>
-                                        @csrf
-                                        <button  class='d-inline btn btn-success btn-sm' type='submit' value='med-requset'
-                                                style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                                id='btn' >Ändern.
-                                        </button>
-                                    </form>
-                                    <form class= 'd-inline' action='' method='post'>
-                                        @csrf
-                                        <button  class='d-inline btn btn-dark btn-sm' type='submit' value='med-requset'
-                                                    style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                                    id='btn' >Löschen.
-                                        </button>
-                                    </form>
+                                    <form class='d-inline'
+                                            action="{{ route('add-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"
+                                            method='post'>
+                                            @csrf
+                                            <button class='d-inline btn btn-success btn-sm' type='submit'
+                                                value='med-requset'
+                                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                                id='btn'>
+                                                <span class="material-symbols-outlined" style="color: white">
+                                                    edit
+                                                </span>
+                                            </button>
+                                        </form>
+                                        <form class='d-inline'
+                                            action="{{ route('delete-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code ,'id' => $item->id]) }}"
+                                            method='post'>
+                                            @csrf
+                                            <button class='d-inline btn btn-danger btn-sm' type='submit'
+                                                value='med-requset'
+                                                style='background-color:red;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                                id=''>
+                                                <span class="material-symbols-outlined" style="color: white">
+                                                    delete
+                                                </span>
+                                            </button>
+                                        </form>
                                 </td>
                             </tr>
                                 @endforeach

@@ -64,5 +64,20 @@ public function saveJson($vers)
 
     return Response::make($jsonData, 200, $headers);
 }
+public function saveVitalData(Request $request)
+    {
+        $vitalData = $request->input('vital');
+        $jsonData = json_encode($vitalData, JSON_PRETTY_PRINT);
+
+        // Get the current user's home directory
+       
+        // Set the path to the Desktop
+        $path = 'Users/alaa/Desktop/Herr_S/yourVitalzeichens.json';
+
+        // Save the file to the Desktop
+        file_put_contents($path, $jsonData);
+
+        return response()->json(['success' => true, 'path' => $path]);
+    }
 
 }
