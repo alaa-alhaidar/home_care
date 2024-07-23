@@ -108,7 +108,7 @@
 
 
         </div>
-        <br>
+        
         <!-- row -->
         <div class="col">
             <div class="col">
@@ -151,8 +151,7 @@
                                  
                                     <th scope="col" class="text-center text-wrap">Pflegegrad</th>
                                     <th scope="col" class="text-center text-wrap">Grosse</th>
-                                    
-                                   
+                                 
                                     <th scope="col" class="text-center text-wrap">Auf.Datum</th>
                                     <th scope="col" class="text-center text-wrap">Operationen</th>
 
@@ -179,7 +178,7 @@
                                 <td>{{$alter}}</td>
                                 <td>{{$item->pflegegrad}}</td>
                                 <td>{{$item->grosse}}</td>
-                                
+                        
                                 <td>{{$item->aufnahmedatum}}</td>
                                 <td> 
                                     <form class= 'd-inline' action="{{ route('med',['f_code' => $item->f_code,'patinfo' => $item->f_code]) }}"  method='post'>
@@ -341,7 +340,7 @@
                             @endforeach
 
                         <script>
-    const data2 = ['Man', 'Frau'];
+    const data2 = ['Mann', 'Frau'];
     var barColor2 = ["blue", "pink", "blue"];
     var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
 

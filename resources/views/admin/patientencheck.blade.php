@@ -27,8 +27,8 @@
 <body class="bg02">
 
 
-    <div class="container-fluid " id="home"">
-        <div class=" col" id=" home"">
+    <div class="container-fluid " id="home">
+        <div class=" col" id=" home">
         <p class=" navbar-brand" href="../login.html">
         <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:arial ; font-weight: 500;"
             class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:arial  
@@ -40,67 +40,69 @@
 
 
         <div class="container-fluid bg-secondary" id="">
-            <div class="col" style="display: inline-block;">
-                <button class="btn btn-primary" style="background-color: red; border-block-end-width: thick; 
+                <div class="col" style="display: inline-block;">
+                    <button class="btn btn-primary" style="background-color: red; border-block-end-width: thick; 
                    writing-mode: horizontal-tb;" onclick="window.location.href='/home'" ; id=" login-button"
-                    type="submit" class="btn btn-primary">
-                    <span class="material-symbols-outlined align-middle fs-1">
-                        logout
-                    </span><b>Ausloggen</b>
-                </button>
+                        type="submit" class="btn btn-primary">
+                        <span class="material-symbols-outlined align-middle fs-2" style="color:white">
+                            logout
+                        </span><b>Ausloggen</b>
+                    </button>
 
-            </div>
-            <div class="col " style="display: inline-block;">
-                <button style="background-color: lightgrey; border-block-end-width: thick; 
+                </div>
+                <div class="col " style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
                                             writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'" ;
-                    id=" login-button" type="submit" class="btn btn-primary">
-                    <span class="material-symbols-outlined align-middle fs-1">
-                        import_contacts
-                    </span><b>Patienteninfo</b>
-                </button>
-                <br>
-            </div>
-            <div class="col" style="display: inline-block;">
-                <button style="background-color: lightgrey; border-block-end-width: thick; 
+                        id=" login-button" type="submit" class="btn btn-primary">
+                        <span class="material-symbols-outlined align-middle fs-2">
+                            import_contacts
+                        </span><b>Patienteninfo</b>
+                    </button>
+                    <br>
+                </div>
+                <div class="col" style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
                                             writing-mode: horizontal-tb;" onclick="back()" ; id=" login-button"
-                    type="submit" class="btn btn-primary">
-                    <span class="material-symbols-outlined align-middle fs-1">
-                        arrow_back
-                    </span>
+                        type="submit" class="btn btn-primary">
+                        <span class="material-symbols-outlined align-middle fs-2">
+                            arrow_back
+                        </span>
 
-                </button>
-                <br>
-            </div>
-            <div class="col" style="display: inline-block;">
-                <button style="background-color: lightgrey; border-block-end-width: thick; 
+                    </button>
+                    <br>
+                </div>
+                <div class="col" style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
                                             writing-mode: horizontal-tb;" onclick="forward()" ; id=" login-button"
-                    type="submit" class="btn btn-primary">
-                    <span class="material-symbols-outlined align-middle fs-1">
-                        arrow_forward
+                        type="submit" class="btn btn-primary">
+                        <span class="material-symbols-outlined align-middle fs-2">
+                            arrow_forward
+                        </span>
+                    </button>
+                    <br>
+
+                </div>
+                <div class=" col align-middle text-center text-wrap" style="display: inline-block;color:white;">
+                    <span class="material-symbols-outlined align-middle text-center text-wra fs-1"
+                        style=" padding-left:1250px ;display: inline-block">
+                        calendar_month
                     </span>
-                </button>
-                <br>
-            </div>
-            <div class=" col align-middle text-center text-wrap" style="display: inline-block;color:white;">
-                <span class="material-symbols-outlined align-middle text-center text-wra fs-1"
-                    style=" padding-left:1250px ;display: inline-block">
-                    calendar_month
-                </span>
-                <p class="align-middle text-center text-wrap fs-1 " style=" padding-left:10px ;display: inline-block"
-                    id="date"></p>
+                    <p class="align-middle text-center text-wrap fs-1 "
+                        style=" padding-left:10px ;display: inline-block" id="date"></p>
 
-                <b>
-                    <span class="material-symbols-outlined align-middle text-center text-wra fs-1">
-                        schedule
+                    <b>
+                        <span class="material-symbols-outlined align-middle text-center text-wra fs-1">
+                            schedule
 
-                    </span>
-                    <p class="align-middle text-center text-wrap fs-1 " style="padding-left:10px ;display: inline-block"
-                        id="time"></p>
-                </b>
+                        </span>
+                        <p class="align-middle text-center text-wrap fs-1 "
+                            style="padding-left:10px ;display: inline-block" id="time"></p>
+                    </b>
 
+
+                </div>
 
             </div>
-        </div>
 
         <div class="bg-white" id="navbarSupportedContent">
             <br>
@@ -507,7 +509,7 @@
                                         },
                                         scaleLabel: {
                                             display: true,
-                                            labelString: 'Check Datum',
+                                            labelString: '[ Check Datum ]',
                                             fontSize: 30 // Increase x-axis title font size
                                         }
                                     }],
@@ -518,7 +520,7 @@
                                         },
                                         scaleLabel: {
                                             display: true,
-                                            labelString: 'Diast./Syst.[mmHg]',
+                                            labelString: 'Diast./Syst. [mmHg]',
                                             fontSize: 30 // Increase y-axis title font size
                                         }
                                     }]
@@ -577,7 +579,7 @@
                                         },
                                         scaleLabel: {
                                             display: true,
-                                            labelString: 'Check Datum',
+                                            labelString: '[ Check Datum ]',
                                             fontSize: 30 // Increase x-axis title font size
                                         }
                                     }],
@@ -667,7 +669,7 @@
                                         },
                                         scaleLabel: {
                                             display: true,
-                                            labelString: 'Check Datum',
+                                            labelString: '[ Check Datum ]',
                                             fontSize: 30 // Increase x-axis title font size
                                         }
                                     }],

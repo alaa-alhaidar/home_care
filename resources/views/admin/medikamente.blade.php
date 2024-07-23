@@ -34,61 +34,66 @@
             <div class="container-fluid bg-secondary" id="">
                 <div class="col" style="display: inline-block;">
                     <button class="btn btn-primary" style="background-color: red; border-block-end-width: thick; 
-                   writing-mode: horizontal-tb;" onclick="window.location.href='/home'";
-                       id=" login-button" type="submit" class="btn btn-primary">
-                       <span class="material-symbols-outlined align-middle fs-1">
-                        logout
-                        </span><b class="align-middle fs-3">Ausloggen</b>
+                   writing-mode: horizontal-tb;" onclick="window.location.href='/home'" ; id=" login-button"
+                        type="submit" class="btn btn-primary">
+                        <span class="material-symbols-outlined align-middle fs-2" style="color:white">
+                            logout
+                        </span><b>Ausloggen</b>
                     </button>
-                    
+
                 </div>
                 <div class="col " style="display: inline-block;">
                     <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                            writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'";
-                                                id=" login-button" type="submit" class="btn btn-primary">
-                                                <span class="material-symbols-outlined align-middle fs-1">
-                                                   home
-                                                    </span><b class="align-middle fs-3"> Patienteninfo</b>
+                                            writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'" ;
+                        id=" login-button" type="submit" class="btn btn-primary">
+                        <span class="material-symbols-outlined align-middle fs-2">
+                            import_contacts
+                        </span><b>Patienteninfo</b>
                     </button>
                     <br>
                 </div>
                 <div class="col" style="display: inline-block;">
                     <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                            writing-mode: horizontal-tb;" onclick="back()";
-                                                id=" login-button" type="submit" class="btn btn-primary">
-                                                <span class="material-symbols-outlined align-middle fs-1">
-                                                    arrow_back
-                                                    </span>
-                        
+                                            writing-mode: horizontal-tb;" onclick="back()" ; id=" login-button"
+                        type="submit" class="btn btn-primary">
+                        <span class="material-symbols-outlined align-middle fs-2">
+                            arrow_back
+                        </span>
+
                     </button>
                     <br>
                 </div>
                 <div class="col" style="display: inline-block;">
                     <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                            writing-mode: horizontal-tb;" onclick="forward()";
-                                                id=" login-button" type="submit" class="btn btn-primary">
-                                                <span class="material-symbols-outlined align-middle fs-1">
-                                                    arrow_forward
-                                                    </span>
+                                            writing-mode: horizontal-tb;" onclick="forward()" ; id=" login-button"
+                        type="submit" class="btn btn-primary">
+                        <span class="material-symbols-outlined align-middle fs-2">
+                            arrow_forward
+                        </span>
                     </button>
                     <br>
+
                 </div>
-                <div class=" col align-middle text-center " style="display: inline-block;color:white;">
-                    <span class=" align-middle material-symbols-outlined align-middle  fs-1" style=" padding-left:1250px ;display: inline-block">
+                <div class=" col align-middle text-center text-wrap" style="display: inline-block;color:white;">
+                    <span class="material-symbols-outlined align-middle text-center text-wra fs-1"
+                        style=" padding-left:1250px ;display: inline-block">
                         calendar_month
-                        </span>
-                        <p class="align-middle text-center  fs-1 " style=" padding-left:10px ;display: inline-block" id="date" ></p>
-                    
+                    </span>
+                    <p class="align-middle text-center text-wrap fs-1 "
+                        style=" padding-left:10px ;display: inline-block" id="date"></p>
+
                     <b>
-                        <span class=" align-middle material-symbols-outlined align-middle fs-1">
-                        schedule  
-    
+                        <span class="material-symbols-outlined align-middle text-center text-wra fs-1">
+                            schedule
+
                         </span>
-                        <p class="align-middle text-center  fs-1 " style="padding-left:10px ;display: inline-block" id="time" ></p>
+                        <p class="align-middle text-center text-wrap fs-1 "
+                            style="padding-left:10px ;display: inline-block" id="time"></p>
                     </b>
-                    
-                  
+
+
                 </div>
+
             </div>
     
         <div class="bg-white" id="navbarSupportedContent">
@@ -137,7 +142,7 @@
                     </form>
                 </div>
                 <div class="col" style="display: inline-block;">
-                    <form class= 'd-inline' action="{{ route('allProph',['f_code' => $pat->f_code]) }}"  method='post'>
+                    <form class= 'd-inline' action="{{ route('vz',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"   method='post'>
                         @csrf
                         <button  class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                         style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
