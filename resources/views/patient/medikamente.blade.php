@@ -411,13 +411,10 @@ chatForm.addEventListener('click', async (e) => {
   </div>
   
 </div>
-<footer>
-    <br>
-    <div class="bg-white fs-3">
-        <b style="text-align: center;color:red;">Alaa Al Haidar TU Berlin Abschlussarbeit Fakultaet IV</b>
-    </div>
-    
-</footer>
+<br>
+        <footer class="bg-white fs-3 text-center py-3">
+        <b style="color:red;">Health Software developed by Alaa Al Haidar</b>
+    </footer>
 </body>
 
 </html>

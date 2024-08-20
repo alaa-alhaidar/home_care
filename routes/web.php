@@ -38,12 +38,12 @@ Route::post('/kontoSetup', [UserController::class, 'kontoErstellen']);
 
 // 
 
-Route::post('medikamente/{f_code}/{patinfo}', [MedikamenteController::class, 'showAllMed'])->name('med');
-Route::post('medikamentePat/{f_code}/{patinfo}', [MedikamenteController::class, 'showAllMedPat'])->name('medPat');
-Route::post('vz/{f_code}/{patinfo}', [MedikamenteController::class, 'govital'])->name('vz');
-Route::post('add-med/{f_code}/{patinfo}', [MedikamenteController::class, 'addMed'])->name('add-med');
-Route::post('insert-med/{f_code}/{patinfo}', [MedikamenteController::class, 'insertMed'])->name('insert-med');
-Route::post('delete-med/{f_code}/{patinfo}/{id}', [MedikamenteController::class, 'deleteMed'])->name('delete-med');
+Route::post('medikamente/{f_code}', [MedikamenteController::class, 'showAllMed'])->name('med');
+Route::post('medikamentePat/{f_code}', [MedikamenteController::class, 'showAllMedPat'])->name('medPat');
+Route::post('vz/{f_code}', [MedikamenteController::class, 'govital'])->name('vz');
+Route::post('add-med/{f_code}', [MedikamenteController::class, 'addMed'])->name('add-med');
+Route::post('insert-med/{f_code}', [MedikamenteController::class, 'insertMed'])->name('insert-med');
+Route::post('delete-med/{f_code}/{id}', [MedikamenteController::class, 'deleteMed'])->name('delete-med');
 // 
 
 Route::get('/patinfo', [PatientController::class, 'showAllPatient']);
@@ -51,8 +51,8 @@ Route::get('/edit-post/{post}', [PatientController::class, 'showEditScreen']);
 Route::put('/edit-post/{post}', [PatientController::class, 'actuallyUpdatePost']);
 Route::delete('/delete-post/{post}', [PatientController::class, 'deletePost']);
 Route::post('#', [PatientController::class, 'logout']);
-Route::post('report/{f_code}/{patinfo}', [PatientController::class, 'showReport'])->name('report');
-Route::get('pat_info/{f_code}/{patinfo}', [PatientController::class, 'showPatPerID'])->name('pat_info');
+Route::post('report/{f_code}', [PatientController::class, 'showReport'])->name('report');
+Route::get('pat_info/{f_code}', [PatientController::class, 'showPatPerID'])->name('pat_info');
 Route::post('edit-report/{f_code}/{patinfo}/{id}', [MedikamenteController::class, 'editReport'])->name('edit-report');
 
 // MassnahmenController
@@ -61,30 +61,32 @@ Route::post('deku/{f_code}', [MassnahmenController::class, 'showDeku'])->name('d
 Route::post('dekuRisiko/{f_code}', [MassnahmenController::class, 'dekuRisiko'])->name('dekuRisiko');
 
 //VitalController
-Route::post('insert-check/{f_code}/{patinfo}', [VitalController::class, 'insertCheck'])->name('insert-check');
+Route::post('add-check/{f_code}', [VitalController::class, 'addcheck'])->name('add-check');
+Route::post('insert-check/{f_code}', [VitalController::class, 'insertCheck'])->name('insert-check');
+Route::post('delete-check/{f_code}/{id}', [VitalController::class, 'deleteCheck'])->name('delete-check');
+
 Route::post('saveData/{f_code}', [VitalController::class, 'saveJson'])->name('saveData');
 Route::post('/save-vital', [VitalController::class, 'saveVitalData'])->name('save.vital');
-Route::post('/send-vital-pdf', [VitalController::class, 'sendVitalPDF'])->name('send-vital-pdf');
+Route::post('/save-vital-pdf', [VitalController::class, 'saveVitalPDF'])->name('save.vital.pdf');
 
 //Report
 // route (controller-name and function insid it) (route-name)
-Route::post('add-report/{f_code}/{patinfo}', [ReportController::class, 'addReport'])->name('add-report');
-Route::post('insert-report/{f_code}/{patinfo}', [ReportController::class, 'insertReport'])->name('insert-report');
+Route::post('add-report/{f_code}', [ReportController::class, 'addReport'])->name('add-report');
+Route::post('record-report/{f_code}', [ReportController::class, 'recordReport'])->name('record-report');
+Route::post('insert-report/{f_code}', [ReportController::class, 'insertReport'])->name('insert-report');
+
+// route (controller-name and function insid it) (route-name)
+Route::post('add-massnahme/{f_code}', [MassnahmenController::class, 'addMassnahme'])->name('add-massnahme');
+Route::post('insert-massnahme/{f_code}', [MassnahmenController::class, 'insertMassnahme'])->name('insert-massnahme');
 
 //home is the name of url. can be used by any bage to execute the function and return to home
 Route::get('home', function(){
     return view('home');
 });
 
-Route::get('patientinfo', function(){
-    return view('patientinfo');
-});
 
-Route::get('patientencheck', function(){
-    return view('patientencheck');
-});
 
-Route::post('patientinfo', function(Request $request){
-    return view('patientinfo');
-});
+
+
+
 

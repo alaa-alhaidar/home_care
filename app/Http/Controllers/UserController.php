@@ -36,8 +36,8 @@ class UserController extends Controller
             
         }else{
             
-            $data=  DB::table('patients')->get();
-            return view ('admin/patientinfo',compact('data'));
+            $patinfo=  DB::table('patients')->get();
+            return view ('admin/patientinfo',compact('patinfo'));
             //return view('login');
         }
 

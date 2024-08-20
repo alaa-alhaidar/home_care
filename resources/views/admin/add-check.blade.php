@@ -18,24 +18,23 @@
 
     <link rel="stylesheet" href="{{ asset('alaacss.css') }}">
     <script src="{{ asset('mainFile.js') }}"></script>
-    <script src="{{ asset('speechToText.js') }}"></script>
 
 
 </head>
 
-<body id="reportsPage" class="bg02"">
+<body id="reportsPage" class="bg02">
 
    
     <div class=" container-fluid" id="home">
     <div class="">
 
-        <p class="navbar-brand" href="../login.html">
-        <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 500;"
-            class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 
-            'Times New Roman', Times, serif; font-weight: 200;"> Für Ihre Gesundheit da. <b style="font-size: 30px; color: rgb(230,230,250); font-family:Georgia, 
-            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: <b
-                        style="color: red ; font-size: 40px;"></b></b> </b></h2>
-        </p>
+    <p class="navbar-brand" href="../login.html">
+            <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:arial ; font-weight: 500;"
+                class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:arial  
+            ; font-weight: 200;"> Ihre digitale Helfer. <b style="font-size: 30px; color: rgb(230,230,250); font-family: arial 
+            ; font-weight: 200;">Sie sind angemeldet als Administrator:
+                        <b style="color: red ; font-size: 40px;">{{$pat->f_code}}</b></b> </b></h2>
+            </p>
 
 
         <div class="container-fluid bg-secondary" id="">
@@ -83,7 +82,7 @@
             </div>
             <div class=" col align-middle text-center text-wrap" style="display: inline-block;color:white;">
                 <span class="material-symbols-outlined align-middle text-center text-wra fs-1"
-                    style=" padding-left:1250px ;display: inline-block">
+                    style=" padding-left:2200px  ;display: inline-block">
                     calendar_month
                 </span>
                 <p class="align-middle text-center text-wrap fs-1 " style=" padding-left:10px ;display: inline-block"
@@ -107,8 +106,8 @@
     </div>
     <br>
     <!-- row -->
-    <div class="bs-border-color col">
-        <div class="col-xl-12 ">
+    <div class="bs-border-color col-xl-12">
+        <div class="col-xl-12">
             <div class="bg-white tm-block">
                 <div class="container-fluid bg-white" id="navbarSupportedContent">
                     <h1 style="font-size: 50px; color: rgb(235, 27, 27); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: 500;"
@@ -120,55 +119,84 @@
 
                     <p class="text-center"
                         style="display: flex;justify-content: center; font-size: 40px; color:darkred; font-family: 'Times New Roman', Times, serif;padding-top: 10px;">
-                        Report hinzufügen</p>
+                        Check hinzufügen</p>
 
                 </div>
 
                 <div style="background-color:gainsboro;">
-                    <div class="col-lg-12">
-
-                        <div class="col-lg-12">
-                            <form id="form" action="{{ route('insert-report',['f_code' => $pat->f_code]) }}"
-                                method="post">
-                                @csrf
-
-                                <br>
-                                <div class="input-group mb-3">
+                    <div class="col-lg-10">
+                        <div class="col-lg-10">
+                           
+                            <form  id="form" action="{{ route('insert-check',['f_code' => $pat->f_code]) }}" method="post">
+                                    @csrf
+                
+                                    <br>
+                                    <div class="input-group mb-3">
                                     <label style="padding-left: 20px;" for="name"
-                                        class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
-                                        Text
+                                        class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Plutdruck/Systolisch
+
                                     </label>
 
                                     <input type="text" class="form-control" aria-label="Sizing example input"
-                                        name="text" aria-describedby="inputGroup-sizing-sm" placeholder="Text" required>
+                                        name="rr_systolisch" aria-describedby="inputGroup-sizing-sm"
+                                        placeholder="Gebe Blutdruck systolisch ein" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label style="padding-left: 20px;" for="name"
+                                        class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Plutdruck/Diastolisch
+
+                                    </label>
+
+                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                        name="rr_diastolisch" aria-describedby="inputGroup-sizing-sm"
+                                        placeholder="Gebe Blutdruck diastolisch ein" required>
                                 </div>
 
+                                <div class="input-group mb-3">
+                                    <label style="padding-left: 20px;" for="description"
+                                        class="col-xl-4 col-lg-4 col-md-4 col-sm-5 mb-2">Puls
+                                    </label>
 
-                                <div class="d-grid gap-2">
-                                    <button
-                                        style="margin-left: 30px; margin-bottom: 20px; background-color: dodgerblue;"
-                                        type="submit" class="btn btn-primary" id="">Report Hinzufügen</button>
+                                    <input type="text" placeholder="Puls" id="puls" name="puls" type="text"
+                                        class="form-control" required>
                                 </div>
+                                <div class="input-group mb-3">
+                                    <label style="padding-left: 20px;" for="description"
+                                        class="col-xl-4 col-lg-4 col-md-4 col-sm-5 mb-2">Temperatur
+                                    </label>
 
-
-                            </form>
+                                    <input type="text" placeholder="Temperatur (xx.x)" id="puls" name="temp" type="text"
+                                        class="form-control" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label style="padding-left: 20px;" for="category"
+                                        class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Gewicht
+                                    </label>
+                                    <input placeholder="Gebe Gewicht ein" id="gewicht" name="gewicht" type="text"
+                                        class="form-control" required>
+                                </div>
+                                   
+                                 
+                                    <div class="d-grid gap-2">
+                                        <button style="margin-left: 30px; margin-bottom: 20px; background-color: dodgerblue;" 
+                                        type="submit" class="btn btn-primary "
+                                            id=" login-button" type="submit">Check Hinzufügen</button>
+                                    </div>
+                                </form>
 
                         </div>
 
                     </div>
                 </div>
-                <br>
-                <footer class="bg-white fs-3 text-center py-3">
-                    <b style="color:red;">Health Software developed by Alaa Al Haidar</b>
-                </footer>
             </div>
-
         </div>
-
     </div>
-
+    <br>
+        <footer class="bg-white fs-3 text-center py-3">
+        <b style="color:red;">Health Software developed by Alaa Al Haidar</b>
+    </footer>
     </div>
-
+  
 </body>
 
 </html>

@@ -32,14 +32,14 @@ public function govital($f_code){
     $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
     $userinfo = DB::table('patients')->where('f_code', $f_code)->get();
     
-    return view ('admin/patientencheck',compact('vital','patinfo'));
+    return view ('admin/patientencheck',compact('vital','patinfo','f_code'));
 }   
     public function addMed($f_code){
    
     $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
     return view ('admin/add-medikamente',compact('patinfo'));
 }  
-public function insertMed($f_code,$patinfo, Request $request){
+public function insertMed($f_code, Request $request){
    
     DB::table('medikaments')->insert([
         'f_code' => $f_code,
@@ -53,10 +53,12 @@ public function insertMed($f_code,$patinfo, Request $request){
         'hinweis' => $request->input('hinweis'),
         'Haupt_Bedarf' => $request->input('Haupt_Bedarf')
     ]);
+    $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
     $data=  DB::table('patients')->get();
-    return view ('admin/patientinfo',compact('data'));
+    $medi = DB::table('medikaments')->where('f_code', $f_code)->get();
+    return view ('admin/medikamente',compact('data','patinfo','medi'));
 } 
-public function deleteMed($f_code,$patinfo,$id){
+public function deleteMed($f_code,$id){
 
     $toDelete = DB::table('medikaments')->where('id', $id)->delete();
     $medi = DB::table('medikaments')->where('f_code', $f_code)->get();

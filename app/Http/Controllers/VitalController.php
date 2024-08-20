@@ -11,7 +11,13 @@ use App\Http\Controllers\VitalController;
 
 class VitalController extends Controller
 {
-    public function insertCheck($vers, $patinfo, Request $request)
+    public function addcheck($f_code){
+   
+        $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
+        return view ('admin/add-check',compact('patinfo'));
+    }
+    
+    public function insertCheck($f_code, Request $request)
 {
     // Calculate BMI
     $g = 1.7;
@@ -19,8 +25,8 @@ class VitalController extends Controller
 
     // Insert new vital signs data
     DB::table('vitalzeichens')->insert([
-        'versicherungsnummer' => $vers,
-        'f_code' => $vers,
+        'versicherungsnummer' => $f_code,
+        'f_code' => $f_code,
         'rr_systolisch' => $request->input('rr_systolisch'),
         'rr_diastolisch' => $request->input('rr_diastolisch'),
         'puls' => $request->input('puls'),
@@ -33,25 +39,33 @@ class VitalController extends Controller
     
 
     // Retrieve patient information (assuming $patinfo is already provided or retrieved)
-    $patinfo = DB::table('patients')->where('versicherungsnummer', $vers)->first();
+    $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
 
     // Retrieve latest 5 vital signs entries
     $vital = DB::table('vitalzeichens')
-                ->where('versicherungsnummer', $vers)
+                ->where('f_code', $f_code)
                 ->orderBy('created_time', 'desc')
                 ->take(5)
                 ->get();
-
+   
     // Pass data to the view
     return view('admin.patientencheck', compact('patinfo', 'vital'));
 }
+public function deleteCheck($f_code,$id){
+
+    $toDelete = DB::table('vitalzeichens')->where('id', $id)->delete();
+    $vital = DB::table('vitalzeichens')->where('f_code', $f_code)->get();
+    $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
+    
+    return view ('admin/patientencheck',compact('vital','patinfo'));
+} 
 
     
 
 public function saveJson($vers)
 {
    
-    $vital = DB::table('vitalzeichens')->where('versicherungsnummer', $vers)->get();
+    $vital = DB::table('vitalzeichens')->where('f_code', $vers)->get();
     $jsonData = json_encode(vital);
 
     $fileName = 'yourVitalzeichen.json';

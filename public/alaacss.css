@@ -644,3 +644,22 @@ footer {
   }
 
 }
+    /* Recording effect style */
+    #start-btn.recording {
+      background-color: red; /* Change to red when recording */
+      animation: pulse 3s infinite; /* Add a pulsing animation */
+  }
+
+
+  /* Pulsing animation */
+  @keyframes pulse {
+      0% {
+          box-shadow: 0 0 5px red;
+      }
+      50% {
+          box-shadow: 0 0 400px blue;
+      }
+      100% {
+          box-shadow: 0 0 50px blue;
+      }
+  }
