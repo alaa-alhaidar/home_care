@@ -316,7 +316,7 @@
         const chatLog = document.getElementById('chat-log');
         const apiUrl = 'https://api.openai.com/v1/chat/completions';
         const apikey =
-            'sk-proj-YjOh7MXuabAmcWJ8W9rxT3BlbkFJOFu9GzqwzloR9joSNMdy'; // Replace with your OpenAI API key
+            ''; // Replace with your OpenAI API key
 
         chatForm.addEventListener('click', async (e) => {
             e.preventDefault();
