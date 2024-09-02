@@ -9,12 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('vitalzeichens', function (Blueprint $table) {
-            $table->string('versicherungsnummer');
+            // Use raw SQL to check if the column exists
+            if (!Schema::hasColumn('vitalzeichens', 'versicherungsnummer')) {
+                $table->string('versicherungsnummer')->notNull();
+            }
         });
     }
+    
 
     /**
      * Reverse the migrations.
