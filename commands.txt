@@ -1,1 +1,304 @@
-To install the required dependencies for a Laravel project, such as the one in your `home_care` repository, you'll follow these steps. I'll provide a detailed description and the necessary commands to ensure your Laravel application is properly set up and running.### Step 1: Access Your EC2 InstanceFirst, log in to your EC2 instance where you have cloned the `home_care` repository.```bashssh -i /path/to/your-key.pem ubuntu@your-ec2-instance-ip```### Step 2: Navigate to Your Project DirectoryOnce you're logged in, navigate to the directory where you cloned the `home_care` repository.```bashcd /var/www/home_care```### Step 3: Install PHP and Necessary ExtensionsLaravel requires PHP and some specific extensions. Ensure that PHP is installed along with the necessary extensions.```bashsudo apt updatesudo apt install php php-mbstring php-xml php-bcmath php-json php-zip php-mysql unzip -y```### Step 4: Install ComposerComposer is a dependency manager for PHP, which Laravel uses to manage its packages.1. Download and install Composer:    ```bash    curl -sS https://getcomposer.org/installer | php    ```2. Move the Composer binary to a global location:    ```bash    sudo mv composer.phar /usr/local/bin/composer    ```### Step 5: Install Laravel DependenciesWith Composer installed, you can now install the necessary dependencies for your Laravel project.1. Run the following command in the `home_care` project directory:    ```bash    composer install    ```   This will download and install all dependencies specified in the `composer.json` file.### Step 6: Set File PermissionsLaravel needs specific permissions for certain directories like `storage` and `bootstrap/cache`.1. Set the correct permissions:    ```bash    sudo chown -R www-data:www-data /var/www/home_care    sudo chmod -R 775 /var/www/home_care/storage /var/www/home_care/bootstrap/cache    ```### Step 7: Set Up the Environment FileThe `.env` file contains configuration settings for your application. Since you've already generated an `APP_KEY` locally, ensure it is correctly set on your EC2 instance.1. If necessary, upload the `.env` file from your local machine to the server, or copy the `APP_KEY` and other settings to the existing `.env` file on the server.   Example:    ```bash    nano /var/www/home_care/.env    ```   Paste your settings, particularly the `APP_KEY`.### Step 8: Generate Application Key (if not done locally)If you haven't already generated the application key on your local machine, do it now:```bashphp artisan key:generate```This command sets the `APP_KEY` in your `.env` file.### Step 9: Run Database MigrationsIf your application requires a database, run the migrations to set up the database schema.```bashphp artisan migrate```### Step 10: Set Up Your Web Server (Apache/Nginx)Assuming you are using Apache or Nginx, you need to configure your web server to serve the Laravel application.For Apache, ensure the following configuration:```bashsudo nano /etc/apache2/sites-available/000-default.conf```Update the `DocumentRoot` to point to the `public` directory of your Laravel project:```apacheDocumentRoot /var/www/home_care/public```Enable mod_rewrite and restart Apache:```bashsudo a2enmod rewritesudo systemctl restart apache2```For Nginx, you would create a configuration file pointing to the `public` directory and restart Nginx.### Step 11: Access Your ApplicationFinally, ensure your application is running by accessing it via the public IP address or domain name of your EC2 instance.```bashhttp://your-ec2-instance-ip```### Summary of CommandsHere’s a quick summary of the key commands:1. **Update system and install PHP:**    ```bash    sudo apt update    sudo apt install php php-mbstring php-xml php-bcmath php-json php-zip php-mysql unzip -y    ```2. **Install Composer:**    ```bash    curl -sS https://getcomposer.org/installer | php    sudo mv composer.phar /usr/local/bin/composer    ```3. **Install Laravel dependencies:**    ```bash    composer install    ```4. **Set permissions:**    ```bash    sudo chown -R www-data:www-data /var/www/home_care    sudo chmod -R 775 /var/www/home_care/storage /var/www/home_care/bootstrap/cache    ```5. **Generate app key:**    ```bash    php artisan key:generate    ```6. **Run migrations:**    ```bash    php artisan migrate    ```With these steps, your Laravel project should be up and running on your EC2 instance.
+To install the required dependencies for a Laravel project, such as the one in your `home_care` repository, you'll follow these steps. I'll provide a detailed description and the necessary commands to ensure your Laravel application is properly set up and running.
+
+### Step 1: Access Your EC2 Instance
+
+First, log in to your EC2 instance where you have cloned the `home_care` repository.
+
+```bash
+ssh -i /path/to/your-key.pem ubuntu@your-ec2-instance-ip
+```
+
+### Step 2: Navigate to Your Project Directory
+
+Once you're logged in, navigate to the directory where you cloned the `home_care` repository.
+
+```bash
+sudo apt-get update
+sudo apt-get install git -y
+sudo mkdir -p /var/www/home_care
+sudo chown ubuntu:ubuntu /var/www/home_care
+sudo git clone https://github.com/alaa-alhaidar/home_care.git /var/www/home_care
+cd /var/www/home_care
+```
+
+### Step 3: Install PHP and Necessary Extensions
+
+Laravel requires PHP and some specific extensions. Ensure that PHP is installed along with the necessary extensions.
+
+```bash
+sudo apt update
+sudo apt install php php-mbstring php-xml php-bcmath php-json php-zip php-mysql unzip -y
+```
+
+### Step 4: Install Composer
+
+Composer is a dependency manager for PHP, which Laravel uses to manage its packages.
+
+1. Download and install Composer:
+
+    ```bash
+    curl -sS https://getcomposer.org/installer | php
+    ```
+
+2. Move the Composer binary to a global location:
+
+    ```bash
+    sudo mv composer.phar /usr/local/bin/composer
+    ```
+
+### Step 5: Install Laravel Dependencies
+
+With Composer installed, you can now install the necessary dependencies for your Laravel project.
+
+1. Run the following command in the `home_care` project directory:
+
+    ```bash
+    composer install
+    ```
+
+   This will download and install all dependencies specified in the `composer.json` file.
+
+### Step 6: Set File Permissions
+
+Laravel needs specific permissions for certain directories like `storage` and `bootstrap/cache`.
+
+1. Set the correct permissions:
+
+    ```bash
+    sudo chown -R www-data:www-data /var/www/home_care
+    sudo chmod -R 775 /var/www/home_care/storage /var/www/home_care/bootstrap/cache
+    ```
+To set up an Apache web server and MySQL on your Ubuntu EC2 instance, follow these steps:
+
+### 1. **Update Your System:**
+
+Before installing new packages, it's a good idea to update your package index and upgrade your system:
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+
+### 2. **Install Apache:**
+
+1. **Install Apache:**
+   ```bash
+   sudo apt install apache2 -y
+   ```
+
+2. **Start Apache and Enable It to Start on Boot:**
+   ```bash
+   sudo systemctl start apache2
+   sudo systemctl enable apache2
+   ```
+
+3. **Verify Apache Installation:**
+   - Open a web browser and navigate to your EC2 instance’s public IP address. You should see the Apache2 Ubuntu Default Page.
+   - Alternatively, use `curl` to verify:
+     ```bash
+     curl http://localhost
+     ```
+
+### 3. **Install MySQL:**
+
+1. **Install MySQL Server:**
+   ```bash
+   sudo apt install mysql-server -y
+   ```
+
+2. **Run the MySQL Secure Installation Script:**
+   - This script helps you secure your MySQL installation. It will prompt you to set up the root password and configure security settings.
+     ```bash
+     sudo mysql_secure_installation
+     ```
+
+   - Follow the prompts to set a root password and configure other security options.
+
+3. **Start MySQL and Enable It to Start on Boot:**
+   ```bash
+   sudo systemctl start mysql
+   sudo systemctl enable mysql
+   ```
+
+4. **Verify MySQL Installation:**
+   - Log in to the MySQL root user to ensure it’s working:
+     ```bash
+     sudo mysql -u root -p
+     ```
+   - Enter the root password you set up during the secure installation.
+
+### 4. **Configure Apache to Serve Your Application:**
+
+1. **Create a Directory for Your Application:**
+   - For example, if your application is in `/var/www/home_care`, ensure that this directory exists and has the correct permissions.
+     ```bash
+     sudo mkdir -p /var/www/home_care
+     sudo chown -R www-data:www-data /var/www/home_care
+     sudo chmod -R 755 /var/www/home_care
+     ```
+
+2. **Create a Virtual Host Configuration File for Your Site:**
+   - Create a new configuration file in `/etc/apache2/sites-available/`. For example:
+     ```bash
+     sudo nano /etc/apache2/sites-available/home_care.conf
+     ```
+
+   - Add the following configuration (customize as needed):
+     ```apache
+     <VirtualHost *:80>
+         ServerAdmin webmaster@localhost
+         DocumentRoot /var/www/home_care
+
+         <Directory /var/www/home_care>
+             AllowOverride All
+             Require all granted
+         </Directory>
+
+         ErrorLog ${APACHE_LOG_DIR}/error.log
+         CustomLog ${APACHE_LOG_DIR}/access.log combined
+     </VirtualHost>
+     ```
+
+3. **Enable the New Site and Restart Apache:**
+   ```bash
+   sudo a2ensite home_care.conf
+   sudo systemctl reload apache2
+   ```
+
+4. **Disable the Default Site (Optional):**
+   ```bash
+   sudo a2dissite 000-default.conf
+   sudo systemctl reload apache2
+   ```
+
+### 5. **Configure MySQL for Your Application:**
+
+1. **Create a Database and User:**
+   - Log in to MySQL and create a database and user for your application:
+     ```bash
+     sudo mysql -u root -p
+     ```
+   - In the MySQL shell:
+     ```sql
+     CREATE DATABASE home_care_db;
+     CREATE USER 'home_care_user'@'localhost' IDENTIFIED BY 'password';
+     GRANT ALL PRIVILEGES ON home_care_db.* TO 'home_care_user'@'localhost';
+     FLUSH PRIVILEGES;
+     EXIT;
+     ```
+
+### Summary:
+
+- **Apache**: Installed and configured to serve your application from `/var/www/home_care`.
+- **MySQL**: Installed, secured, and configured with a database and user for your application.
+- **Configuration**: Make sure to adjust configuration files and settings according to your application's needs.
+
+By following these steps, you should have a basic LAMP stack (Linux, Apache, MySQL, PHP) set up on your Ubuntu EC2 instance.
+### Step 7: Set Up the Environment File
+
+The `.env` file contains configuration settings for your application. Since you've already generated an `APP_KEY` locally, ensure it is correctly set on your EC2 instance.
+
+1. If necessary, upload the `.env` file from your local machine to the server, or copy the `APP_KEY` and other settings to the existing `.env` file on the server.
+
+   Example:
+
+    ```bash
+    nano /var/www/home_care/.env
+    ```
+
+   Paste your settings, particularly the `APP_KEY`.
+
+### Step 8: Generate Application Key (if not done locally)
+
+If you haven't already generated the application key on your local machine, do it now:
+
+```bash
+php artisan key:generate
+```
+
+This command sets the `APP_KEY` in your `.env` file.
+
+### Step 9: Run Database Migrations
+
+If your application requires a database, run the migrations to set up the database schema.
+
+```bash
+php artisan migrate
+```
+
+### Step 10: Set Up Your Web Server (Apache/Nginx)
+
+Assuming you are using Apache or Nginx, you need to configure your web server to serve the Laravel application.
+
+For Apache, ensure the following configuration:
+
+```bash
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+
+Update the `DocumentRoot` to point to the `public` directory of your Laravel project:
+
+```apache
+DocumentRoot /var/www/home_care/public
+```
+
+Enable mod_rewrite and restart Apache:
+
+```bash
+sudo a2enmod rewrite
+sudo systemctl restart apache2
+```
+
+For Nginx, you would create a configuration file pointing to the `public` directory and restart Nginx.
+
+### Step 11: Access Your Application
+
+Finally, ensure your application is running by accessing it via the public IP address or domain name of your EC2 instance.
+
+```bash
+http://your-ec2-instance-ip
+```
+
+### Summary of Commands
+
+Here’s a quick summary of the key commands:
+
+1. **Update system and install PHP:**
+
+    ```bash
+    sudo apt update
+    sudo apt install php php-mbstring php-xml php-bcmath php-json php-zip php-mysql unzip -y
+    ```
+
+2. **Install Composer:**
+
+    ```bash
+    curl -sS https://getcomposer.org/installer | php
+    sudo mv composer.phar /usr/local/bin/composer
+    ```
+
+3. **Install Laravel dependencies:**
+
+    ```bash
+    composer install
+    ```
+
+4. **Set permissions:**
+
+    ```bash
+    sudo chown -R www-data:www-data /var/www/home_care
+    sudo chmod -R 775 /var/www/home_care/storage /var/www/home_care/bootstrap/cache
+    ```
+
+5. **Generate app key:**
+
+    ```bash
+    php artisan key:generate
+    ```
+
+6. **Run migrations:**
+
+    ```bash
+    php artisan migrate
+    ```
+
+With these steps, your Laravel project should be up and running on your EC2 instance.
