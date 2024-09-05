@@ -125,67 +125,13 @@
 
                 </h2>
               
-            
-                <br>
-
                 <div class="  bs-border-color col" id="navbarSupportedContent">
                     <br>
-                    <div class="col" style="display: inline-block;">
-                        <form class='d-inline ' action="{{ route('vz', ['f_code' => $pat->f_code]) }}" method="post">
-
-                            @csrf
-                            <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
-                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
-                                id='btn'> <span class="material-symbols-outlined align-middle fs-3">
-                                    vital_signs
-                                </span> Vitalzeichen
-                            </button>
-                        </form>
-                    </div>
-                    <div class="col" style="display: inline-block;">
-                        <form class='d-inline' action="{{ route('med',['f_code' => $pat->f_code]) }}" method='post'>
-                            @csrf
-                            <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
-                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
-                                id='btn'><span class="material-symbols-outlined align-middle fs-3">
-                                    pill
-                                </span> Medikamente
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="col" style="display: inline-block;">
-                        <form class='d-inline' action="{{ route('report',['f_code' => $pat->f_code]) }}" method='post'>
-                            @csrf
-                            <button class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
-                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
-                                id='btn'>
-                                <span class="material-symbols-outlined align-middle fs-3">
-                                    topic
-                                </span> Bericht
-                            </button>
-                        </form>
-                    </div>
-                    <div class="col" style="display: inline-block;">
-                        <form class='d-inline' action="{{ route('allProph',['f_code' => $pat->f_code]) }}" method='post'>
-                            @csrf
-                            <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
-                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
-                                id='btn'>
-                                <span class="material-symbols-outlined align-middle fs-3">
-                                    medical_information
-                                </span> Massnahmen
-                            </button>
-                        </form>
-                    </div>
-             
-
-                    
-
-                    <div class=" table-responsive" style="background-color:white;overflow-y:scroll; height:800px;">
+                 
+                    <div class=" table-responsive" style="background-color:white;overflow-y:scroll; height:800px;"style="font-size: 25px;">
                         <br>
                         <table id="patient-table"
-                            class="table table-hover bg-secondary border-bottom border-white">
+                            class="table table-hover bg-secondary border-bottom border-white" style="font-size: 25px;">
                             <caption> <b>Patientendaten</b></caption>
                             <thead>
                                 <tr class="bg-warning fw-normal">
@@ -200,7 +146,7 @@
                                  
                                     <th scope="col" class="text-center text-wrap">Pflegegrad</th>
                                     <th scope="col" class="text-center text-wrap">Grosse</th>
-                                 
+                                    <th scope="col" class="text-center text-wrap">Adresse</th>
                                     <th scope="col" class="text-center text-wrap">Auf.Datum</th>
                                     <th scope="col" class="text-center text-wrap">Operationen</th>
 
@@ -227,7 +173,7 @@
                                 <td>{{$alter}}</td>
                                 <td>{{$item->pflegegrad}}</td>
                                 <td>{{$item->grosse}}</td>
-                        
+                                <td>{{$item->adresse}}</td>
                                 <td>{{$item->aufnahmedatum}}</td>
                                 <td> 
                                   
@@ -284,9 +230,10 @@
 
 
     </div>
-  
-  
+ 
+   
     </div>
+
 
 
     <br>
@@ -396,7 +343,7 @@
                                     @php
                                         $frauCount++;
                                     @endphp
-                                @else
+                                    @else ($item->geschlecht == 'Dritte')
                                     @php
                                         $dritteCount++;
                                     @endphp
@@ -404,40 +351,40 @@
                             @endforeach
 
                         <script>
-    const data2 = ['Mann', 'Frau'];
-    var barColor2 = ["blue", "pink", "blue"];
-    var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
+                            const data2 = ['Mann', 'Frau','Dritte'];
+                            var barColor2 = ["blue", "pink", "yellow"];
+                            var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
 
-    new Chart("gender", {
-        type: "bar",
-        data: {
-            labels: data2,
-            datasets: [{
-                backgroundColor: barColor2,
-                data: yValues2
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        fontSize: 30 // Adjust the font size as needed
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        fontSize: 30 // Adjust the font size as needed
-                    }
-                }]
-            },
-            legend: { display: false },
-            title: {
-                display: true,
-                text: ""
-            }
-        }
-    });
-</script>
+                            new Chart("gender", {
+                                type: "bar",
+                                data: {
+                                    labels: data2,
+                                    datasets: [{
+                                        backgroundColor: barColor2,
+                                        data: yValues2
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        xAxes: [{
+                                            ticks: {
+                                                fontSize: 30 // Adjust the font size as needed
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            ticks: {
+                                                fontSize: 30 // Adjust the font size as needed
+                                            }
+                                        }]
+                                    },
+                                    legend: { display: false },
+                                    title: {
+                                        display: true,
+                                        text: ""
+                                    }
+                                }
+                            });
+                        </script>
 
 
               </div>
@@ -516,7 +463,7 @@
 
     </div>
 
-    
+   
 </body>
 
 

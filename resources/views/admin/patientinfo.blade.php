@@ -118,10 +118,7 @@
             <div class=" bg-white tm-block" style="height: 55vh">
                 <h2 style=" font-size: 50px; color: rgb(235, 27, 27); font-family:sans-serif; font-weight: 500;"
                     class="tm-block-title mt-3">
-                    <b>Patienten: Name. {{$pat->nachname}}, Vorname. {{$pat->vorname}}, Geb. {{$pat->geburtstag}},
-                        f.
-                        Code.
-                        {{$pat->f_code}}.</b>
+
 
                 </h2>
               
@@ -131,7 +128,7 @@
                 <div class="  bs-border-color col" id="navbarSupportedContent">
                     <br>
                     <form class='d-inline'
-                                action="{{ route('add-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"
+                                action="{{ route('add-patient',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"
                                 method='post'>
                                 @csrf
                                 <button class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
@@ -149,7 +146,7 @@
                     <div class=" table-responsive" style="background-color:white;overflow-y:scroll; height:800px;">
                         <br>
                         <table id="patient-table"
-                            class="table table-hover bg-secondary border-bottom border-white">
+                            class="table table-hover bg-secondary border-bottom border-white" style="font-size: 25px;">
                             <caption> <b>Patientendaten</b></caption>
                             <thead>
                                 <tr class="bg-warning fw-normal">
@@ -164,7 +161,7 @@
                                  
                                     <th scope="col" class="text-center text-wrap">Pflegegrad</th>
                                     <th scope="col" class="text-center text-wrap">Grosse</th>
-                                 
+                                    <th scope="col" class="text-center text-wrap">Adresse</th>
                                     <th scope="col" class="text-center text-wrap">Auf.Datum</th>
                                     <th scope="col" class="text-center text-wrap">Operationen</th>
 
@@ -191,7 +188,7 @@
                                 <td>{{$alter}}</td>
                                 <td>{{$item->pflegegrad}}</td>
                                 <td>{{$item->grosse}}</td>
-                        
+                                <td>{{$item->adresse}}</td>
                                 <td>{{$item->aufnahmedatum}}</td>
                                 <td> 
                                   
@@ -369,40 +366,40 @@
                             @endforeach
 
                         <script>
-    const data2 = ['Mann', 'Frau'];
-    var barColor2 = ["blue", "pink", "blue"];
-    var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
+                            const data2 = ['Mann', 'Frau','Dritte'];
+                            var barColor2 = ["blue", "pink", "yellow"];
+                            var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
 
-    new Chart("gender", {
-        type: "bar",
-        data: {
-            labels: data2,
-            datasets: [{
-                backgroundColor: barColor2,
-                data: yValues2
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        fontSize: 30 // Adjust the font size as needed
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        fontSize: 30 // Adjust the font size as needed
-                    }
-                }]
-            },
-            legend: { display: false },
-            title: {
-                display: true,
-                text: ""
-            }
-        }
-    });
-</script>
+                            new Chart("gender", {
+                                type: "bar",
+                                data: {
+                                    labels: data2,
+                                    datasets: [{
+                                        backgroundColor: barColor2,
+                                        data: yValues2
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        xAxes: [{
+                                            ticks: {
+                                                fontSize: 30 // Adjust the font size as needed
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            ticks: {
+                                                fontSize: 30 // Adjust the font size as needed
+                                            }
+                                        }]
+                                    },
+                                    legend: { display: false },
+                                    title: {
+                                        display: true,
+                                        text: ""
+                                    }
+                                }
+                            });
+                        </script>
 
 
               </div>
