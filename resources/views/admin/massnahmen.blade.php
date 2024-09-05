@@ -104,9 +104,11 @@
                 <div class="bg-white  tm-block h-100" >
                     <h2 style=" font-size: 50px; color: rgb(235, 27, 27); font-family:sans-serif; font-weight: 500;"
                         class="tm-block-title mt-3">
-                        <b>Patienten: Name. {{$pat->nachname}}, Vorname. {{$pat->vorname}}, Geb. {{$pat->geburtstag}},
+                        <b>
+                            Patienten: Name. {{$pat->nachname}}, Vorname. {{$pat->vorname}}, Geb. {{$pat->geburtstag}},
                             f. Code.
-                            {{$pat->f_code}}.</b>
+                            {{$pat->f_code}}.
+                        </b>
 
                     </h2>
 

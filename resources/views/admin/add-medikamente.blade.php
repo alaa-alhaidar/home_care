@@ -11,20 +11,15 @@
     <title>Patienteninfo</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="{{ asset('alaacss.css') }}">
     <script src="{{ asset('mainFile.js') }}"></script>
-
-
 </head>
 
-<body id="reportsPage" class="bg02"">
-
-   
-    <div class="container-fluid" id="home">
+<body id="reportsPage" class="bg02">
+<div class="container-fluid" id="home">
         <div class="">
 
         <p class="navbar-brand" href="../login.html">      
@@ -99,29 +94,19 @@
            
 
         </div>
-        <br>
-        <!-- row -->
-        <div class="bs-border-color col">
-            <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12">
-                <div class="bg-white tm-block">
+    <br>
+    <div class="row">
+        <div class="col-lg-12 ">
+            <div class="bg-white tm-block">
                 <div class="container-fluid bg-white" id="navbarSupportedContent">
-                                        <h1 style="font-size: 50px; color: rgb(235, 27, 27); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: 500;"
-                                            class="tm-block-title mt-3">
-                                        </h1>
-           
-                                    </div>
-                    <div class="col-lg-12" style="background-color:darkgrey">
-                        
-                            <p class="text-center"
-                                style="display: flex;justify-content: center; font-size: 40px; color:darkred; font-family: 'Times New Roman', Times, serif;padding-top: 10px;">
-                                Medikamente hinzufügen</p>
-                        
-                    </div>
-                    
-                    <div style="background-color:gainsboro;">
-                        <div class="col-lg-10">
-                            <div class="col-lg-10">
-                                <form  id="form" action="{{ route('insert-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}" method="post">
+                    <h1 style="font-size: 50px; color: rgb(235, 27, 27); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: 500;"
+                        class="tm-block-title mt-3"></h1>
+                </div>
+                <div class="col-lg-12 bg-dark text-center text-white">
+                    <p class="fs-1 py-2">Medikamente hinzufügen</p>
+                </div>
+                <div style="background-color: gainsboro;">
+                <form  id="form" action="{{ route('insert-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}" method="post">
                                     @csrf
                 
                                     <br>
@@ -209,11 +194,7 @@
                                             id=" login-button" type="submit">Med. Hinzufügen</button>
                                     </div>
                                 </form>
-
-                            </div>
-
-                        </div>
-                    </div>
+                  
                 </div>
             </div>
         </div>
@@ -222,6 +203,10 @@
         <footer class="bg-white fs-3 text-center py-3">
         <b style="color:red;">Health Software developed by Alaa Al Haidar</b>
     </footer>
+    </div>
+
+
+    <script src="{{ asset('speechToText.js') }}"></script>
 </body>
 
 </html>

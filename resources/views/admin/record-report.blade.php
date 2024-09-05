@@ -19,84 +19,81 @@
 </head>
 
 <body id="reportsPage" class="bg02">
-    <div class="">
+<div class="container-fluid" id="home">
+        <div class="">
 
-        <p class="navbar-brand" href="../login.html">
-        <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:arial ; font-weight: 500;"
-            class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:arial  
-; font-weight: 200;"> Ihre digitale Helfer. <b style="font-size: 30px; color: rgb(230,230,250); font-family: arial 
-; font-weight: 200;">Sie sind angemeldet als Administrator:
-                    <b style="color: red ; font-size: 40px;">{{$pat->f_code}}</b></b> </b></h2>
-        </p>
-
-
-        <div class="container-fluid bg-secondary" id="">
-            <div class="col" style="display: inline-block;">
-                <button class="btn btn-primary" style="background-color: red; border-block-end-width: thick; 
-       writing-mode: horizontal-tb;" onclick="window.location.href='/home'" ; id=" login-button" type="submit"
-                    class="btn btn-primary">
-                    <span class="material-symbols-outlined align-middle fs-2" style="color:white">
+        <p class="navbar-brand" href="../login.html">      
+            <h2 style="font-size: 50px; color: rgb(235, 27, 27); font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 500;"
+            class="tm-block-title mt-3">Home Care,<b style="font-size: 30px; color: rgb(235, 20, 20); font-family:Georgia, 
+            'Times New Roman', Times, serif; font-weight: 200;"> Für Ihre Gesundheit da. <b style="font-size: 30px; color: rgb(230,230,250); font-family:Georgia, 
+            'Times New Roman', Times, serif; font-weight: 200;">Sie sind angemeldet als Administrator: <b style= "color: red ; font-size: 40px;"></b></b> </b></h2>
+            </p>
+         
+          
+            <div class="container-fluid bg-secondary" id="">
+                <div class="col" style="display: inline-block;">
+                    <button class="btn btn-primary" style="background-color: red; border-block-end-width: thick; 
+                   writing-mode: horizontal-tb;" onclick="window.location.href='/home'";
+                       id=" login-button" type="submit" class="btn btn-primary">
+                       <span class="material-symbols-outlined align-middle fs-2" style="color:white">
                         logout
-                    </span><b>Ausloggen</b>
-                </button>
-
+                        </span><b>Ausloggen</b>
+                    </button>
+                    
+                </div>
+                <div class="col " style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
+                                            writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'";
+                                                id=" login-button" type="submit" class="btn btn-primary">
+                                                <span class="material-symbols-outlined align-middle fs-2">
+                                                    import_contacts
+                                                    </span><b>Patienteninfo</b>
+                    </button>
+                    <br>
+                </div>
+                <div class="col" style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
+                                            writing-mode: horizontal-tb;" onclick="back()";
+                                                id=" login-button" type="submit" class="btn btn-primary">
+                                                <span class="material-symbols-outlined align-middle fs-2">
+                                                    arrow_back
+                                                    </span>
+                        
+                    </button>
+                    <br>
+                </div>
+                <div class="col" style="display: inline-block;">
+                    <button style="background-color: lightgrey; border-block-end-width: thick; 
+                                            writing-mode: horizontal-tb;" onclick="forward()";
+                                                id=" login-button" type="submit" class="btn btn-primary">
+                                                <span class="material-symbols-outlined align-middle fs-2">
+                                                    arrow_forward
+                                                    </span>
+                    </button>
+                    <br>
+                    
+                </div>
+                <div class=" col align-middle text-center text-wrap" style="display: inline-block;color:white;">
+                    <span class="material-symbols-outlined align-middle text-center text-wra fs-1" style=" padding-left:1250px ;display: inline-block">
+                        calendar_month
+                        </span>
+                        <p class="align-middle text-center text-wrap fs-1 " style=" padding-left:10px ;display: inline-block" id="date" ></p>
+                    
+                    <b>
+                        <span class="material-symbols-outlined align-middle text-center text-wra fs-1">
+                        schedule  
+    
+                        </span>
+                        <p class="align-middle text-center text-wrap fs-1 " style="padding-left:10px ;display: inline-block" id="time" ></p>
+                    </b>
+                    
+                  
+                </div>
+               
             </div>
-            <div class="col " style="display: inline-block;">
-                <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                writing-mode: horizontal-tb;" onclick="window.location.href='/patinfo'" ;
-                    id=" login-button" type="submit" class="btn btn-primary">
-                    <span class="material-symbols-outlined align-middle fs-2">
-                        import_contacts
-                    </span><b>Patienteninfo</b>
-                </button>
-                <br>
-            </div>
-            <div class="col" style="display: inline-block;">
-                <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                writing-mode: horizontal-tb;" onclick="back()" ; id=" login-button" type="submit"
-                    class="btn btn-primary">
-                    <span class="material-symbols-outlined align-middle fs-2">
-                        arrow_back
-                    </span>
-
-                </button>
-                <br>
-            </div>
-            <div class="col" style="display: inline-block;">
-                <button style="background-color: lightgrey; border-block-end-width: thick; 
-                                writing-mode: horizontal-tb;" onclick="forward()" ; id=" login-button" type="submit"
-                    class="btn btn-primary">
-                    <span class="material-symbols-outlined align-middle fs-2">
-                        arrow_forward
-                    </span>
-                </button>
-                <br>
-
-            </div>
-            <div class=" col align-middle text-center text-wrap" style="display: inline-block;color:white;">
-                <span class="material-symbols-outlined align-middle text-center text-wra fs-1"
-                    style=" padding-left:2300px  ;display: inline-block">
-                    calendar_month
-                </span>
-                <p class="align-middle text-center text-wrap fs-1 " style=" padding-left:10px ;display: inline-block"
-                    id="date"></p>
-
-                <b>
-                    <span class="material-symbols-outlined align-middle text-center text-wra fs-1">
-                        schedule
-
-                    </span>
-                    <p class="align-middle text-center text-wrap fs-1 " style="padding-left:10px ;display: inline-block"
-                        id="time"></p>
-                </b>
-
-
-            </div>
+           
 
         </div>
-
-
-    </div>
     <br>
     <div class="row">
         <div class="col-lg-12 ">
@@ -148,7 +145,6 @@
             </div>
         </div>
     </div>
-    <br>
     <br>
         <footer class="bg-white fs-3 text-center py-3">
         <b style="color:red;">Health Software developed by Alaa Al Haidar</b>

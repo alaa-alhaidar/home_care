@@ -29,7 +29,7 @@ class MassnahmenController extends Controller
     
 
     // Retrieve patient information (assuming $patinfo is already provided or retrieved)
-    $patinfo = DB::table('massnahmen')->where('f_code', $f_code)->get();
+    $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
 
     // Retrieve latest 5 vital signs entries
     $massnahmen = DB::table('massnahmen')
@@ -39,7 +39,7 @@ class MassnahmenController extends Controller
                 ->get();
    
     // Pass data to the view
-    return view('admin.massnahmen', compact('patinfo', 'massnahmen','f_code'));
+    return view('admin/massnahmen', compact('patinfo', 'massnahmen','f_code'));
 }
 
 public function deleteMassnahme($f_code,$id){
