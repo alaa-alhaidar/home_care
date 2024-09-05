@@ -350,41 +350,46 @@
                                 @endif
                             @endforeach
 
-                        <script>
-                            const data2 = ['Mann', 'Frau','Dritte'];
-                            var barColor2 = ["blue", "pink", "yellow"];
-                            var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
+                            <script>
+    const data2 = ['Mann', 'Frau', 'Dritte'];
+    var barColor2 = ["blue", "pink", "yellow"];
+    var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
 
-                            new Chart("gender", {
-                                type: "bar",
-                                data: {
-                                    labels: data2,
-                                    datasets: [{
-                                        backgroundColor: barColor2,
-                                        data: yValues2
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        xAxes: [{
-                                            ticks: {
-                                                fontSize: 30 // Adjust the font size as needed
-                                            }
-                                        }],
-                                        yAxes: [{
-                                            ticks: {
-                                                fontSize: 30 // Adjust the font size as needed
-                                            }
-                                        }]
-                                    },
-                                    legend: { display: false },
-                                    title: {
-                                        display: true,
-                                        text: ""
-                                    }
-                                }
-                            });
-                        </script>
+    new Chart("gender", {
+        type: "bar",
+        data: {
+            labels: data2,
+            datasets: [{
+                backgroundColor: barColor2,
+                data: yValues2
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 30 // Adjust the font size as needed
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true, // Make sure the Y axis starts from 0
+                        min: 0,            // Explicitly set the minimum value to 0
+                        fontSize: 30       // Adjust the font size as needed
+                    }
+                }]
+            },
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "Gender Distribution"
+            }
+        }
+    });
+</script>
+
+
+
 
 
               </div>

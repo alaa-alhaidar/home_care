@@ -95,7 +95,7 @@
 
         </div>
     <br>
-    <div class="row">
+    <div class="row " style="font-size: 25px;">
         <div class="col-lg-12 ">
             <div class="bg-white tm-block">
                 <div class="container-fluid bg-white" id="navbarSupportedContent">
@@ -105,14 +105,14 @@
                 <div class="col-lg-12 bg-dark text-center text-white">
                     <p class="fs-1 py-2">Neu Patient hinzufügen</p>
                 </div>
-                <div style="background-color: gainsboro;">
+                <div style="background-color: gainsboro; " style="font-size: 25px;" >
                 <form  id="form" action="{{ route('insert-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}" method="post">
                                     @csrf
                 
                                     <br>
                                     <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="f_code"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">f_code
+                                          <label style="padding-left: 50px;" for="category"
+                                            class="col-xl-2 col-form-label">f_code
                                             
                                         </label>
                                        
@@ -120,8 +120,8 @@
                                         aria-describedby="inputGroup-sizing-sm" placeholder="f_code" required>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="vorname"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">vorname
+                                          <label style="padding-left: 50px;" for="category"
+                                            class="col-xl-2 col-form-label">vorname
                                             
                                         </label>
                                        
@@ -129,8 +129,8 @@
                                         aria-describedby="inputGroup-sizing-sm" placeholder="vorname" required>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="nachname"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">nachname
+                                          <label style="padding-left: 50px;" for="category"
+                                            class="col-xl-2 col-form-label">nachname
                                             
                                         </label>
                                        
@@ -139,8 +139,8 @@
                                     </div>
                                     
                                     <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="description"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 mb-2">geschlecht
+                                         <label style="padding-left: 50px;" for="category"
+                                            class="col-xl-2 col-sm-5 mb-2">geschlecht
                                          </label>
                                          <select name="geschlecht" id="geschlecht" class="">
                                             <option value="Mann">Mann</option>
@@ -150,8 +150,8 @@
                                         
                                     </div>
                                     <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="description"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 mb-2">pflegegrad
+                                          <label style="padding-left: 50px;" for="category"
+                                            class="col-xl-2 col-sm-5 mb-2">pflegegrad
                                          </label>
                                          <select name="pflegegrad" id="pflegegrad" class="">
                                             <option value="1">1</option>
@@ -164,43 +164,43 @@
                                     </div>
                               
                                     <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="category"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">geburtstag
+                                          <label style="padding-left: 50px;" for="category"
+                                            class="col-xl-2 col-form-label">geburtstag
                                             </label>
                                         <input placeholder="geburtstag" id="geburtstag" name="geburtstag" type="date"
                                             class="form-control" required>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="category"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label"> adresse
+                                          <label style="padding-left: 50px;" for="category"
+                                            class="col-xl-2 col-form-label"> adresse
                                         </label>
                                         <input placeholder="adresse" id="adresse" name="adresse" type="text"
                                             class="form-control" required>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="category"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label"> grosse
+                                          <label style="padding-left: 50px;" for="category"
+                                            class="col-xl-2 col-form-label"> grosse
                                         </label>
                                         <input placeholder="grosse" id="grosse" name="grosse" type="text"
                                             class="form-control" required>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="category"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label"> kontakt
+                                        <label style="padding-left: 50px;" for="category"
+                                            class="col-xl-2 col-form-label"> kontakt
                                         </label>
                                         <input placeholder="kontakt" id="kontakt" name="kontakt" type="text"
                                             class="form-control" required>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <label style="padding-left: 20px;" for="category"
-                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label"> aufnahmedatum
+                                        <label style="padding-left: 50px;" for="category"
+                                            class="col-xl-2 col-form-label"> aufnahmedatum
                                         </label>
                                         <input placeholder="aufnahmedatum" id="aufnahmedatum" name="aufnahmedatum" type="date"
                                             class="form-control" required>
                                     </div>
                                  
 
-                                    <div class="d-grid gap-2">
+                                    <div class="d-grid gap-2" style="font-size: 25px;">
                                         <button style="margin-left: 30px; margin-bottom: 20px; background-color: dodgerblue;" 
                                         type="submit" class="btn btn-primary "
                                             id=" login-button" type="submit">Pat. Hinzufügen</button>
