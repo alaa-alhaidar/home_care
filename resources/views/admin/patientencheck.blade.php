@@ -115,7 +115,7 @@
 
 
 
-            <div class=" bg-white tm-block" style="height: 55vh">
+            <div class=" bg-white tm-block" style="height: 50vh">
                 <h2 style=" font-size: 50px; color: rgb(235, 27, 27); font-family:sans-serif; font-weight: 500;"
                     class="tm-block-title mt-3">
                     <b>Patienten: Name. {{$pat->nachname}}, Vorname. {{$pat->vorname}}, Geb. {{$pat->geburtstag}},
@@ -229,7 +229,7 @@
 
                     <br>
 
-                    <div class=" table-responsive" style="background-color:white;overflow-y:scroll; height:800px;">
+                    <div class=" table-responsive" style="background-color:white;overflow-y:scroll; height:500px;">
                         <br>
                         <table id="patient-table"
                             class="container-fluid table table-hover bg-secondary border-bottom border-white fs-4">
@@ -709,7 +709,7 @@
     
 </body>
 <div>
-        <br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
         <footer class="bg-white fs-3 text-center py-3">
             <b style="color:red;">Health Software developed by Alaa Al Haidar</b>
         </footer>

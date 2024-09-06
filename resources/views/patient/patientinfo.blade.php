@@ -176,7 +176,7 @@
                 <div class="  bs-border-color col" id="navbarSupportedContent">
                     <br>
                  
-                    <div class=" table-responsive" style="background-color:white;overflow-y:scroll; height:800px;"style="font-size: 25px;">
+                    <div class=" table-responsive" style="background-color:white;overflow-y:scroll; height:700px;"style="font-size: 25px;">
                         <br>
                         <table id="patient-table"
                             class="table table-hover bg-secondary border-bottom border-white" style="font-size: 25px;">
