@@ -124,7 +124,55 @@
                         {{$pat->f_code}}.</b>
 
                 </h2>
-              
+                <div class="col" style="display: inline-block;">
+                        <form class='d-inline ' action="{{ route('vz', ['f_code' => $pat->f_code]) }}" method="post">
+
+                            @csrf
+                            <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                id='btn'> <span class="material-symbols-outlined align-middle fs-3">
+                                    vital_signs
+                                </span> Vitalzeichen
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col" style="display: inline-block;">
+                        <form class='d-inline' action="{{ route('med',['f_code' => $pat->f_code]) }}" method='post'>
+                            @csrf
+                            <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                id='btn'><span class="material-symbols-outlined align-middle fs-3">
+                                    pill
+                                </span> Medikamente
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="col" style="display: inline-block;">
+                        <form class='d-inline' action="{{ route('report',['f_code' => $pat->f_code]) }}" method='post'>
+                            @csrf
+                            <button class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                id='btn'>
+                                <span class="material-symbols-outlined align-middle fs-3">
+                                    topic
+                                </span> Bericht
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col" style="display: inline-block;">
+                        <form class='d-inline' action="{{ route('allProph',['f_code' => $pat->f_code]) }}" method='post'>
+                            @csrf
+                            <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                id='btn'>
+                                <span class="material-symbols-outlined align-middle fs-3">
+                                    medical_information
+                                </span> Massnahmen
+                            </button>
+                        </form>
+                    </div>
+
                 <div class="  bs-border-color col" id="navbarSupportedContent">
                     <br>
                  
