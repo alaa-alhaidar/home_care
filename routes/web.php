@@ -66,10 +66,13 @@ Route::post('dekuRisiko/{f_code}', [MassnahmenController::class, 'dekuRisiko'])-
 Route::post('add-check/{f_code}', [VitalController::class, 'addcheck'])->name('add-check');
 Route::post('insert-check/{f_code}', [VitalController::class, 'insertCheck'])->name('insert-check');
 Route::post('delete-check/{f_code}/{id}', [VitalController::class, 'deleteCheck'])->name('delete-check');
-
 Route::post('saveData/{f_code}', [VitalController::class, 'saveJson'])->name('saveData');
 Route::post('/save-vital', [VitalController::class, 'saveVitalData'])->name('save.vital');
 Route::post('/save-vital-pdf', [VitalController::class, 'saveVitalPDF'])->name('save.vital.pdf');
+
+// Diagnosen
+Route::post('allDiagnosis/{f_code}', [DiagnosenController::class, 'showAllDiagnosis'])->name('allDiagnosis');
+
 
 //Report
 // route (controller-name and function insid it) (route-name)

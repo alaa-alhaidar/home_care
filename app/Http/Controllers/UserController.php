@@ -19,20 +19,11 @@ class UserController extends Controller
 
         if (auth()->attempt(['name' => $incomingFields['name'], 'password' => $incomingFields['password']])) {
             $request->session()->regenerate();
+        
+    
+            $data = DB::table('patients')->get();
+            return view('admin/patientinfo', compact('data'));
             
-            //$user=  DB::table('users')->where('name',$incomingFields['name'])->first();
-            $data=  DB::table('patients')->get();
-                return view ('admin/patientinfo',compact('data'));
-            
-            // break
-         /*    if($user->name==$incomingFields['name']){
-                $data=  DB::table('patients')->get();
-                return view ('admin/patientinfo',compact('data'));
-
-            }else if($user->name==$incomingFields['name']&&$user->role=='patient'){
-                $data=  DB::table('patients')->where('f_code',$user->f_code)->get();
-                return view ('patient/patientinfo',compact('data'));
-            } */
             
         }else{
             

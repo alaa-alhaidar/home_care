@@ -709,7 +709,7 @@
     
 </body>
 <div>
-        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br>
         <footer class="bg-white fs-3 text-center py-3">
             <b style="color:red;">Health Software developed by Alaa Al Haidar</b>
         </footer>
