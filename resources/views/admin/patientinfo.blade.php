@@ -405,7 +405,7 @@
               </div>
               
           </div>
-          <div class="col fs-5">
+          <div class="col">
 
               <div class="bg-white tm-block">
               <center>

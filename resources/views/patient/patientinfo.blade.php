@@ -443,7 +443,7 @@
               </div>
               
           </div>
-          <div class="col fs-5">
+          <div class="col">
 
               <div class="bg-white tm-block">
               <center>
@@ -479,7 +479,7 @@
                     @endif
                 @endforeach
 
-                <script>
+                 <script>
                     const data3 = ['20 bis 59 J', '60 bis 79 J', 'alter als 79 J'];
                     var barColor2 = ["green", "blue", "red"];
                     var yValues2 = [{{ $grosser20 }}, {{ $grosser60 }}, {{ $grosser80 }}];
@@ -515,7 +515,7 @@
                 </script>
 
     </div>
-
+    
    
 </body>
 
