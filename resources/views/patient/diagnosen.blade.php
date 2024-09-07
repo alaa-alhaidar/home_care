@@ -122,17 +122,28 @@
                         </form>
                     </div>
                     <div class="col" style="display: inline-block;">
-                        <form class='d-inline' action="{{ route('med',['f_code' => $pat->f_code]) }}" method='post'>
+                        <form class='d-inline' action="{{ route('allDiagnosis',['f_code' => $pat->f_code]) }}" method='post'>
                             @csrf
                             <button class='btn btn-warning btn-lg' type='submit' value='med-requset'
                                 style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 30px;'
                                 id='btn'><span class="material-symbols-outlined align-middle fs-1">
                                     pill
-                                </span> Medikamente
+                                </span> Diagnosen
                             </button>
                         </form>
                     </div>
-
+                    <div class="col" style="display: inline-block;">
+                    <form class='d-inline'
+                        action="{{ route('med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}" method='post'>
+                        @csrf
+                        <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                            style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                            id='btn'><span class="material-symbols-outlined align-middle fs-3">
+                                pill
+                            </span> Medikamente
+                        </button>
+                    </form>
+                </div>
                     <div class="col" style="display: inline-block;">
                         <form class='d-inline' action="{{ route('report',['f_code' => $pat->f_code]) }}" method='post'>
                             @csrf
@@ -202,7 +213,7 @@
                         <div class="table-responsive fs-4">
 
                             <table id="patient-table" class="table table-hover bg-secondary border-bottom border-white">
-                                <caption> <b>Patientendaten</b></caption>
+                                <caption> <b>Diagnosen</b></caption>
                                 <thead>
                                     <tr class="tm-bg-gray bg-warning">
 
@@ -218,14 +229,14 @@
                                 </thead>
                                 @php
                                 $i=1;
-                                $med="";
+                              
 
                                 @endphp
 
                                 <tbody class="fw-normal">
-                                    @foreach ($medi as $item)
+                                    @foreach ($diagnosen as $item)
                                     @php
-                                    $med .=$item->name.", "
+                    
 
                                     @endphp
 
@@ -403,54 +414,9 @@
             chatLog.appendChild(messageElement);
         }
         </script>
-        @php
-        $medplan="";
-        $timezone = new DateTimeZone('Europe/Berlin');
-        $date = new DateTime('now', $timezone);
-        $timeNow = intval($date->format('H'));
-
-        if ($timeNow >= 6 && $timeNow <= 9) { $medplan .=DB::table('medikaments') ->where('f_code', $pat->f_code)
-            ->where('morgen', '>', 0)
-            ->get(['name','morgen']);
-
-            }else if ($timeNow > 9 && $timeNow <= 18) { $medplan .=DB::table('medikaments') ->where('f_code',
-                $pat->f_code)
-                ->where('nachmittag', '>', 0)
-                ->get(['name','nachmittag']);
-
-                }else if ($timeNow > 18 && $timeNow <= 21) { $medplan .=DB::table('medikaments') ->where('f_code',
-                    $pat->f_code)
-                    ->where('abend', '>', 0)
-                    ->get(['name','abend']);
-
-                    }else if ($timeNow > 21 && $timeNow <= 24) { $medplan .=DB::table('medikaments') ->
-                        where('f_code',
-                        $pat->f_code)
-                        ->where('nachts', '>', 0)
-                        ->get(['name','nachts']);
-                        }
-
-                        @endphp
+      
 
     </div>
-
-    <div id="overlay"></div>
-    <div id="overlay" class="text-center align-middle"></div>
-
-    <div id="popup" class="popup alert alert-warning alert-dismissible fade show fs-2 text-center align-middle"
-        onclick="hidePopup()">
-        <div class="popup-message text-center align-middle">
-            <span class="close" onclick="event.stopPropagation(); hidePopup()"></span>
-
-            <p style="text-align: center;">
-
-                <b><br>Medikamente sollten rechtzeitig eingenommen werden.</b><br>
-
-                <b class="fs-1 text-center align-middle" style="color:red"><br>{{$medplan}}</b><br>
-
-                <b><br>Bei Fragen, wenden Sie sich an ihrem Arzt</b>
-
-        </div>
 
     </div>
     <br>

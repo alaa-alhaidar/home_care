@@ -71,6 +71,7 @@ Route::post('/save-vital', [VitalController::class, 'saveVitalData'])->name('sav
 Route::post('/save-vital-pdf', [VitalController::class, 'saveVitalPDF'])->name('save.vital.pdf');
 
 // Diagnosen
+use App\Http\Controllers\DiagnosenController;
 Route::post('allDiagnosis/{f_code}', [DiagnosenController::class, 'showAllDiagnosis'])->name('allDiagnosis');
 
 
