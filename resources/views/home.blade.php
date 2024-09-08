@@ -44,22 +44,11 @@
                                     </button>
                                 </div>
                             </form>
+                            <br>
                         </div>
-                        <b class="text-center">oder</b>
-                        <div class="col-12">
-                            <form action="/code" method="POST" class="tm-login-form">
-                                @csrf
-                                <div class="input-group mt-3">
-                                    <button style=" border-radius: 15px; color: white; background-color: rgba(90, 84, 147, 0.809); border-block-end-width: thick; writing-mode: horizontal-tb;" 
-                                        id="login-button" type="submit" class="btn btn-primary d-inline-block mx-auto font-color fs-2">
-                                        Freischalter Code eingeben 
-                                    </button>
-                                    <br>
-                                </div>
-                                <br>
-                            </form>
-                        </div>
-                        <br>
+                        
+                   
+                       <br>
                     </div>
                 </div>
             </div>

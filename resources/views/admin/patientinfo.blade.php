@@ -254,85 +254,105 @@
     <br>
     <div class="row fs-4" style="height:20vh;">
 
-        <div class="col">
+    <div class="col">
+    <div class="bg-white tm-block">
+        <center>
+            <b>Pflegegrad</b>
+        </center>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-            <div class="bg-white tm-block">
-            <center>
-              <b>Pflegegrad</b>
-              </center>
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <canvas id="pflegegrad" style="width:100%;max-width:100%"></canvas>
+        @php
+            $g1 = 0;
+            $g2 = 0;
+            $g3 = 0;
+            $g4 = 0;
+            $g5 = 0;
+        @endphp
 
-              <canvas id="pflegegrad" style="width:100%;max-width:100%"></canvas>
-              @php
-                    $g1 = 0;
-                    $g2 = 0;
-                    $g3 = 0;
-                    $g4 = 0;
-                    $g5 = 0;
+        @foreach ($patinfo as $item)
+            @if ($item->pflegegrad == '1')
+                @php
+                    $g1++;
                 @endphp
+            @elseif ($item->pflegegrad == '2')
+                @php
+                    $g2++;
+                @endphp
+            @elseif ($item->pflegegrad == '3')
+                @php
+                    $g3++;
+                @endphp
+            @elseif ($item->pflegegrad == '4')
+                @php
+                    $g4++;
+                @endphp
+            @elseif ($item->pflegegrad == '5')
+                @php
+                    $g5++;
+                @endphp
+            @endif
+        @endforeach
 
-                @foreach ($patinfo as $item)
-                 
-                    @if ($item->pflegegrad == '1')
-                        @php
-                            $g1++;
-                        @endphp
-                    @elseif ($item->pflegegrad == '2')
-                        @php
-                            $g2++;
-                        @endphp
-                    @elseif ($item->pflegegrad == '3')
-                        @php
-                            $g3++;
-                        @endphp
-                        @elseif ($item->pflegegrad == '4')
-                        @php
-                            $g4++;
-                        @endphp
-                        @elseif ($item->pflegegrad == '5')
-                        @php
-                            $g5++;
-                        @endphp
-                      
-                @endif
-                @endforeach
+        <script>
+            const data1 = ['G1', 'G2', 'G3', 'G4', 'G5'];
+            var barColor2 = ["green", "blue", "grey", "black", "red"];
+            var yValues2 = [{{ $g1 }}, {{ $g2 }}, {{ $g3 }}, {{ $g4 }}, {{ $g5 }}];
 
-                <script>
-                    const data1 = ['G1', 'G2', 'G3', 'G4', 'G5'];
-                    var barColor2 = ["green", "blue", "grey", "black", "red"];
-                    var yValues2 = [{{ $g1 }}, {{ $g2 }}, {{ $g3 }}, {{ $g4 }}, {{ $g5 }}];
-                    new Chart("pflegegrad", {
-                        type: "bar",
-                        data: {
-                            labels: data1,
-                            datasets: [{
-                                backgroundColor: barColor2,
-                                data: yValues2
-                            }]
-                        },
-                        options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        fontSize: 30 // Adjust the font size as needed
+            new Chart("pflegegrad", {
+                type: "bar",
+                data: {
+                    labels: data1,
+                    datasets: [{
+                        backgroundColor: barColor2,
+                        data: yValues2
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 30,
+                                beginAtZero: true // Start x-axis at 0
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                fontSize: 30,
+                                beginAtZero: true // Start y-axis at 0
+                            }
+                        }]
+                    },
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: ""
+                    },
+                    // Add the annotation on top of bars
+                    tooltips: { enabled: false },
+                    hover: { mode: null },
+                    animation: {
+                        onComplete: function () {
+                            var ctx = this.chart.ctx;
+                            ctx.font = Chart.helpers.fontString(20, 'bold', Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset) {
+                                for (var i = 0; i < dataset.data.length; i++) {
+                                    var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
+                                    var totalValue = dataset.data[i];
+                                    ctx.fillText(totalValue, model.x, model.y - 5); // Display total value on top
+                                }
+                            });
+                        }
                     }
-                }],
-                yAxes: [{
-                    ticks: {
-                        fontSize: 30 // Adjust the font size as needed
-                    }
-                }]
-            },
-            legend: { display: false },
-            title: {
-                display: true,
-                text: ""
-            }
-        }
-                    });
-                </script>
-              </div>
-          </div>
+                }
+            });
+        </script>
+    </div>
+</div>
+
           <div class="col">
 
               <div class="bg-white tm-block">
@@ -371,112 +391,152 @@
                             var yValues2 = [{{ $herrCount }}, {{ $frauCount }}, {{ $dritteCount }}];
 
                             new Chart("gender", {
-                                type: "bar",
-                                data: {
-                                    labels: data2,
-                                    datasets: [{
-                                        backgroundColor: barColor2,
-                                        data: yValues2
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        xAxes: [{
-                                            ticks: {
-                                                fontSize: 30 // Adjust the font size as needed
-                                            }
-                                        }],
-                                        yAxes: [{
-                                            ticks: {
-                                                fontSize: 30 // Adjust the font size as needed
-                                            }
-                                        }]
-                                    },
-                                    legend: { display: false },
-                                    title: {
-                                        display: true,
-                                        text: ""
-                                    }
+                type: "bar",
+                data: {
+                    labels: data2,
+                    datasets: [{
+                        backgroundColor: barColor2,
+                        data: yValues2
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 30,
+                                beginAtZero: true // Start x-axis at 0
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                fontSize: 30,
+                                beginAtZero: true // Start y-axis at 0
+                            }
+                        }]
+                    },
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: ""
+                    },
+                    // Add the annotation on top of bars
+                    tooltips: { enabled: false },
+                    hover: { mode: null },
+                    animation: {
+                        onComplete: function () {
+                            var ctx = this.chart.ctx;
+                            ctx.font = Chart.helpers.fontString(20, 'bold', Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset) {
+                                for (var i = 0; i < dataset.data.length; i++) {
+                                    var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
+                                    var totalValue = dataset.data[i];
+                                    ctx.fillText(totalValue, model.x, model.y - 5); // Display total value on top
                                 }
                             });
-                        </script>
-
-
-              </div>
-              
-          </div>
-          <div class="col">
-
-              <div class="bg-white tm-block">
-              <center>
-              <b>Alter</b>
-              </center>
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-              <canvas id="alter" style="width:100%;max-width:100%"></canvas>
-              @php
-                    $grosser80 = 0;
-                    $grosser60 = 0;
-                    $grosser20 = 0;
-                @endphp
-
-                @foreach ($patinfo as $item)
-                    @php
-                        $dob = new DateTime($item->geburtstag);
-                        $today = new DateTime('today');
-                        $alter = $dob->diff($today)->y;
-                    @endphp
-                    @if ($alter >=80)
-                        @php
-                             $grosser80++;
-                        @endphp
-                    @elseif ($alter >=60 && $alter <80)
-                        @php
-                            $grosser60++;
-                        @endphp
-                    @elseif($alter >=20 && $alter <60)
-                        @php
-                            $grosser20++;
-                        @endphp
-                    @endif
-                @endforeach
-
-                <script>
-                    const data3 = ['20 bis 59 J', '60 bis 79 J', 'alter als 79 J'];
-                    var barColor2 = ["green", "blue", "red"];
-                    var yValues2 = [{{ $grosser20 }}, {{ $grosser60 }}, {{ $grosser80 }}];
-                    new Chart("alter", {
-                        type: "bar",
-                        data: {
-                            labels: data3,
-                            datasets: [{
-                                backgroundColor: barColor2,
-                                data: yValues2
-                            }]
-                        },
-                        options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        fontSize: 30 // Adjust the font size as needed
+                        }
                     }
-                }],
-                yAxes: [{
-                    ticks: {
-                        fontSize: 30 // Adjust the font size as needed
-                    }
-                }]
-            },
-            legend: { display: false },
-            title: {
-                display: true,
-                text: ""
-            }
-        }
-                    });
-                </script>
-
+                }
+            });
+        </script>
     </div>
+</div>
+<div class="col">
+    <div class="bg-white tm-block">
+        <center>
+            <b>Alter</b>
+        </center>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+        <canvas id="alter" style="width:100%;max-width:100%"></canvas>
+        @php
+            $grosser80 = 0;
+            $grosser60 = 0;
+            $grosser20 = 0;
+        @endphp
+
+        @foreach ($patinfo as $item)
+            @php
+                $dob = new DateTime($item->geburtstag);
+                $today = new DateTime('today');
+                $alter = $dob->diff($today)->y;
+            @endphp
+            @if ($alter >= 80)
+                @php
+                    $grosser80++;
+                @endphp
+            @elseif ($alter >= 60 && $alter < 80)
+                @php
+                    $grosser60++;
+                @endphp
+            @elseif($alter >= 20 && $alter < 60)
+                @php
+                    $grosser20++;
+                @endphp
+            @endif
+        @endforeach
+
+        <script>
+            const data3 = ['20 bis 59 J', '60 bis 79 J', 'älter als 79 J'];
+            var barColor2 = ["green", "blue", "red"];
+            var yValues2 = [{{ $grosser20 }}, {{ $grosser60 }}, {{ $grosser80 }}];
+
+            new Chart("alter", {
+                type: "bar",
+                data: {
+                    labels: data3,
+                    datasets: [{
+                        backgroundColor: barColor2,
+                        data: yValues2
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 30,
+                                beginAtZero: true // Start x-axis at 0
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                fontSize: 30,
+                                beginAtZero: true // Start y-axis at 0
+                            }
+                        }]
+                    },
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: ""
+                    },
+                    tooltips: { enabled: false },
+                    hover: { mode: null },
+                    animation: {
+                        onComplete: function () {
+                            var ctx = this.chart.ctx;
+                            ctx.font = Chart.helpers.fontString(20, 'bold', Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset) {
+                                for (var i = 0; i < dataset.data.length; i++) {
+                                    var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
+                                    var totalValue = dataset.data[i];
+                                    ctx.fillText(totalValue, model.x, model.y - 5); // Display total value on top
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
+</div>
+
+
 
    
 </body>
