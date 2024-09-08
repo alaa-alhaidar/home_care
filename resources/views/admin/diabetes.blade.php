@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Diagnosen</title>
+    <title>Medikamente</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
 
@@ -124,26 +124,37 @@
                     <div class="col" style="display: inline-block;">
                         <form class='d-inline' action="{{ route('allDiagnosis',['f_code' => $pat->f_code]) }}" method='post'>
                             @csrf
-                            <button class='btn btn-warning btn-lg' type='submit' value='med-requset'
-                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 30px;'
-                                id='btn'><span class="material-symbols-outlined align-middle fs-1">
-                                    pill
+                            <button class='btn btn-secondary btn-sm' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                id='btn'><span class="material-symbols-outlined align-middle fs-3">
+                                diagnosis
                                 </span> Diagnosen
                             </button>
                         </form>
                     </div>
                     <div class="col" style="display: inline-block;">
-                    <form class='d-inline'
-                        action="{{ route('med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}" method='post'>
-                        @csrf
-                        <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
-                            style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
-                            id='btn'><span class="material-symbols-outlined align-middle fs-3">
-                                pill
-                            </span> Medikamente
-                        </button>
-                    </form>
-                </div>
+                        <form class='d-inline' action="{{ route('med',['f_code' => $pat->f_code]) }}" method='post'>
+                            @csrf
+                            <button class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                id='btn'>
+                                <span class="material-symbols-outlined align-middle fs-3">
+                                    pill
+                                </span> Medikamente
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col" style="display: inline-block;">
+                        <form class='d-inline' action="{{ route('showDiabetes',['f_code' => $pat->f_code]) }}" method='post'>
+                            @csrf
+                            <button class='btn btn-warning btn-lg' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                id='btn'><span class="material-symbols-outlined align-middle fs-1">
+                                    glucose
+                                </span> Diabetes Mellitus
+                            </button>
+                        </form>
+                    </div>
                     <div class="col" style="display: inline-block;">
                         <form class='d-inline' action="{{ route('report',['f_code' => $pat->f_code]) }}" method='post'>
                             @csrf
@@ -196,13 +207,7 @@
                                         </span></b>
                                 </button>
                             </form>
-                            <button id="question" type="submit" class="d-inline btn btn-warning btn-sm"> <b class='fs-3'
-                                    style="color: blue">KI / Wechselwirkung prüfen</b>
-                            </button>
-
-                            <button id="question2" type="submit" class="d-inline btn btn-warning btn-sm"> <b
-                                    class='fs-3' style="color: green">KI / Nebenwirkung prüfen</b>
-                            </button>
+                        
 
 
 
@@ -212,78 +217,72 @@
                     <div style="overflow-y:scroll; height:1000px;">
                         <div class="table-responsive fs-4">
 
-                            <table id="patient-table" class="table table-hover bg-secondary border-bottom border-white">
-                                <caption> <b>Diagnosen</b></caption>
-                                <thead>
-                                    <tr class="tm-bg-gray bg-warning">
-
-                                        <th scope="col" class="text-center">Id</th>
-
-                                        <th scope="col" class="text-center">Diagnose</th>
-                                        <th scope="col" class="text-center">Datum</th>
-                                        <th scope="col" class="text-center">Hinweise</th>
-
-                                        <th scope="col" class="text-center">Operationen</th>
-
-                                    </tr>
-                                </thead>
-                                @php
-                                $i=1;
-                              
-
-                                @endphp
-
-                                <tbody class="fw-normal">
-                                    @foreach ($diagnosen as $item)
-                                    @php
+                        <table id="diabetes-table" class="table table-hover bg-secondary table-bordered border-light-subtle">
+                             
+                             <caption> <b>Medikamente </b></caption>
+                          
+                         <thead>
+                         <tr class="tm-bg-gray bg-warning">
+                            
+                                                 <th scope="col" class="text-center">Id</th>
+                                             
+                                                 <th scope="col" class="text-center">F-Code</th>
+                                                 <th scope="col" class="text-center">MMOL/L</th>
+                                                 <th scope="col" class="text-center">Insulin IE</th>
+                                                 <th scope="col" class="text-center">Hinweise</th>
+                                                 <th scope="col" class="text-center">Date</th>
+                                                 
+                                                 <th scope="col" class="text-center">Operationen</th>
+                            
+                           
+                         </tr>
+                         </thead>
+                         @php
+                         $i=1;
+                         $med="";
                     
+                         @endphp
+                       
+                         <tbody class="fw-normal">
+                             @foreach ($diagnosen as $item)
+                             @php
+                            
+         
+                             @endphp
+                             
+                             <tr class='text-center text-white align-middle'>
+                           
+                             <td>{{$i++}}</td>
+                             <td>{{$item->f_code}}</td>
+                             <td>{{$item->mmol_l}}</td>
+                             <td>{{$item->insulin}}</td>
+                             <td>{{$item->hinweise}}</td>
+                           
+                             <td>{{$item->created_time}}</td>
+                        
+                             <td> 
+                                 
+                               
+                                 <form class= 'd-inline' action='' method='post'>
 
-                                    @endphp
+                                     <button  class='d-inline btn btn-success btn-sm' type='submit' value='med-requset'
+                                             style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                             id='btn' >Ändern.
+                                     </button>
+                                 </form>
+                                 <form class= 'd-inline' action='' method='post'>
 
-                                    <tr class='text-center text-white align-middle'>
-
-                                        <td>{{$i++}}</td>
-
-                                        <td>{{$item->diagnose}}</td>
-                                        <td>{{$item->created_time}}</td>
-                                        <td>{{$item->hinweise}}</td>
-                                  
-                                        <td>
-
-                                            <form class='d-inline'
-                                                action="{{ route('add-med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}"
-                                                method='post'>
-                                                @csrf
-                                                <button class='d-inline btn btn-success btn-sm' type='submit'
-                                                    value='med-requset'
-                                                    style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
-                                                    id='btn'>
-                                                    <span class="material-symbols-outlined" style="color: white">
-                                                        edit
-                                                    </span>
-                                                </button>
-                                            </form>
-                                            <form class='d-inline'
-                                                action="{{ route('delete-med',['f_code' => $pat->f_code ,'id' => $item->id]) }}"
-                                                method='post'>
-                                                @csrf
-                                                <button class='d-inline btn btn-danger btn-sm' type='submit'
-                                                    value='med-requset'
-                                                    style='background-color:red;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
-                                                    id=''>
-                                                    <span class="material-symbols-outlined" style="color: white">
-                                                        delete
-                                                    </span>
-                                                </button>
-                                            </form>
-
-
-                                        </td>
-                                    </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
+                                     <button  class='d-inline btn btn-dark btn-sm' type='submit' value='med-requset'
+                                                 style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
+                                                 id='btn' >Löschen.
+                                     </button>
+                                 </form>
+                             </td>
+                         </tr>
+                             @endforeach
+                            
+                         </tbody>
+                             </table>
                         </div>
 
 
@@ -414,11 +413,11 @@
             chatLog.appendChild(messageElement);
         }
         </script>
-      
-
+       
     </div>
 
-    </div>
+    
+
     <br>
     <footer class="bg-white fs-3 text-center py-3">
         <b style="color:red;">Health Software developed by Alaa Al Haidar</b>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\DiagnosenController;
+use App\Http\Controllers\DiabetesController;
 
 
 use Illuminate\Http\Request;
@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 
-class DiagnosenController extends Controller{
+class DiabetesController extends Controller{
 
-    function showAllDiagnosis($f_code){
-        $diagnosen = DB::table('diagnosen')->where('f_code', $f_code)->get();
+    function showAllDiabetes($f_code){
+        $diagnosen = DB::table('diabetes')->where('f_code', $f_code)->get();
         $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
         $userinfo = DB::table('patients')->where('f_code', $f_code)->get();
-       return view ('admin/diagnosen',compact('diagnosen','patinfo'));
+       return view ('admin/diabetes',compact('diagnosen','patinfo'));
     }
 
 

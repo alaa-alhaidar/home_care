@@ -142,7 +142,7 @@
                             <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
                                 style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
                                 id='btn'><span class="material-symbols-outlined align-middle fs-3">
-                                    pill
+                                    diagnosis
                                 </span> Diagnosen
                             </button>
                         </form>
@@ -155,6 +155,17 @@
                                 id='btn'><span class="material-symbols-outlined align-middle fs-3">
                                     pill
                                 </span> Medikamente
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col" style="display: inline-block;">
+                        <form class='d-inline' action="{{ route('showDiabetes',['f_code' => $pat->f_code]) }}" method='post'>
+                            @csrf
+                            <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                id='btn'><span class="material-symbols-outlined align-middle fs-3">
+                                    glucose
+                                </span> Diabetes Mellitus
                             </button>
                         </form>
                     </div>
@@ -189,8 +200,8 @@
                  
                     <div class=" table-responsive" style="background-color:white;overflow-y:scroll; height:700px;"style="font-size: 25px;">
                         <br>
-                        <table id="patient-table"
-                            class="table table-hover bg-secondary border-bottom border-white" style="font-size: 25px;">
+                        <table id="patient-table" class="table table-hover bg-secondary table-bordered border-light-subtle"
+                             style="font-size: 25px;">
                             <caption> <b>Patientendaten</b></caption>
                             <thead>
                                 <tr class="bg-warning fw-normal">

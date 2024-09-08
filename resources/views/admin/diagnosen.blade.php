@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Medikamente</title>
+    <title>Diagnosen</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
 
@@ -124,26 +124,27 @@
                     <div class="col" style="display: inline-block;">
                         <form class='d-inline' action="{{ route('allDiagnosis',['f_code' => $pat->f_code]) }}" method='post'>
                             @csrf
-                            <button class='btn btn-secondary btn-sm' type='submit' value='med-requset'
-                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
-                                id='btn'><span class="material-symbols-outlined align-middle fs-3">
-                                diagnosis
+                            <button class='btn btn-warning btn-lg' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 30px;'
+                                id='btn'><span class="material-symbols-outlined align-middle fs-1">
+                                    diagnosis
                                 </span> Diagnosen
                             </button>
                         </form>
                     </div>
                     <div class="col" style="display: inline-block;">
-                        <form class='d-inline' action="{{ route('med',['f_code' => $pat->f_code]) }}" method='post'>
-                            @csrf
-                            <button class='btn btn-warning btn-lg' type='submit' value='med-requset'
-                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 30px;'
-                                id='btn'><span class="material-symbols-outlined align-middle fs-1">
-                                    pill
-                                </span> Medikamente
-                            </button>
-                        </form>
-                    </div>
-                    <div class="col" style="display: inline-block;">
+                    <form class='d-inline'
+                        action="{{ route('med',['f_code' => $pat->f_code,'patinfo' => $pat->f_code]) }}" method='post'>
+                        @csrf
+                        <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                            style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                            id='btn'><span class="material-symbols-outlined align-middle fs-3">
+                                pill
+                            </span> Medikamente
+                        </button>
+                    </form>
+                </div>
+                <div class="col" style="display: inline-block;">
                         <form class='d-inline' action="{{ route('showDiabetes',['f_code' => $pat->f_code]) }}" method='post'>
                             @csrf
                             <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
@@ -223,37 +224,30 @@
                         <div class="table-responsive fs-4">
 
                             <table id="patient-table" class="table table-hover bg-secondary table-bordered border-light-subtle">
-                                <caption> <b>Patientendaten</b></caption>
+                                <caption> <b>Diagnosen</b></caption>
                                 <thead>
                                     <tr class="tm-bg-gray bg-warning">
 
                                         <th scope="col" class="text-center">Id</th>
 
-                                        <th scope="col" class="text-center">Name</th>
-                                        <th scope="col" class="text-center">Wirkstoff</th>
-                                        <th scope="col" class="text-center">Applikationsform</th>
-                                        <th scope="col" class="text-center">morgen</th>
-                                        <th scope="col" class="text-center">nachmittag</th>
-                                        <th scope="col" class="text-center">abend</th>
-                                        <th scope="col" class="text-center">nacht</th>
-                                        <th scope="col" class="text-center">Hinweis</th>
-                                        <th scope="col" class="text-center">Haupt/Bedarf</th>
+                                        <th scope="col" class="text-center">Diagnose</th>
+                                        <th scope="col" class="text-center">Datum</th>
+                                        <th scope="col" class="text-center">Hinweise</th>
 
                                         <th scope="col" class="text-center">Operationen</th>
-
 
                                     </tr>
                                 </thead>
                                 @php
                                 $i=1;
-                                $med="";
+                              
 
                                 @endphp
 
                                 <tbody class="fw-normal">
-                                    @foreach ($medi as $item)
+                                    @foreach ($diagnosen as $item)
                                     @php
-                                    $med .=$item->name.", "
+                    
 
                                     @endphp
 
@@ -261,17 +255,10 @@
 
                                         <td>{{$i++}}</td>
 
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$item->wirkstoff}}</td>
-                                        <td>{{$item->applikationsform}}</td>
-                                        <td>{{$item->morgen}}</td>
-
-                                        <td>{{$item->nachmittag}}</td>
-                                        <td>{{$item->abend}}</td>
-                                        <td>{{$item->nachts}}</td>
-                                        <td>{{$item->hinweis}}</td>
-                                        <td>{{$item->Haupt_Bedarf}}</td>
-
+                                        <td>{{$item->diagnose}}</td>
+                                        <td>{{$item->created_time}}</td>
+                                        <td>{{$item->hinweise}}</td>
+                                  
                                         <td>
 
                                             <form class='d-inline'
@@ -438,54 +425,9 @@
             chatLog.appendChild(messageElement);
         }
         </script>
-        @php
-        $medplan="";
-        $timezone = new DateTimeZone('Europe/Berlin');
-        $date = new DateTime('now', $timezone);
-        $timeNow = intval($date->format('H'));
-
-        if ($timeNow >= 6 && $timeNow <= 9) { $medplan .=DB::table('medikaments') ->where('f_code', $pat->f_code)
-            ->where('morgen', '>', 0)
-            ->get(['name','morgen']);
-
-            }else if ($timeNow > 9 && $timeNow <= 18) { $medplan .=DB::table('medikaments') ->where('f_code',
-                $pat->f_code)
-                ->where('nachmittag', '>', 0)
-                ->get(['name','nachmittag']);
-
-                }else if ($timeNow > 18 && $timeNow <= 21) { $medplan .=DB::table('medikaments') ->where('f_code',
-                    $pat->f_code)
-                    ->where('abend', '>', 0)
-                    ->get(['name','abend']);
-
-                    }else if ($timeNow > 21 && $timeNow <= 24) { $medplan .=DB::table('medikaments') ->
-                        where('f_code',
-                        $pat->f_code)
-                        ->where('nachts', '>', 0)
-                        ->get(['name','nachts']);
-                        }
-
-                        @endphp
+      
 
     </div>
-
-    <div id="overlay"></div>
-    <div id="overlay" class="text-center align-middle"></div>
-
-    <div id="popup" class="popup alert alert-warning alert-dismissible fade show fs-2 text-center align-middle"
-        onclick="hidePopup()">
-        <div class="popup-message text-center align-middle">
-            <span class="close" onclick="event.stopPropagation(); hidePopup()"></span>
-
-            <p style="text-align: center;">
-
-                <b><br>Medikamente sollten rechtzeitig eingenommen werden.</b><br>
-
-                <b class="fs-1 text-center align-middle" style="color:red"><br>{{$medplan}}</b><br>
-
-                <b><br>Bei Fragen, wenden Sie sich an ihrem Arzt</b>
-
-        </div>
 
     </div>
     <br>

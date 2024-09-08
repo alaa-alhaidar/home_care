@@ -145,8 +145,8 @@
 
                     <div class=" table-responsive" style="background-color:white;overflow-y:scroll; height:800px;">
                         <br>
-                        <table id="patient-table"
-                            class="table table-hover bg-secondary border-bottom border-white" style="font-size: 25px;">
+                        <table id="patient-table" class="table table-hover bg-secondary table-bordered border-light-subtle"
+                             style="font-size: 25px;">
                             <caption> <b>Patientendaten</b></caption>
                             <thead>
                                 <tr class="bg-warning fw-normal">

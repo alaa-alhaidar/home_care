@@ -74,6 +74,9 @@ Route::post('/save-vital-pdf', [VitalController::class, 'saveVitalPDF'])->name('
 use App\Http\Controllers\DiagnosenController;
 Route::post('allDiagnosis/{f_code}', [DiagnosenController::class, 'showAllDiagnosis'])->name('allDiagnosis');
 
+// Diabetes
+use App\Http\Controllers\DiabetesController;
+Route::post('showDiabetes/{f_code}', [DiabetesController::class, 'showAllDiabetes'])->name('showDiabetes');
 
 //Report
 // route (controller-name and function insid it) (route-name)

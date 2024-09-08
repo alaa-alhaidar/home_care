@@ -18,7 +18,7 @@ class MedikamenteController extends Controller{
         $medi = DB::table('medikaments')->where('f_code', $f_code)->get();
         $patinfo = DB::table('patients')->where('f_code', $f_code)->get();
         $userinfo = DB::table('patients')->where('f_code', $f_code)->get();
-       return view ('patient/medikamente',compact('medi','patinfo'));
+       return view ('admin/medikamente',compact('medi','patinfo'));
     }
 
     public function logout(Request $request){
