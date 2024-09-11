@@ -178,6 +178,20 @@
                             </button>
                         </form>
                     </div>
+                    <div class="col" style="display: inline-block;">
+                        <form class='d-inline' action="{{ route('allTermine',['f_code' => $pat->f_code]) }}" method='post'>
+                            @csrf
+                            <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                id='btn'>
+                                <span class="material-symbols-outlined align-middle fs-3">
+                                <span class="material-symbols-outlined">
+                                calendar_month
+                                </span>
+                                </span> termine
+                            </button>
+                        </form>
+                    </div>
 
                     <div class="row">
 

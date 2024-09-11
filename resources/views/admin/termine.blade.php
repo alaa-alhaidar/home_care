@@ -172,10 +172,10 @@
                     <div class="col" style="display: inline-block;">
                         <form class='d-inline' action="{{ route('allProph',['f_code' => $pat->f_code]) }}" method='post'>
                             @csrf
-                            <button class='btn btn-warning btn-lg' type='submit' value='med-requset'
-                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 30px;'
+                            <button class='d-inline btn btn-secondary btn-sm' type='submit' value='med-requset'
+                                style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
                                 id='btn'>
-                                <span class="material-symbols-outlined align-middle fs-1">
+                                <span class="material-symbols-outlined align-middle fs-3">
                                     medical_information
                                 </span> Massnahmen
                             </button>
@@ -184,10 +184,10 @@
                     <div class="col" style="display: inline-block;">
                         <form class='d-inline' action="{{ route('allTermine',['f_code' => $pat->f_code]) }}" method='post'>
                             @csrf
-                            <button class='btn btn-secondary btn-lg' type='submit' value='med-requset'
+                            <button class='btn btn-warning btn-lg' type='submit' value='med-requset'
                                 style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
                                 id='btn'>
-                                <span class="material-symbols-outlined align-middle fs-3">
+                                <span class="material-symbols-outlined align-middle fs-1">
                                 <span class="material-symbols-outlined">
                                 calendar_month
                                 </span>
@@ -233,16 +233,16 @@
                         <div class="table-responsive fs-4">
 
                         <table id="#" class="table table-hover bg-secondary table-bordered border-light-subtle">
-                                    <caption> <b>Dekubitusmassnahmen </b>
+                                    <caption> <b>Termine </b>
 
                                     </caption>
                                     <thead>
                                         <tr class="tm-bg-gray bg-warning">
                                             <th scope="col" class="text-center">Id</th>
                                             <th scope="col" class="text-center">f code</th>
-                                            <th scope="col" class="text-center">Massnahmen</th>
+                                            <th scope="col" class="text-center">Termin bei</th>
                                             <th scope="col" class="text-center">Time</th>
-
+                                            <th scope="col" class="text-center">Hinweise</th>
                                             <th scope="col" class="text-center">Operationen</th>
 
                                         </tr>
@@ -253,7 +253,7 @@
 
                                     @endphp
                                     <tbody class="fw-normal">
-                                        @foreach ($massnahmen as $item)
+                                        @foreach ($termine as $item)
                                         @php
 
 
@@ -263,9 +263,9 @@
 
                                             <td>{{$i++}}</td>
                                             <td>{{$item->f_code}}</td>
-                                            <td>{{$item->to_do}}</td>
+                                            <td>{{$item->by_person}}</td>
                                             <td>{{$item->created_time}}</td>
-
+                                            <td>{{$item->note}}</td>
 
                                             <td>
 
@@ -315,16 +315,28 @@
         </div>
         <br>
         <div id="overlay"></div>
-        <div id="popup" class="popup alert alert-warning alert-dismissible fade show fs-2 " onclick="hidePopup()">
+        <div id="popup" class="popup alert alert-warning alert-dismissible fade show fs-2" onclick="hidePopup()" 
+        style="max-height: 800px; overflow-y: auto; width: 100%; max-width: 1200px; margin: 0 auto;">
             <div class="popup-message">
                 <span class="close" onclick="event.stopPropagation(); hidePopup()"></span>
 
                 <p style="text-align: center;">
-                    <b>Bitte prüfen Sie alle nicht durchgeführte Massnahmen.</b><br><br>
-                    <b class="fs-1" style="color:red"></b><br><br>
-                    <b>Bei Fragen, wenden Sie sich an unsere Pflegepersonal</b>
-
-
+                    <b>Folgende Termine stehen:</b><br><br>
+                    <!-- List all Termine here -->
+                    @if($termine->isNotEmpty())
+                        <ul style="list-style-type: none; padding: 0;">
+                            @foreach($termine as $termin)
+                                <li>
+                                    
+                                    <b class="fs-1" style="color:red">{{ $termin->created_time }}</b><br>
+                                    <b>{{ $termin->note }}</b> <b>bei: {{ $termin->by_person }}</b><br><br>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <b>Keine Termine vorhanden.</b>
+                    @endif
+                </p>
             </div>
         </div>
   

@@ -84,6 +84,10 @@ Route::post('add-report/{f_code}', [ReportController::class, 'addReport'])->name
 Route::post('record-report/{f_code}', [ReportController::class, 'recordReport'])->name('record-report');
 Route::post('insert-report/{f_code}', [ReportController::class, 'insertReport'])->name('insert-report');
 
+// Termine
+use App\Http\Controllers\TerminController;
+Route::post('allTermine/{f_code}', [TerminController::class, 'showAllTermine'])->name('allTermine');
+
 // route (controller-name and function insid it) (route-name)
 Route::post('add-massnahme/{f_code}', [MassnahmenController::class, 'addMassnahme'])->name('add-massnahme');
 Route::post('insert-massnahme/{f_code}', [MassnahmenController::class, 'insertMassnahme'])->name('insert-massnahme');
