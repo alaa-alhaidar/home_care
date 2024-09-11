@@ -204,7 +204,7 @@
                                 <span class="material-symbols-outlined">
                                 calendar_month
                                 </span>
-                                </span> termine
+                                </span> Termine
                             </button>
                         </form>
                     </div>
