@@ -21,40 +21,33 @@ class UserController extends Controller
             $request->session()->regenerate();
         
     
-            $data = DB::table('patients')->get();
-            return view('admin/patientinfo', compact('data'));
+            $patinfo=  DB::table('patients')->get();
+            return view('admin/patientinfo', compact('patinfo'));
             
             
         }else{
             
-            $patinfo=  DB::table('patients')->get();
-            return view ('admin/patientinfo',compact('patinfo'));
-            //return view('login');
+            return view ('admin/login');
+          
         }
 
         
     }
-    public function kontoErstellen(Request $request){
+    public function add_usr(Request $request){
+        
+        return view('admin/add-user');
+    }
+    public function insert_usr(Request $request){
         $hashedPassword = Hash::make($request->input('password'));
         DB::table('users')->insert([
-            'f_code' => $request->input('f_code'),
+          
             'name' => $request->input('name'),
+            'email' => $request->input('email'),
             'password' => $hashedPassword,
-            'f_code' => $request->input('f_code'),
-            'role' => "patient"
-            
-            
-        ]);
-        DB::table('patients')->insert([
-            'f_code' => $request->input('f_code'),
-            'grosse' => $request->input('grosse'),
-            'geburtstag' => $request->input('geburtstag'),
-            'geschlecht' => $request->input('geschlecht'),
-            'pflegegrad' => $request->input('pflegegrad')
             
         ]);
         
-        return view('login');
+        return view('admin/home');
     }
 
 
@@ -62,19 +55,19 @@ class UserController extends Controller
 
     public function logout() {
         auth()->logout();
-        return redirect('/home');
+        return redirect('admin/home');
     }
     public function goHome() {
       
-        return redirect('/home');
+        return redirect('admin/home');
     }
     public function gologin(Request $request) {
       
-        return view('login');
+        return view('admin/login');
     }
     public function goCode(Request $request) {
 
-        return view('f_code');
+        return view('admin/f_code');
     }
  
 }

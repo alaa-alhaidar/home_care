@@ -46,6 +46,19 @@
                             </form>
                             <br>
                         </div>
+                        <div class="col-12">
+                            <form action="userControll" method="POST" class="tm-login-form">
+                                @csrf
+                                <br>
+                                <div class="input-group mt-3">
+                                    <button style="border-radius: 15px; color: white; background-color: rgba(90, 84, 147, 0.809); border-block-end-width: thick" 
+                                        id="code-button" type="submit" class="btn btn-primary d-inline-block mx-auto fs-2">
+                                        Nutzer Verwaltung
+                                    </button>
+                                </div>
+                            </form>
+                            <br>
+                        </div>
                         
                    
                        <br>

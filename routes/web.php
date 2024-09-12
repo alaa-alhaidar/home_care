@@ -24,17 +24,18 @@ use App\Http\Controllers\ReportController;
 Route::get('/', function () {
   
     if (auth()->check()) {
-        return view('home');
+        return view('admin/home');
     }
     
 });
 Route::get('/', [UserController::class, 'goHome']);
-Route::post('/register', [UserController::class, 'register']);
-Route::get('/logout', [UserController::class, 'logout']);
-Route::post('/code', [UserController::class, 'goCode']);
-Route::post('/tologin', [UserController::class, 'gologin']);
-Route::post('/login', [UserController::class, 'login']);
-Route::post('/kontoSetup', [UserController::class, 'kontoErstellen']);
+Route::post('register', [UserController::class, 'register']);
+Route::get('logout', [UserController::class, 'logout']);
+Route::post('code', [UserController::class, 'goCode']);
+Route::post('tologin', [UserController::class, 'gologin']);
+Route::post('login', [UserController::class, 'login']);
+Route::post('userControll', [UserController::class, 'add_usr'])->name('userControll');;
+Route::post('insert_usr', [UserController::class, 'insert_usr'])->name('insert_usr');;
 
 // 
 
@@ -54,7 +55,7 @@ Route::post('#', [PatientController::class, 'logout']);
 Route::post('report/{f_code}', [PatientController::class, 'showReport'])->name('report');
 Route::get('pat_info/{f_code}', [PatientController::class, 'showPatPerID'])->name('pat_info');
 Route::post('edit-report/{f_code}/{patinfo}/{id}', [MedikamenteController::class, 'editReport'])->name('edit-report');
-Route::post('add-patient/{f_code}', [PatientController::class, 'addPat'])->name('add-patient');
+Route::post('add-patient}', [PatientController::class, 'addPat'])->name('add-patient');
 Route::post('insert-pat/{f_code}', [PatientController::class, 'insertPat'])->name('insert-med');
 
 // MassnahmenController
@@ -94,7 +95,7 @@ Route::post('insert-massnahme/{f_code}', [MassnahmenController::class, 'insertMa
 
 //home is the name of url. can be used by any bage to execute the function and return to home
 Route::get('home', function(){
-    return view('home');
+    return view('admin/home');
 });
 
 
