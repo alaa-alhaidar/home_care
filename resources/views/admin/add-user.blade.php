@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -109,9 +107,7 @@
                         <p class="fs-1 py-2">Neu Patient hinzufügen</p>
                     </div>
                     <div style="background-color: gainsboro; " style="font-size: 25px;">
-                        <form id="form"
-                            action="{{ route('insert_usr') }}"
-                            method="post">
+                        <form id="form" action="{{ route('insert_usr') }}" method="post">
                             @csrf
 
                             <br>
@@ -143,15 +139,14 @@
                                     required>
                             </div>
                             <div class="input-group mb-3">
-                                <label style="padding-left: 50px;" for="category"
-                                    class="col-xl-2 col-sm-5 mb-2">admin
-                                </label>
+                                <label style="padding-left: 50px;" for="admin"
+                                    class="col-xl-2 col-sm-5 mb-2">Admin</label>
                                 <select name="admin" id="admin" class="">
-                                    <option value=0>user</option>
-                                    <option value=1>admin</option>
+                                    <option value=0>No</option>
+                                    <option value=1>Yes</option>
                                 </select>
-
                             </div>
+
 
                             <div class="d-grid gap-2" style="font-size: 25px;">
                                 <button style="margin-left: 30px; margin-bottom: 20px; background-color: dodgerblue;"

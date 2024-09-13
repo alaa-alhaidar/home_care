@@ -33,10 +33,11 @@ Route::post('register', [UserController::class, 'register']);
 Route::get('logout', [UserController::class, 'logout']);
 Route::post('code', [UserController::class, 'goCode']);
 Route::post('tologin', [UserController::class, 'gologin']);
-Route::post('login', [UserController::class, 'login']);
-Route::post('userControll', [UserController::class, 'add_usr'])->name('userControll');;
-Route::post('insert_usr', [UserController::class, 'insert_usr'])->name('insert_usr');;
 
+Route::post('login', [UserController::class, 'login']);
+Route::post('add_user', [UserController::class, 'add_usr'])->name('add_user');;
+Route::post('insert_usr', [UserController::class, 'insert_usr'])->name('insert_usr');;
+Route::post('show_usr', [UserController::class, 'showAllUsers'])->name('show_usr');;
 // 
 
 Route::post('medikamente/{f_code}', [MedikamenteController::class, 'showAllMed'])->name('med');
