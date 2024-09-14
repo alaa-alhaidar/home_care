@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
 
     <title>Medikamente</title>
 
@@ -20,7 +21,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="{{ asset('alaacss.css') }}">
     <script src="{{ asset('mainFile.js') }}"></script>
-
+ 
 </head>
 
 
@@ -105,8 +106,8 @@
 
             <div class=" container-fluid bg-white" id="navbarSupportedContent" style="height:80vh">
 
-                <div class="bg-white  tm-block h-100" >
-                  
+                <div class="bg-white  tm-block h-100">
+
 
 
                     <div class="row">
@@ -124,9 +125,7 @@
                                     </span><b class='align-middle fs-3'></b>
                                 </button>
                             </form>
-                            <form class='d-inline'
-                                action="{{ route('add_user') }}"
-                                method='post'>
+                            <form class='d-inline' action="{{ route('add_user') }}" method='post'>
                                 @csrf
                                 <button class='d-inline btn btn-warning btn-sm' type='submit' value='med-requset'
                                     style='' id='btn'><b class='fs-3'>
@@ -136,7 +135,7 @@
                                         </span></b>
                                 </button>
                             </form>
-                        
+
 
 
 
@@ -146,68 +145,71 @@
                     <div style="overflow-y:scroll; height:1000px;">
                         <div class="table-responsive fs-4">
 
-                        <table id="diabetes-table" class="table table-hover bg-secondary table-bordered border-light-subtle">
-                             
-                             <caption> <b>Medikamente </b></caption>
-                          
-                         <thead>
-                         <tr class="tm-bg-gray bg-warning">
-                            
-                                                 <th scope="col" class="text-center">Id</th>
-                                             
-                                                 <th scope="col" class="text-center">Name</th>
-                                                 <th scope="col" class="text-center">E-Mail</th>
-                                                 <th scope="col" class="text-center">Password</th>
-                                                 <th scope="col" class="text-center">Is Admin?</th>
-                                                 <th scope="col" class="text-center">Date</th>
-                                                 
-                                                 <th scope="col" class="text-center">Operationen</th>
-                            
-                           
-                         </tr>
-                         </thead>
-                       
-                         @php
-                             $i=1;
-         
-                             @endphp
-                         <tbody class="fw-normal">
-                             @foreach ($users as $item)
-                          
-                             
-                             <tr class='text-center text-white align-middle'>
-                           
-                             <td>{{$i++}}</td>
-                             <td>{{$item->name}}</td>
-                             <td>{{$item->email}}</td>
-                             <td>{{$item->password}}</td>
-                             <td>{{$item->admin}}</td>
-                           
-                             <td>{{$item->created_time}}</td>
-                        
-                             <td> 
-                                 
-                               
-                                 <form class= 'd-inline' action='' method='post'>
+                            <table id="diabetes-table"
+                                class="table table-hover bg-secondary table-bordered border-light-subtle">
 
-                                     <button  class='d-inline btn btn-success btn-sm' type='submit' value='med-requset'
-                                             style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                             id='btn' >Ändern.
-                                     </button>
-                                 </form>
-                                 <form class= 'd-inline' action='' method='post'>
+                                <caption> <b>Nutzer</b></caption>
 
-                                     <button  class='d-inline btn btn-dark btn-sm' type='submit' value='med-requset'
-                                                 style= 'background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;' 
-                                                 id='btn' >Löschen.
-                                     </button>
-                                 </form>
-                             </td>
-                         </tr>
-                             @endforeach
-                            
-                         </tbody>
-                             </table>
+                                <thead>
+                                    <tr class="tm-bg-gray bg-warning">
+
+                                        <th scope="col" class="text-center">Id</th>
+
+                                        <th scope="col" class="text-center">Name</th>
+                                        <th scope="col" class="text-center">E-Mail</th>
+                                        <th scope="col" class="text-center">Password</th>
+                                        <th scope="col" class="text-center">Is Admin?</th>
+                                        <th scope="col" class="text-center">Date</th>
+
+                                        <th scope="col" class="text-center">Operationen</th>
+
+
+                                    </tr>
+                                </thead>
+
+                                @php
+                                $i=1;
+
+                                @endphp
+                                <tbody class="fw-normal">
+                                    @foreach ($users as $item)
+
+
+                                    <tr class='text-center text-white align-middle'>
+
+                                        <td>{{$i++}}</td>
+                                        <td>{{$item->name}}</td>
+                                        <td>{{$item->email}}</td>
+                                        <td>{{$item->password}}</td>
+                                        <td>{{$item->admin}}</td>
+
+                                        <td>{{$item->created_time}}</td>
+
+                                        <td>
+
+
+                                            <form class='d-inline' action='' method='post'>
+                                                @csrf
+                                                <button class='d-inline btn btn-success btn-sm' type='submit'
+                                                    value='med-requset'
+                                                    style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                                    id='btn'>Ändern.
+                                                </button>
+                                            </form>
+                                            <form class='d-inline' action='' method='post'>
+                                                @csrf
+                                                <button class='d-inline btn btn-dark btn-sm' type='submit'
+                                                    value='med-requset'
+                                                    style='background-color:;--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;'
+                                                    id='btn'>Löschen.
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
                         </div>
 
 
@@ -220,12 +222,12 @@
         </div>
         <br>
 
-    
-       
-       
+
+
+
     </div>
 
-    
+
 
     <br>
     <footer class="bg-white fs-3 text-center py-3">

@@ -100,6 +100,9 @@ Route::get('home', function(){
 });
 
 
+Route::get('/refresh-csrf', function() {
+    return csrf_token();
+});
 
 
 

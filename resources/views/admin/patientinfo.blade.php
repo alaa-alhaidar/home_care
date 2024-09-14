@@ -30,7 +30,7 @@
 
 
 <body class="bg02">
-
+@csrf
 
     <div class="" id="home">
         <div class=" col" id=" home">

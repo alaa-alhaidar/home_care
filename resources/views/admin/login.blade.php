@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -19,7 +18,7 @@
 </head>
 
 <body>
-    @csrf
+
     <div class="container">
         <div class="row ">
             <div style="background-color:transparent" class="d-flex justify-content-center align-items-center vh-100">
@@ -60,10 +59,11 @@
                                         placeholder="Passwort eingeben" id="password" value="" required>
                                 </div>
                                 <div style="border-radius: 15px; width: 550px;" class="input-group mt-3">
-                                <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
+                                    <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
                                         <p style="font-size: larger; color: black;">Admin</p>
                                     </label>
-                                    <select name="admin" id="admin" class="input-group mt-3" style="border-radius: 15px; width: 550px;">
+                                    <select name="admin" id="admin" class="input-group mt-3"
+                                        style="border-radius: 15px; width: 550px;">
                                         <option value=0>No</option>
                                         <option value=1>Yes</option>
                                     </select>

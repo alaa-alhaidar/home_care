@@ -38,3 +38,9 @@ setInterval(displayTime, 1000);
 setTimeout(function() {
   window.location.href = '/logout';
 }, 1 * 60 * 1000); 
+
+$.ajaxSetup({
+  headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});

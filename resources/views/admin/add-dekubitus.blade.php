@@ -16,7 +16,7 @@
 </head>
 
 <body class="bg02">
-
+@csrf
     <div class="container-fluid " id="home"">
         <div class="col" id=" home"">
         <p class="navbar-brand" href="../login.html">      

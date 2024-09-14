@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>add-user</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
@@ -16,6 +17,7 @@
 </head>
 
 <body id="reportsPage" class="bg02">
+@csrf
     <div class="container-fluid" id="home">
         <div class="">
 

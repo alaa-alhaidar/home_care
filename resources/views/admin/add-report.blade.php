@@ -22,7 +22,7 @@
 </head>
 
 <body id="reportsPage" class="bg02"">
-
+@csrf
    
     <div class="container-fluid" id="home">
         <div class="">
