@@ -10,15 +10,30 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
     <link rel="stylesheet" href="{{ asset('alaacss.css') }}">
+
     <script src="{{ asset('mainFile.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <title>login</title>
 </head>
 
 <body>
 
+    @if(session('block'))
+    <div class="alert alert-warning alert-blocked mt-1">
+        {{ session('block') }}
+    </div>
+    @endif
+
+    @if($errors->any())
+    <div class="alert alert-danger alert-error mt-4">
+        @foreach ($errors->all() as $error)
+        <p>{{ $error }}</p>
+        @endforeach
+    </div>
+    @endif
     <div class="container">
         <div class="row ">
             <div style="background-color:transparent" class="d-flex justify-content-center align-items-center vh-100">
@@ -84,6 +99,8 @@
             </div>
         </div>
     </div>
+
+
 </body>
 
 </html>

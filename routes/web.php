@@ -37,7 +37,10 @@ Route::post('tologin', [UserController::class, 'gologin']);
 Route::post('login', [UserController::class, 'login']);
 Route::post('add_user', [UserController::class, 'add_usr'])->name('add_user');;
 Route::post('insert_usr', [UserController::class, 'insert_usr'])->name('insert_usr');;
-Route::post('show_usr', [UserController::class, 'showAllUsers'])->name('show_usr');;
+Route::post('show_usr', [UserController::class, 'showAllUsers'])->name('show_usr');
+Route::post('change_psw_form/{id}', [UserController::class, 'change_password_form'])->name('change_psw_form');
+Route::post('change_psw/{id}', [UserController::class, 'change_password'])->name('change_psw');
+
 // 
 
 Route::post('medikamente/{f_code}', [MedikamenteController::class, 'showAllMed'])->name('med');

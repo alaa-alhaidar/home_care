@@ -17,7 +17,7 @@
 </head>
 
 <body id="reportsPage" class="bg02">
-@csrf
+    @csrf
     <div class="container-fluid" id="home">
         <div class="">
 
@@ -109,27 +109,9 @@
                         <p class="fs-1 py-2">Neu Patient hinzufügen</p>
                     </div>
                     <div style="background-color: gainsboro; " style="font-size: 25px;">
-                        <form id="form" action="{{ route('insert_usr') }}" method="post">
+                        <form id="form" action="{{ route('change_psw',['id' => $id]) }}" method="post">
                             @csrf
-
                             <br>
-
-                            <div class="input-group mb-3">
-                                <label style="padding-left: 50px;" for="category" class="col-xl-2 col-form-label">name
-
-                                </label>
-
-                                <input type="text" class="form-control" aria-label="Sizing example input" name="name"
-                                    aria-describedby="inputGroup-sizing-sm" placeholder="name" required>
-                            </div>
-                            <div class="input-group mb-3">
-                                <label style="padding-left: 50px;" for="category" class="col-xl-2 col-form-label">email
-
-                                </label>
-
-                                <input type="text" class="form-control" aria-label="Sizing example input" name="email"
-                                    aria-describedby="inputGroup-sizing-sm" placeholder="email" required>
-                            </div>
                             <div class="input-group mb-3">
                                 <label style="padding-left: 50px;" for="category"
                                     class="col-xl-2 col-form-label">password
@@ -149,11 +131,11 @@
                                 </select>
                             </div>
                             <div class="input-group mb-3">
-                                <label style="padding-left: 50px;" for="block"
-                                    class="col-xl-2 col-sm-5 mb-2">Is Blocked</label>
+                                <label style="padding-left: 50px;" for="block" class="col-xl-2 col-sm-5 mb-2">Is
+                                    Blocked</label>
                                 <select name="block" id="block" class="">
                                     <option value=0>allowed</option>
-                                    <option value=1>blocked</option>
+                                    <option value=1>blocked</option> 
                                 </select>
                             </div>
 

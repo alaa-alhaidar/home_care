@@ -157,7 +157,7 @@
 
                                         <th scope="col" class="text-center">Name</th>
                                         <th scope="col" class="text-center">E-Mail</th>
-                                        <th scope="col" class="text-center">Password</th>
+                                     
                                         <th scope="col" class="text-center">Is Admin?</th>
                                         <th scope="col" class="text-center">Date</th>
 
@@ -180,7 +180,7 @@
                                         <td>{{$i++}}</td>
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->email}}</td>
-                                        <td>{{$item->password}}</td>
+                                
                                         <td>{{$item->admin}}</td>
 
                                         <td>{{$item->created_time}}</td>
@@ -188,7 +188,7 @@
                                         <td>
 
 
-                                            <form class='d-inline' action='' method='post'>
+                                            <form class='d-inline' action="{{ route('change_psw_form',['id' => $item->id]) }}" method='post'>
                                                 @csrf
                                                 <button class='d-inline btn btn-success btn-sm' type='submit'
                                                     value='med-requset'
@@ -196,7 +196,7 @@
                                                     id='btn'>Ändern.
                                                 </button>
                                             </form>
-                                            <form class='d-inline' action='' method='post'>
+                                            <form class='d-inline' action="{{ route('change_psw_form',['id' => $item->id]) }}" method='post'>
                                                 @csrf
                                                 <button class='d-inline btn btn-dark btn-sm' type='submit'
                                                     value='med-requset'

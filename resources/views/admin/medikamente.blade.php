@@ -1,5 +1,6 @@
 @foreach ($patinfo as $pat)
 @endforeach
+
 <!DOCTYPE html>
 <html lang="en">
 

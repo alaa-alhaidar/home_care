@@ -20,12 +20,13 @@ class UserController extends Controller
     
         // Retrieve the user by name
         $user = \App\Models\User::where('name', $incomingFields['name'])->first();
-    
-        // Check if user exists and verify the password
-        if ($user && Hash::check($incomingFields['password'], $user->password)) {
+     
+        
+        // Check if user exists, verify password, and check if user is not blocked
+        if ($user && Hash::check($incomingFields['password'], $user->password) && $user->block == 0) {
             auth()->login($user);
             $request->session()->regenerate();
-    
+        
             // Check if the logged-in user is an admin from the database
             if (auth()->user()->admin == 1) { // User is an admin in the database
                 // Check what was selected in the form for 'admin'
@@ -45,10 +46,11 @@ class UserController extends Controller
                 return view('admin/patientinfo', compact('patinfo'));
             }
         } else {
-            // Authentication failed, return to login view with an error
-            return view('admin/login');
+            // Authentication failed (either user doesn't exist, password is incorrect, or user is blocked)
+            return view('admin/login')->withErrors(['error' => 'Invalid credentials or account is blocked.']);
         }
     }
+    
     
     
     public function add_usr(Request $request){
@@ -65,10 +67,37 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'password' => $hashedPassword,
             'admin' => $request->input('admin'),
+            'block' => $request->input('block'),
             
         ]);
         
         return view('admin/home');
+    }
+    public function change_password_form($id){
+        $users = DB::table('users')->where('id', $id)->first();
+     
+        return view('admin/change_pswd',compact('users','id'));
+    }
+    function change_password(Request $request, $id){
+       
+    
+            // Get the current password hash from the database using DB facade
+         
+        
+            // Update the password with the new one, ensuring it's hashed
+            DB::table('users')->where('id', $id)->update([
+                'password' => Hash::make($request->password),
+                'admin' => $request->input('admin'),
+                'block' => $request->input('block'),
+                'updated_time' => now(), // Optional: Update the timestamp
+            ]);
+              
+
+
+
+            $patinfo = DB::table('patients')->get();
+            $users = DB::table('users')->get();
+       return view ('admin/users',compact('users','patinfo'));
     }
 
     function showAllUsers(){
