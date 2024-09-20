@@ -1,3 +1,5 @@
+@foreach ($users as $usr)
+@endforeach
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,7 +108,7 @@
                             class="tm-block-title mt-3"></h1>
                     </div>
                     <div class="col-lg-12 bg-dark text-center text-white">
-                        <p class="fs-1 py-2">Neu Patient hinzufügen</p>
+                        <p class="fs-1 py-2">Password change</p>
                     </div>
                     <div style="background-color: gainsboro; " style="font-size: 25px;">
                         <form id="form" action="{{ route('change_psw',['id' => $id]) }}" method="post">
@@ -142,8 +144,8 @@
 
                             <div class="d-grid gap-2" style="font-size: 25px;">
                                 <button style="margin-left: 30px; margin-bottom: 20px; background-color: dodgerblue;"
-                                    type="submit" class="btn btn-primary " id=" login-button" type="submit">usr.
-                                    Hinzufügen</button>
+                                    type="submit" class="btn btn-primary " id=" login-button" type="submit">
+                                    change/wechsel</button>
                             </div>
                         </form>
 

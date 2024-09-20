@@ -159,8 +159,8 @@
                                         <th scope="col" class="text-center">E-Mail</th>
                                      
                                         <th scope="col" class="text-center">Is Admin?</th>
-                                        <th scope="col" class="text-center">Date</th>
-
+                                        <th scope="col" class="text-center">Created at</th>
+                                        <th scope="col" class="text-center">Updated at</th>
                                         <th scope="col" class="text-center">Operationen</th>
 
 
@@ -184,6 +184,7 @@
                                         <td>{{$item->admin}}</td>
 
                                         <td>{{$item->created_time}}</td>
+                                        <td>{{$item->updated_time}}</td>
 
                                         <td>
 
