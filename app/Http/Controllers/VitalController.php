@@ -25,7 +25,7 @@ class VitalController extends Controller
 
     // Insert new vital signs data
     DB::table('vitalzeichens')->insert([
-        'versicherungsnummer' => $f_code,
+      
         'f_code' => $f_code,
         'rr_systolisch' => $request->input('rr_systolisch'),
         'rr_diastolisch' => $request->input('rr_diastolisch'),
@@ -34,7 +34,7 @@ class VitalController extends Controller
         'gewicht' => $request->input('gewicht'),
         'bmi' => intval($request->input('gewicht')) / ($g * $g), // Fix the calculation of BMI
         'created_time' => now(), // Assuming 'created_at' is automatically set or you can set it here
-        'updated_time' => now(), // Assuming 'created_at' is automatically set or you can set it here
+       
     ]);
     
 
