@@ -108,6 +108,7 @@ Route::get('/refresh-csrf', function() {
 });
 
 
-
+# http://127.0.0.1:8000/home
+# php artisan serve 
 
 
